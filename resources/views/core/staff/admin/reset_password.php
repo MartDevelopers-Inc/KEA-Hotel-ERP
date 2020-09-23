@@ -7,7 +7,7 @@ if (isset($_POST['reset_pwd'])) {
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
       $err = 'Invalid Email';
     }
-    $checkEmail = mysqli_query($mysqli, "SELECT `eamil` FROM `admin` WHERE `email` = '" . $_POST['email'] . "'") or exit(mysqli_error($mysqli));
+    $checkEmail = mysqli_query($mysqli, "SELECT `email` FROM `admin` WHERE `email` = '" . $_POST['email'] . "'") or exit(mysqli_error($mysqli));
     if (mysqli_num_rows($checkEmail) > 0) {
       //exit('This email is already being used');
       //Reset Password
