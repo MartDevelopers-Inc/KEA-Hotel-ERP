@@ -2,6 +2,6 @@
     $dbuser="root";
     $dbpass="";
     $host="localhost";
-    $db="Smart_Health_Consultancy";
+    $db="KEA_Hotel_ERP";
     $mysqli=new mysqli($host,$dbuser, $dbpass, $db);
 ?>
