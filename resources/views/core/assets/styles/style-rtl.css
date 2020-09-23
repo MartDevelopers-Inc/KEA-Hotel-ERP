@@ -1,0 +1,705 @@
+/* ------------------------------------------------
+ Author: ArtStyles (Art)
+ 
+ Template Name: Sochi
+ version: 1.0.0
+------------------------------------------------ */
+/* -----------------------------------------------------------------
+    - General Styles
+----------------------------------------------------------------- */
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* -----------------------------------------------------------------
+    - Typography
+----------------------------------------------------------------- */
+/* Quote */
+.block-quote {
+  padding-left: 0;
+  padding-right: 2rem;
+}
+.block-quote::before {
+  left: auto;
+  right: 0;
+}
+@media only screen and (max-width: 576px) {
+  .block-quote {
+    padding-left: 0;
+    padding-right: 1.2rem;
+  }
+}
+.block-quote cite {
+  padding-left: 0;
+  padding-right: 2.5rem;
+}
+.block-quote cite::before {
+  left: auto;
+  right: 0;
+}
+@media only screen and (max-width: 576px) {
+  .block-quote cite {
+    padding-left: 0;
+    padding-right: 1.6rem;
+  }
+}
+
+/* List icon */
+@media only screen and (max-width: 576px) {
+  .list-feature .icon {
+    margin-left: .5rem;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .text-two-column {
+    text-align: right;
+  }
+}
+
+/* Icon */
+.icon {
+  margin-left: 1rem;
+  margin-right: 0;
+}
+
+/* -----------------------------------------------------------------
+    - Form
+----------------------------------------------------------------- */
+.inputText {
+  text-align: right;
+}
+.inputText__icon {
+  padding: 0 3rem 0 1.125rem;
+}
+@media only screen and (max-width: 576px) {
+  .inputText__icon {
+    padding: .1rem 2.7rem 0 1rem;
+  }
+}
+
+/* Label */
+@-moz-document url-prefix() {
+  .labelFeature {
+    padding-left: 0;
+    padding-right: 1px;
+  }
+}
+/* Input number */
+.js-quantity-input {
+  text-align: center;
+}
+
+.qty-minus {
+  left: auto;
+  right: 0;
+}
+
+.qty-plus {
+  left: 0;
+  right: auto;
+}
+
+.input-icon {
+  left: auto;
+  right: 1.125rem;
+}
+@media only screen and (max-width: 576px) {
+  .input-icon {
+    left: auto;
+    right: 1rem;
+  }
+}
+
+.input-arrow {
+  background-image: url(../icons/caret-down.svg);
+  background-position: center left 1.125rem;
+}
+@media only screen and (max-width: 576px) {
+  .input-arrow {
+    background-position: center left 1rem;
+  }
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .input-arrow {
+    background-position: center left;
+  }
+}
+
+/* Form Dual */
+.form-dual__left {
+  border-left: 1px solid rgba(114, 128, 157, 0.3);
+  border-right: 0;
+}
+.form-dual .label {
+  padding-left: 0;
+  padding-right: 1.125rem;
+}
+@media only screen and (max-width: 576px) {
+  .form-dual .label {
+    padding-left: 0;
+    padding-right: 1rem;
+  }
+}
+.form-dual #price-from {
+  padding-left: .5rem;
+  padding-right: 1rem;
+}
+.form-dual #price-to {
+  padding-left: 1.4rem;
+  padding-right: .5rem;
+}
+@media only screen and (max-width: 576px) {
+  .form-dual--mobile .form-dual__left {
+    border-left: 0;
+  }
+}
+
+/* Input prefix */
+.input-prefix:before {
+  left: auto;
+  right: 1rem;
+}
+.input-prefix .inputText {
+  padding-left: 0;
+  padding-right: 1.8rem;
+}
+
+/* Buttons */
+.btn::before {
+  left: auto;
+  right: 0;
+  transform: translateX(100%) skewX(15deg);
+}
+.btn:hover::before {
+  transform: translateX(-100%) skewX(15deg);
+}
+.btn .btn-icon-left {
+  padding-left: .45rem;
+  padding-right: 0;
+}
+.btn .btn-icon-right {
+  padding-left: 0;
+  padding-right: .45rem;
+}
+.btn__large .btn-icon-left {
+  padding-left: .6rem;
+  padding-right: 0;
+}
+.btn__large .btn-icon-right {
+  padding-left: 0;
+  padding-right: .6rem;
+}
+
+/* Button booking */
+.btn-booking span::before {
+  left: -30px;
+  right: auto;
+}
+
+/* Button link */
+.btn-link {
+  padding-left: 4.5rem;
+  padding-right: 0;
+}
+.btn-link::before {
+  left: 0;
+  right: auto;
+}
+.btn-link:hover {
+  padding-left: 3.5rem;
+  padding-right: 0;
+}
+@media only screen and (max-width: 576px) {
+  .btn-link {
+    padding-left: 4rem;
+    padding-right: 0;
+  }
+}
+
+/* Button floating */
+.btn-floating {
+  left: 3.5rem;
+  right: auto;
+}
+@media only screen and (max-width: 1200px) {
+  .btn-floating {
+    left: 2.5rem;
+    right: auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .btn-floating {
+    left: 2rem;
+    right: auto;
+  }
+}
+
+.dropdown-menu .col__left {
+  padding-left: 12px;
+  padding-right: 15px;
+}
+@media only screen and (max-width: 576px) {
+  .dropdown-menu .col__left {
+    padding-left: 7.5px;
+    padding-right: 15px;
+  }
+}
+.dropdown-menu .col__right {
+  padding-left: 15px;
+  padding-right: 12px;
+}
+@media only screen and (max-width: 576px) {
+  .dropdown-menu .col__right {
+    padding-left: 15px;
+    padding-right: 7.5px;
+  }
+}
+.dropdown-menu .form-group {
+  margin-left: 0 !important;
+}
+
+/* -----------------------------------------------------------------
+    - Preloader
+----------------------------------------------------------------- */
+.preloader__progress span {
+  left: auto;
+  right: -100%;
+}
+
+@keyframes line-anim {
+  0% {
+    left: auto;
+    right: -100%;
+  }
+  100% {
+    left: auto;
+    right: 100%;
+  }
+}
+/* -----------------------------------------------------------------
+    - Header
+----------------------------------------------------------------- */
+/* Navbar */
+.navbar .nav__item {
+  margin-left: 2.5rem;
+  margin-right: 0;
+}
+.navbar .nav__item:nth-last-child(2) {
+  margin-left: 0;
+}
+.navbar .nav__item:last-child {
+  margin-left: 0;
+}
+@media only screen and (max-width: 1200px) {
+  .navbar .nav__item {
+    margin-left: 2rem;
+    margin-right: 0;
+  }
+}
+.navbar .nav__link span::before {
+  left: 0;
+}
+
+/* -----------------------------------------------------------------
+    - Footer
+----------------------------------------------------------------- */
+.footer__info li {
+  margin-left: 2.5rem;
+  margin-right: 0;
+}
+.footer__info li:last-child {
+  margin-left: 0;
+}
+@media only screen and (max-width: 992px) {
+  .footer__info li {
+    margin-left: 2rem;
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .footer__info li {
+    margin-left: 0;
+  }
+}
+.footer .copyright {
+  padding-left: 0;
+  padding-right: 6rem;
+}
+.footer .copyright::before {
+  left: auto;
+  right: 1.5rem;
+}
+@media only screen and (max-width: 992px) {
+  .footer .copyright {
+    padding-left: 0;
+    padding-right: 3rem;
+  }
+  .footer .copyright::before {
+    left: auto;
+    right: .5rem;
+  }
+}
+.footer__social li {
+  margin-left: 0;
+  margin-right: 1.5rem;
+}
+.footer__social li:first-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 576px) {
+  .footer__social li {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+}
+
+/* -----------------------------------------------------------------
+    - Intro
+----------------------------------------------------------------- */
+.intro__btn-play .btn-play {
+  margin-left: 0;
+  margin-right: 1.5rem;
+}
+@media only screen and (max-width: 576px) {
+  .intro__btn-play .btn-play {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+}
+
+/* -----------------------------------------------------------------
+    - Bottom panel / Booking panel
+----------------------------------------------------------------- */
+.bottom-panel__wrap::before {
+  left: auto;
+  right: -100%;
+}
+@media only screen and (min-width: 992px) {
+  .bottom-panel__form-wrap {
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .bottom-panel .col-date-to {
+    padding-left: 12px;
+    padding-right: 0;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .bottom-panel .col-date-to {
+    padding-left: 15px;
+    padding-right: 0;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .bottom-panel .col-date-from {
+    padding-left: 9px;
+    padding-right: 12px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .bottom-panel .col-date-from {
+    padding-left: 15px;
+    padding-right: 0;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .bottom-panel .col-date-from {
+    padding-left: 0;
+    padding-right: 15px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .bottom-panel .btn-booking {
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .bottom-panel #dropdownPersons {
+    margin-left: 15px;
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .bottom-panel #dropdownPersons {
+    margin-left: 0;
+    margin-right: 15px;
+  }
+}
+.bottom-panel .slash::before {
+  left: 22%;
+  right: auto;
+}
+@media only screen and (max-width: 1500px) {
+  .bottom-panel .slash::before {
+    left: 18%;
+    right: auto;
+  }
+}
+.bottom-panel--floating .bottom-panel__wrap {
+  padding-left: 0;
+  padding-right: 3rem;
+}
+@media only screen and (max-width: 1200px) {
+  .bottom-panel--floating .bottom-panel__wrap {
+    padding-left: 0;
+    padding-right: 2.5rem;
+  }
+}
+.bottom-panel--floating .btn-booking {
+  border-radius: 8px 0 32px 8px;
+}
+
+/* Room details */
+.room-details__item [class^="icon-"] {
+  margin-left: 1rem;
+  margin-right: 0;
+}
+@media only screen and (max-width: 576px) {
+  .room-details__item [class^="icon-"] {
+    margin-left: .6rem;
+    margin-right: 0;
+  }
+}
+
+/* -----------------------------------------------------------------
+    - Lightbox video
+----------------------------------------------------------------- */
+.close-popup {
+  left: 1rem;
+  right: auto;
+}
+
+/* -----------------------------------------------------------------
+    - Intro Slider
+----------------------------------------------------------------- */
+.intro-slider .slider-prev {
+  margin-left: -8px;
+  margin-right: 0;
+}
+.intro-slider .slider-next {
+  margin-left: 1.5rem;
+  margin-right: 0;
+}
+
+/* -----------------------------------------------------------------
+    - Sections
+----------------------------------------------------------------- */
+.section-gray--cutoutTop::before, .section-gray--cutoutBottom::before {
+  left: 0;
+  right: auto;
+}
+
+@media only screen and (max-width: 576px) {
+  .col__left {
+    padding-left: 7.5px;
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .col__right {
+    padding-left: 0;
+    padding-right: 7.5px;
+  }
+}
+
+/* Filter */
+@media only screen and (min-width: 769px) {
+  .filter__item {
+    padding-left: 2rem;
+    padding-right: 0;
+  }
+  .filter__item:last-child {
+    padding-left: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .select .placeholder:after {
+    left: 2px;
+    right: auto;
+  }
+  .select ul li {
+    text-align: right;
+  }
+}
+/* -----------------------------------------------------------------
+    - About Us (Homepage)
+----------------------------------------------------------------- */
+.about-link {
+  left: 0;
+  right: auto;
+}
+.about-link i {
+  margin-left: 0;
+  margin-right: 1rem;
+  left: 0;
+  right: auto;
+}
+.about-link:hover i {
+  left: -6px;
+  right: auto;
+}
+
+/* -----------------------------------------------------------------
+    - Testimonials (Homepage)
+----------------------------------------------------------------- */
+.author-picture {
+  margin-left: 1.4rem;
+  margin-right: 0;
+}
+@media only screen and (max-width: 576px) {
+  .author-picture {
+    margin-left: 1rem;
+    margin-right: 0;
+  }
+}
+
+/* -----------------------------------------------------------------
+    - Video section
+----------------------------------------------------------------- */
+.video-container .video-note {
+  background-color: #fff;
+  padding: 2.5rem 2.5rem 2.5rem 5rem;
+  left: 0;
+  right: auto;
+}
+@media only screen and (max-width: 1200px) {
+  .video-container .video-note {
+    padding: 1.5rem 2rem 1.5rem 3rem;
+  }
+}
+
+/* -----------------------------------------------------------------
+    - Swiper
+----------------------------------------------------------------- */
+.swiper-control-center {
+  left: 0;
+  right: -1px;
+}
+.swiper-control--bottom {
+  left: auto;
+  right: 0;
+}
+
+.swiper-button-square.swiper-button-next {
+  left: 0;
+}
+
+.swiper-button-square.swiper-button-prev {
+  right: 0;
+}
+
+/* -----------------------------------------------------------------
+    - Item Room
+----------------------------------------------------------------- */
+.itemRoom__details {
+  left: auto;
+  right: 0;
+}
+.itemRoom .badge {
+  margin: 1.5rem 0 0 1.5rem;
+  left: 0;
+  right: auto;
+}
+@media only screen and (max-width: 576px) {
+  .itemRoom .badge {
+    margin: 1rem 0 0 1rem;
+  }
+}
+.itemRoom__price span {
+  margin-left: .5rem;
+  margin-right: 0;
+}
+.itemRoom__main .itemRoom__details {
+  border-radius: 6px 0 0 0;
+  padding-left: 2.5rem;
+  padding-right: 1.5rem;
+}
+@media only screen and (max-width: 576px) {
+  .itemRoom__main .itemRoom__details {
+    padding-left: 1rem;
+    padding-right: 0;
+  }
+}
+.itemRoom__details-extended [class^="icon-"], .itemRoom__details-extended [class*=" icon-"] {
+  margin-left: .6rem;
+  margin-right: 0;
+}
+
+/* -----------------------------------------------------------------
+    - About
+----------------------------------------------------------------- */
+/* Section approach */
+.item-approach::before {
+  padding-left: 1.5rem;
+  padding-right: 15px;
+  left: auto;
+  right: 0;
+}
+.item-approach::after {
+  padding-left: 0;
+  padding-right: 15px;
+  left: 0;
+  right: 3rem;
+}
+
+/* -----------------------------------------------------------------
+    - News
+----------------------------------------------------------------- */
+.itemNews__date {
+  padding: 1.5rem 1.5rem 1.2rem 2.5rem;
+  left: auto;
+  right: 0;
+}
+@media only screen and (max-width: 1200px) {
+  .itemNews__date {
+    padding: 1.2rem 1.2rem 1.0rem 2.0rem;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .itemNews__date {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 0;
+    padding: 1rem 0 .5rem 1rem;
+  }
+}
+
+/* -----------------------------------------------------------------
+    - News post
+----------------------------------------------------------------- */
+/* Share */
+.share-post a span {
+  padding-left: 0;
+  padding-right: .8rem;
+}
+
+/* -----------------------------------------------------------------
+    - Other
+----------------------------------------------------------------- */
+/* Scroll to */
+.scroll-to {
+  left: 3.5rem;
+  right: auto;
+}
+@media only screen and (max-width: 1200px) {
+  .scroll-to {
+    left: 2rem;
+    right: auto;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .scroll-to {
+    left: 15px;
+    right: auto;
+  }
+}
+
+#map {
+  direction: ltr;
+}
+
+/*# sourceMappingURL=style-rtl.css.map */
