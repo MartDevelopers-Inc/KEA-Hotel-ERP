@@ -47,10 +47,7 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="hrm" data-parent="#accordionExample">
                     <li>
-                        <a href="manage_docs.php"> Manage Doctors </a>
-                    </li>
-                    <li>
-                        <a href="account_verification.php"> Doc Verification </a>
+                        <a href="manage_staffs.php"> Manage Staffs </a>
                     </li>
                 </ul>
             </li>
@@ -82,14 +79,14 @@
 
 
             <li class="menu">
-                <a href="#clients" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <a href="#rooms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
                             <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                             <circle cx="8.5" cy="7" r="4"></circle>
                             <polyline points="17 11 19 13 23 9"></polyline>
                         </svg>
-                        <span>Clients</span>
+                        <span>Hotel Rooms</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
@@ -97,19 +94,16 @@
                         </svg>
                     </div>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="clients" data-parent="#accordionExample">
+                <ul class="collapse submenu list-unstyled" id="rooms" data-parent="#accordionExample">
                     <li>
-                        <a href="manage_clients.php"> Manage Clients </a>
-                    </li>
-                    <li>
-                        <a href="free_trial_clients.php">Free Membership</a>
+                        <a href="manage_clients.php"> Manage Rooms </a>
                     </li>
 
                 </ul>
             </li>
 
             <li class="menu">
-                <a href="#kb" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <a href="#housekeeping" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
                             <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
@@ -123,7 +117,7 @@
                             <line x1="1" y1="9" x2="4" y2="9"></line>
                             <line x1="1" y1="14" x2="4" y2="14"></line>
                         </svg>
-                        <span>K-Base</span>
+                        <span>HSE Keeping</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
@@ -131,37 +125,26 @@
                         </svg>
                     </div>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="kb" data-parent="#accordionExample">
+                <ul class="collapse submenu list-unstyled" id="housekeeping" data-parent="#accordionExample">
                     <li>
-                        <a href="create_kb.php"> Create KB </a>
+                        <a href="cleaners.php"> Cleaners </a>
                     </li>
                     <li>
-                        <a href="mnage_kb.php"> Manage KB </a>
+                        <a href="assignments.php"> Assignments </a>
                     </li>
                 </ul>
             </li>
 
-            <li class="menu">
-                <a href="packages.php" aria-expanded="false" class="dropdown-toggle">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                            <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"></path>
-                            <polyline points="2.32 6.16 12 11 21.68 6.16"></polyline>
-                            <line x1="12" y1="22.76" x2="12" y2="11"></line>
-                            <line x1="7" y1="3.5" x2="17" y2="8.5"></line>
-                        </svg>
-                        <span>Packages</span>
-                    </div>
-                </a>
-            </li>
 
             <li class="menu">
-                <a href="#consultations" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <a href="#resturant" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                            <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            <circle cx="12" cy="5" r="3"></circle>
+                            <line x1="12" y1="22" x2="12" y2="8"></line>
+                            <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
                         </svg>
-                        <span>Consultations</span>
+                        <span>Resturant</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
@@ -169,21 +152,21 @@
                         </svg>
                     </div>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="consultations" data-parent="#accordionExample">
+                <ul class="collapse submenu list-unstyled" id="resturant" data-parent="#accordionExample">
                     <li>
-                        <a href="manage_consultations.php"> Manage Records </a>
+                        <a href="manage_resturant_sales.php"> Manage Sales </a>
                     </li>
                 </ul>
             </li>
 
             <li class="menu">
-                <a href="#prescriptions" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <a href="#inventory" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard">
                             <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
                             <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
                         </svg>
-                        <span>Prescriptions</span>
+                        <span>Inventory</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
@@ -191,9 +174,9 @@
                         </svg>
                     </div>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="prescriptions" data-parent="#accordionExample">
+                <ul class="collapse submenu list-unstyled" id="inventory" data-parent="#accordionExample">
                     <li>
-                        <a href="manage_prescriptions.php"> Manage Prescriptions </a>
+                        <a href="manage_inventory.php"> Manage Inventory </a>
                     </li>
                 </ul>
             </li>
@@ -218,42 +201,30 @@
                         <a href="payment_means.php"> Payment Means </a>
                     </li>
                     <li>
-                        <a href="membership_fee.php"> Membership Fee </a>
+                        <a href="membership_fee.php"> Reservation Payments </a>
                     </li>
-                    <li>
-                        <a href="payment_verification.php"> Payment Verification </a>
-                    </li>
-                    <li>
-                        <a href="reversals.php"> Reversals </a>
-                    </li>
-
                 </ul>
             </li>
 
             <li class="menu">
-                <a href="#feedbacks" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <a href="#settings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
                             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                             <polyline points="13 2 13 9 20 9"></polyline>
                         </svg>
-                        <span>Feedbacks</span>
+                        <span>Settings</span>
                     </div>
                     <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                            <polyline points="9 18 15 12 9 6"></polyline>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                         </svg>
                     </div>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="feedbacks" data-parent="#accordionExample">
+                <ul class="collapse submenu list-unstyled" id="settings" data-parent="#accordionExample">
                     <li>
-                        <a href="manage_feedbacks.php"> Manage Feedbacks </a>
-                    </li>
-                    <li>
-                        <a href="manage_ratings.php"> Manage Ratings </a>
-                    </li>
-                    <li>
-                        <a href="manage_complains.php"> Manage Complains </a>
+                        <a href="manage_feedbacks.php"> Manage System </a>
                     </li>
                 </ul>
             </li>
@@ -279,19 +250,22 @@
                         <a href="hr_reports.php"> HR Reports </a>
                     </li>
                     <li>
-                        <a href="member_reports.php"> Member Reports </a>
+                        <a href="member_reports.php"> Resturant Sales </a>
                     </li>
                     <li>
-                        <a href="package_reports.php"> Packages </a>
+                        <a href="package_reports.php"> Stock Reports </a>
                     </li>
                     <li>
-                        <a href="consultations_reports.php"> Consultations </a>
+                        <a href="consultations_reports.php"> Suppliers </a>
                     </li>
                     <li>
-                        <a href="prescriptions_reports.php"> Prescriptions </a>
+                        <a href="prescriptions_reports.php"> Bills </a>
                     </li>
                     <li>
-                        <a href="payment_reports.php"> Payment Reports </a>
+                        <a href="payment_reports.php"> Reservations </a>
+                    </li>
+                    <li>
+                        <a href="tax_reports.php"> Tax Reports </a>
                     </li>
                 </ul>
             </li>
