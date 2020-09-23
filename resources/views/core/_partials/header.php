@@ -18,7 +18,7 @@
             </ul>
         </div>
         <div class="navbar__btn">
-            <a class="btn btn__medium" href="rooms.html"><i class="btn-icon-left icon-bookmark"></i>Reservations</a>
+            <a class="btn btn__medium" href="staff/"><i class="btn-icon-left icon-login"></i>Staff Login</a>
         </div>
     </nav>
 </header>

@@ -5,7 +5,7 @@
 		$uri = 'http://';
 	}
 	$uri .= $_SERVER['HTTP_HOST'];
-	header('Location: '.$uri.'/KEA-HOTEL-ERP/resources/views/core/');
+	header('Location: '.$uri.'/KEA-Hotel-ERP/resources/views/core/');
 	exit;
 ?>
 Something is wrong here and i can feel it

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Sochi – Hotel Booking</title>
+    <title>KEA HOTEL ERP – KEA -Hotel-ERP is a software solution tool developed for Hotel management and designed for hoteliers to manage their operations in an effective way.</title>
 
     <!-- Meta Data -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

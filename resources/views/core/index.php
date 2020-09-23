@@ -25,7 +25,7 @@
 	        <div class="container intro__container">
 		        <div class="row h-100 align-items-center">
 			        <div class="col-12 col-md-12 col-xl-8">
-				        <span class="title title--overhead text-white js-lines">Welcome to Sochi Hotel</span>
+				        <span class="title title--overhead text-white js-lines">Welcome to KEA Hotel</span>
 		                <h1 class="title title--display-1 js-lines">Feeling cool like your favorite place.</h1>
 					    <button class="intro__btn-play js-lines" id="play">Adventure<span class="btn-play btn-play__popup"></span></button>
 				    </div>
@@ -365,43 +365,6 @@
     <?php
         require_once('_partials/footer.php'); 
     ?>
-    <!-- Lightbox hero video -->
-    <div class="lightbox-backdrop">
-	    <div class="close-popup icon-x"></div>
-        <div class="lightbox-content">
-            <div class="video-foreground">
-			    <div class="youtube-popup" data-yt-url="https://www.youtube.com/embed/HSsqzzuGTPo?autoplay=1&amp;"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Button Live Chat -->
-	<div class="btn-floating js-show-to-scroll"><i class="icon-bubble"></i></div>
-
-	<!-- Demo Menu -->
-	<div class="btnSlideNav slideOpen"></div>
-    <div class="btnSlideNav slideClose"></div>
-    <ul class="slideNav">
-	    <li class="slideNav__item rtl-mode"><h4 class="title title--5">More pages</h4> <a href="rtl/home.html">RTL</a></li>
-        <li class="slideNav__item"><a href="home.html">01. Homepage</a></li>
-        <li class="slideNav__item"><a href="home_v2.html">02. Homepage v2</a></li>
-        <li class="slideNav__item"><a href="about.html">03. About Us</a></li>		
-        <li class="slideNav__item"><a href="rooms.html">04. Rooms</a></li>
-		<li class="slideNav__item"><a href="rooms_v2.html">05. Rooms v2</a></li>
-        <li class="slideNav__item"><a href="room_details.html">06. Room Details</a></li>
-		<li class="slideNav__item"><a href="room_details_v2.html">07. Room Details v2</a></li>
-        <li class="slideNav__item"><a href="blog.html">08. Blog</a></li>
-		<li class="slideNav__item"><a href="blog_post.html">09. Post</a></li>
-		<li class="slideNav__item"><a href="gallery.html">10. Gallery</a></li>
-		<li class="slideNav__item"><a href="contact.html">11. Contact</a></li>
-		<li class="slideNav__item"><a href="reservations.html">12. Reservations</a></li>
-		<li class="slideNav__item"><a href="reservations_confirmation.html">13. Reservations Confirmation</a> <!--<span class="lable-new">New</span>--></li>
-		<li class="slideNav__item"><a href="payment.html">14. Payment</a></li>
-		<li class="slideNav__item"><a href="text-page.html">15. Text page</a></li>
-		<li class="slideNav__item"><a href="404.html">16. 404</a></li>
-    </ul>
-	<div class="overlay-slideNav"></div>
-    <!-- Demo Menu -->	
 
 	<!-- JavaScripts -->
 	<script src="assets/js/jquery-3.4.1.min.js"></script>
