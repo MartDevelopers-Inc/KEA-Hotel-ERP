@@ -19,7 +19,7 @@ class CreateVendorsTable extends Migration
             $table->string('code');
             $table->string('email');
             $table->string('phone');
-            $table->strnig('adr');
+            $table->string('adr');
             $table->longText('desc');
             $table->timestamp('created_at');
         });

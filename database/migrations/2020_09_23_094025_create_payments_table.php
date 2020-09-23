@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->string('amt');
             $table->string('cust_name');
             $table->string('service_paid');
-            $table->strig('payment_means');
+            $table->string('payment_means');
             $table->string('status');
             $table->timestamp('created_at');
         });
