@@ -14,8 +14,12 @@ class CreateAssetsTable extends Migration
     public function up()
     {
         Schema::create('assets', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('id')->unique();
+            $table->string('name');
+            $table->string('code');
+            $table->longText('desc');
+            $table->string('status');
+            $table->timestamp('created_at');
         });
     }
 

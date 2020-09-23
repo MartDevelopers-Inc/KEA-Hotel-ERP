@@ -14,8 +14,13 @@ class CreatePayrollsTable extends Migration
     public function up()
     {
         Schema::create('payrolls', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('id')->unique();
+            $table->string('code');
+            $table->string('month');
+            $table->string('staff_id');
+            $table->string('salary');
+            $table->longText('desc');
+            $table->timestamp('created_at');
         });
     }
 
