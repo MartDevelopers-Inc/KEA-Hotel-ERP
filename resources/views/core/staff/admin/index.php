@@ -3,14 +3,14 @@ session_start();
 include('configs/config.php');
 //handle login
 if (isset($_POST['login'])) {
-    $admin_email = $_POST['admin_email'];
-    $admin_password = sha1(md5($_POST['admin_password'])); //double encrypt to increase security
-    $stmt = $mysqli->prepare("SELECT admin_email, admin_password, admin_id  FROM admin  WHERE (admin_email =? AND admin_password =?)");
-    $stmt->bind_param('ss', $admin_email, $admin_password); //bind fetched parameters
+    $email = $_POST['email'];
+    $password = sha1(md5($_POST['password'])); //double encrypt to increase security
+    $stmt = $mysqli->prepare("SELECT email, password, id  FROM admin  WHERE (email =? AND password =?)");
+    $stmt->bind_param('ss', $email, $password); //bind fetched parameters
     $stmt->execute(); //execute bind 
-    $stmt->bind_result($admin_email, $admin_password, $admin_id); //bind result
+    $stmt->bind_result($email, $password, $id); //bind result
     $rs = $stmt->fetch();
-    $_SESSION['admin_id'] = $admin_id;
+    $_SESSION['id'] = $id;
     if ($rs) {
         //if its sucessfull
         header("location:dashboard.php");
@@ -40,7 +40,7 @@ require_once('partials/_head.php');
                                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                         <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
-                                    <input id="username" required name="admin_email" type="email" class="form-control">
+                                    <input id="username" required name="email" type="email" class="form-control">
                                 </div>
 
                                 <div id="password-field" class="field-wrapper input mb-2">
@@ -52,7 +52,7 @@ require_once('partials/_head.php');
                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                     </svg>
-                                    <input id="password" required name="admin_password" type="password" class="form-control">
+                                    <input id="password" required name="password" type="password" class="form-control">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="toggle-password" class="feather feather-eye">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                         <circle cx="12" cy="12" r="3"></circle>
