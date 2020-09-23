@@ -1,6 +1,5 @@
-<!-- Load Analytics Once Again -->
-<!-- <?php require_once('partials/_analytics.php'); ?>
- --><script src="plugins/ckeditor/ckeditor.js"></script>
+<?php require_once('partials/_analytics.php'); ?>
+ <script src="plugins/ckeditor/ckeditor.js"></script>
 <script>
     //Medical Expert Bio Instance
     CKEDITOR.replace('medical-expert-bio');
@@ -130,7 +129,7 @@
 
         /*
             =================================
-                Member Enrollment Monthly
+            Montly Incomes Per Hotel Assets 
             =================================
         */
         var options1 = {
@@ -240,11 +239,11 @@
                 lineCap: 'square'
             },
             series: [{
-                    name: 'Clients',
+                    name: 'Resturant Sales',
                     data: [<?php echo $jan; ?>, <?php echo $feb; ?>, <?php echo $mar; ?>, <?php echo $apr; ?>, <?php echo $may; ?>, <?php echo $jun; ?>, <?php echo $jul; ?>, <?php echo $aug; ?>, <?php echo $sep; ?>, <?php echo $oct; ?>, <?php echo $nov; ?>, <?php echo $dec; ?>]
                 },
                 {
-                    name: 'Doctors',
+                    name: 'Room Reservations',
                     data: [<?php echo $Jan; ?>, <?php echo $Feb; ?>, <?php echo $Mar; ?>, <?php echo $Apr; ?>, <?php echo $May; ?>, <?php echo $Jun; ?>, <?php echo $Jul; ?>, <?php echo $Aug; ?>, <?php echo $Sep; ?>, <?php echo $Oct; ?>, <?php echo $Nov; ?>, <?php echo $Dec; ?>],
                 }
             ],
@@ -357,7 +356,7 @@
 
         /*
             ==================================
-                Membership Packages                                       
+                Rooms As Per Room Category                                       
             ==================================
         */
         var options = {
@@ -365,7 +364,7 @@
                 type: 'donut',
                 width: 380
             },
-            colors: ['#5c1ac3', '#e2a03f', '#e7515a', '#e2a03f'],
+            colors: ['#5c1ac3', '#e2a03f', '#e7515a', '#e2a03f', '#e2a03f', '#5c1ac3'  ],
             dataLabels: {
                 enabled: false
             },
@@ -425,8 +424,8 @@
                 show: true,
                 width: 25,
             },
-            series: [<?php echo $gold; ?>, <?php echo $silver; ?>, <?php echo $bronze; ?>],
-            labels: ['Gold', 'Silver', 'Bronze'],
+            series: [<?php echo $single; ?>, <?php echo $double; ?>, <?php echo $deluxe; ?>, <?php echo $regular;?>, <?php echo $penthouse;?>, <?php echo $presidential;?>],
+            labels: ['Single Rooms', 'Double Rooms', 'Deluxe Rooms', 'Regular Suites', 'Penthouse Suites', 'Presidential Suites'],
             responsive: [{
                 breakpoint: 1599,
                 options: {
@@ -512,7 +511,7 @@
 
         /*
             ======================================
-            PAYMENTS INCOMES AS PER MEMBERSHIP PACKAGE
+            Reservations As Room Type
             ======================================
         */
 
@@ -563,11 +562,11 @@
                 colors: ['transparent']
             },
             series: [{
-                name: 'Ksh',
-                data: [<?php echo $gold_payment; ?>, <?php echo $silver_payment; ?>, <?php echo $bronze_payment; ?>]
+                name: 'Room Type:',
+                data: [<?php echo $Single; ?>, <?php echo $Double; ?>, <?php echo $Deluxe; ?>, <?php echo $Regular;?>, <?php echo $Penthouse;?>, <?php echo $Presidential;?>]
             }],
             xaxis: {
-                categories: ['Gold Package', 'Silver Package', 'Bronze Package'],
+                categories: ['Single Rooms', 'Double Rooms', 'Deluxe Rooms', 'Regular Suites', 'Penthouse Suites', 'Presidential Suites'],
             },
             fill: {
                 type: 'gradient',
