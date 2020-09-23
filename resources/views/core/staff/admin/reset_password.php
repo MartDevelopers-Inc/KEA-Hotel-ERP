@@ -3,22 +3,30 @@ session_start();
 include('configs/config.php');
 include('configs/codeGen.php');
 
-if (isset($_POST['reset-password'])) {
-
-    $email = $_POST['email'];
-    $token = $_POST['token'];
-
-    $query = "INSERT INTO password_resets (email, token) VALUES (?,?)";
-    $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('ss', $email, $token);
-    $stmt->execute();
-    if ($stmt) {
-        $success = "Please Check Your Email For Password Reset Instructions" ;//&& header("refresh:1; url=manage_feedbacks.php");
-    } else {
-        //inject alert that task failed
-        $info = "Please Try Again Or Try Later";
+if (isset($_POST['reset_pwd'])) {
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+      $err = 'Invalid Email';
     }
-}
+    $checkEmail = mysqli_query($mysqli, "SELECT `eamil` FROM `admin` WHERE `email` = '" . $_POST['email'] . "'") or exit(mysqli_error($mysqli));
+    if (mysqli_num_rows($checkEmail) > 0) {
+      //exit('This email is already being used');
+      //Reset Password
+      $token = $_POST['token'];
+      $email = $_POST['email'];
+      $query = "INSERT INTO password_resets (email, token) VALUES (?,?)";
+      $reset = $mysqli->prepare($query);
+      $rc = $reset->bind_param('ss', $email, $token);
+      $reset->execute();
+      if ($reset) {
+        $success = "Password Reset Instructions Sent To Your Email";
+        // && header("refresh:1; url=index.php");
+      } else {
+        $err = "Please Try Again Or Try Later";
+      }
+    } else {
+      $err = "No account with that email";
+    }
+  }
 
 require_once('partials/_head.php');
 ?>
@@ -31,7 +39,7 @@ require_once('partials/_head.php');
             <div class="form-form-wrap">
                 <div class="form-container">
                     <div class="form-content">
-                        <h1 class="">Smart Health Consultancy - Admin Module</h1>
+                        <h1 class="">KEA Hotel ERP - Admin Module</h1>
                         <p class="">Provide Your Email To Reset Password.</p>
                         <form method="POST" class="text-left">
                             <div class="form">
@@ -42,12 +50,12 @@ require_once('partials/_head.php');
                                         <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
                                     <input id="username" name="email" type="email" class="form-control">
-                                    <input  name="token" value="<?php echo $tk;?>" type="hidden" class="form-control">
+                                    <input name="token" value="<?php echo $tk; ?>" type="hidden" class="form-control">
                                 </div>
 
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">
-                                        <button type="submit" name="reset-password" class="btn btn-primary" value="">Reset Password</button>
+                                        <button type="submit" name="reset_pwd" class="btn btn-primary" value="">Reset Password</button>
                                     </div>
                                 </div>
                                 <p class="signup-link">Remebered Password ? <a href="index.php">Sign In</a></p>
