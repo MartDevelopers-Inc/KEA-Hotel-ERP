@@ -8,7 +8,7 @@
                 </a>
             </li> -->
             <li class="nav-item theme-text">
-                <a href="dashboard.php" class="nav-link"> Smart Health Consultancy </a>
+                <a href="dashboard.php" class="nav-link"> KEA Hotel ERP</a>
             </li>
         </ul>
 

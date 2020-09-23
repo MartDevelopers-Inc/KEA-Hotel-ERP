@@ -170,14 +170,14 @@ code { color: #e7515a; }
 
 .header-container {
     z-index: 1030;
-    border-bottom: 1px solid #85cf3d;
+    border-bottom: 1px solid #e3bf00;
 }
 .header-container .navbar {
     padding: 4px 0;
 }
 .navbar {
     padding: 0;
-    background: #85cf3d;
+    background: #e3bf00;
 }
 .navbar .theme-brand {
     padding: 0.9px 0 0.9px 27px!important;

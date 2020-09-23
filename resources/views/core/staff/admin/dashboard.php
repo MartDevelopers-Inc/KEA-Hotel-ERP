@@ -54,10 +54,15 @@ require_once('partials/_head.php');
                             </svg></a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
-                            <a class="dropdown-item" data-value="Medical Experts" href="hr_reports.php">Medical Experts</a>
-                            <a class="dropdown-item" data-value="Members" href="member_reports.php">Members</a>
-                            <a class="dropdown-item" data-value="Packages" href="package_reports.php">Packages</a>
-                            <a class="dropdown-item" data-value="Payments" href="payment_reports.php">Payments</a>
+                            <a class="dropdown-item" data-value="Sales" href="hr_reports.php">Resturant Sales</a>
+                            <a class="dropdown-item" data-value="Stock Reports" href="member_reports.php">Stock Reports</a>
+                            <a class="dropdown-item" data-value="Supplier Outsanding" href="package_reports.php">Supplier Outstanding</a>
+                            <a class="dropdown-item" data-value="Bills" href="payment_reports.php">Bills</a>
+                            <a class="dropdown-item" data-value="Tax Reports" href="payment_reports.php">Tax Reports</a>
+                            <a class="dropdown-item" data-value="Reservation Reports" href="payment_reports.php">Reservation Reports</a>
+                            <a class="dropdown-item" data-value="HR Reports" href="payment_reports.php">HR Reports</a>
+
+
                         </div>
                     </div>
                 </li>
@@ -85,7 +90,7 @@ require_once('partials/_head.php');
                     <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-chart-one">
                             <div class="widget-heading">
-                                <h5 class="">Enrollments</h5>
+                                <h5 class="">Income Per Month</h5>
                                 <ul class="tabs tab-pills">
                                     <li><a href="javascript:void(0);" id="tb_1" class="tabmenu">Monthly</a></li>
                                 </ul>
@@ -104,7 +109,7 @@ require_once('partials/_head.php');
                     <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-chart-two">
                             <div class="widget-heading">
-                                <h5 class="">Membership by Packages</h5>
+                                <h5 class="">Reservations</h5>
                             </div>
                             <div class="widget-content">
                                 <div id="chart-2" class=""></div>
@@ -115,12 +120,12 @@ require_once('partials/_head.php');
                     <div class="col-xl-8 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-table-one">
                             <div class="widget-heading">
-                                <h5 class="">Recent Membership Fee Payments <span class="badge outline-badge-success"><a href="membership_fee.php">View All</a></span> </h5>
+                                <h5 class="">Recent Room Reservations<span class="badge outline-badge-success"><a href="reservations.php">View All</a></span> </h5>
                             </div>
 
                             <div class="widget-content">
                                 <?php
-                                $ret = "SELECT * FROM `membership_payments` WHERE status ='Confirmed' ORDER BY `membership_payments`.`created_at` DESC LIMIT 4  ";
+                                $ret = "SELECT * FROM `reservations` ORDER BY `reservations`.`created_at` DESC LIMIT 4  ";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
@@ -137,14 +142,14 @@ require_once('partials/_head.php');
                                                     </div>
                                                 </div>
                                                 <div class="t-name">
-                                                    <h4><?php echo $row->member_name;?></h4>
-                                                    <p class="meta-date"><?php echo date('d M Y g:i', strtotime($row->created_at));?></p>
+                                                    <h4><?php echo $row->room_number; ?></h4>
+                                                    <p class="meta-date"><?php echo date('d M Y g:i', strtotime($row->created_at)); ?></p>
                                                 </div>
 
                                             </div>
                                             <div class="t-rate rate-dec">
                                                 <p>
-                                                    <span>KSH <?php echo $row->pay_amt;?></span>
+                                                    <span>KSH <?php echo $row->room_cost; ?></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -167,22 +172,22 @@ require_once('partials/_head.php');
 
                                     <div class="acc-total-info">
                                         <h5>Account Balance</h5>
-                                        <p class="acc-amount">Ksh <?php echo $acc_bal;?>  </p>
+                                        <p class="acc-amount">Ksh 100 </p>
                                     </div>
 
                                     <div class="inv-detail">
                                         <div class="info-detail-1">
-                                            <p>Monthly Payments</p>
-                                            <p>Ksh <?php echo $membership_payment;?></p>
+                                            <p>Resturant Sales</p>
+                                            <p>Ksh 100</p>
                                         </div>
                                         <div class="info-detail-2">
-                                            <p>Taxes</p>
-                                            <p>Ksh <?php echo $tax;?></p>
+                                            <p>Room Reserbations</p>
+                                            <p>Ksh 100</p>
                                         </div>
                                     </div>
 
                                     <div class="inv-action">
-                                        <a href="membership_fee.php" class="btn btn-dark">View Summary</a>
+                                        <a href="" class="btn btn-dark">View Summary</a>
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +199,7 @@ require_once('partials/_head.php');
                         <div class="widget widget-table-two">
 
                             <div class="widget-heading">
-                                <h5 class="">Recent Joined Doctors</h5>
+                                <h5 class="">Recently Employed Staffs</h5>
                             </div>
 
                             <div class="widget-content">
@@ -215,13 +220,13 @@ require_once('partials/_head.php');
                                                     <div class="th-content th-heading">Phone </div>
                                                 </th>
                                                 <th>
-                                                    <div class="th-content">Acc Status</div>
+                                                    <div class="th-content th-heading">Created At </div>
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM `medical_experts` ";
+                                            $ret = "SELECT * FROM `staffs` ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -229,27 +234,20 @@ require_once('partials/_head.php');
                                             ?>
                                                 <tr>
                                                     <td>
-                                                        <div class="td-content product-brand"><?php echo $row->doc_number; ?></div>
+                                                        <div class="td-content product-brand"><?php echo $row->number; ?></div>
 
                                                     </td>
                                                     <td>
-                                                        <div class="td-content product-brand"><?php echo $row->doc_name; ?></div>
+                                                        <div class="td-content product-brand"><?php echo $row->name; ?></div>
                                                     </td>
                                                     <td>
-                                                        <div class="td-content"><?php echo $row->doc_email; ?></div>
+                                                        <div class="td-content"><?php echo $row->email; ?></div>
                                                     </td>
                                                     <td>
-                                                        <div class="td-content pricing"><span class=""><?php echo $row->doc_phone; ?></span></div>
+                                                        <div class="td-content pricing"><span class=""><?php echo $row->phone; ?></span></div>
                                                     </td>
                                                     <td>
-                                                        <?php
-                                                        if ($row->doc_status == 'Pending') {
-                                                            echo "<div class='td-content'><span class='badge outline-badge-danger'>$row->doc_status</span></div>";
-                                                        } else {
-                                                            echo "<div class='td-content'><span class='badge outline-badge-success'>$row->doc_status</span></div>";
-                                                        }
-
-                                                        ?>
+                                                        <div class="td-content pricing"><span class=""><?php echo date('d M Y',strtotime($row->created_at)); ?></span></div>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -265,7 +263,7 @@ require_once('partials/_head.php');
                         <div class="widget widget-table-three">
 
                             <div class="widget-heading">
-                                <h5 class="">Top Selling Packages</h5>
+                                <h5 class="">Top Reserved Rooms</h5>
                             </div>
 
                             <div class="widget-content">
@@ -274,19 +272,22 @@ require_once('partials/_head.php');
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    <div class="th-content">Package Code</div>
+                                                    <div class="th-content">Room Code</div>
                                                 </th>
                                                 <th>
-                                                    <div class="th-content th-heading">Package Name</div>
+                                                    <div class="th-content th-heading">Room Type</div>
                                                 </th>
                                                 <th>
-                                                    <div class="th-content th-heading">Number Of Members Under Package</div>
+                                                    <div class="th-content th-heading">Room Price</div>
+                                                </th>
+                                                <th>
+                                                    <div class="th-content th-heading">Number Of Times Reserved</div>
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM `packages` ";
+                                            $ret = "SELECT * FROM `rooms` ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -294,22 +295,22 @@ require_once('partials/_head.php');
                                             ?>
                                                 <tr>
                                                     <td>
-                                                        <div class="td-content"><span class="badge outline-badge-success"><?php echo $row->package_id; ?></span></div>
+                                                        <div class="td-content"><span class="badge outline-badge-success"><?php echo $row->number; ?></span></div>
                                                     </td>
                                                     <td>
-                                                        <div class="td-content"><span class="pricing"><?php echo $row->package_name; ?></span></div>
+                                                        <div class="td-content"><span class="pricing"><?php echo $row->type; ?></span></div>
                                                     </td>
                                                     <td>
                                                         <?php
-                                                        $MP = $row->package_name;
-                                                        $query = "SELECT COUNT(*) FROM `members` WHERE member_package = '$MP' ";
+                                                        $room = $row->room_id;
+                                                        $query = "SELECT COUNT(*) FROM `reservations` WHERE room_id = '$room' ";
                                                         $stmt = $mysqli->prepare($query);
                                                         $stmt->execute();
-                                                        $stmt->bind_result($members);
+                                                        $stmt->bind_result($rooms_count);
                                                         $stmt->fetch();
                                                         $stmt->close();
                                                         ?>
-                                                        <div class="td-content"><span class="discount-pricing"><?php echo $members; ?> </span></div>
+                                                        <div class="td-content"><span class="discount-pricing"><?php echo $rooms_count; ?> </span></div>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
