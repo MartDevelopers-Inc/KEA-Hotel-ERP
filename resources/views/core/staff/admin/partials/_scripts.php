@@ -1,6 +1,6 @@
 <!-- Load Analytics Once Again -->
-<?php require_once('partials/_analytics.php'); ?>
-<script src="plugins/ckeditor/ckeditor.js"></script>
+<!-- <?php require_once('partials/_analytics.php'); ?>
+ --><script src="plugins/ckeditor/ckeditor.js"></script>
 <script>
     //Medical Expert Bio Instance
     CKEDITOR.replace('medical-expert-bio');
