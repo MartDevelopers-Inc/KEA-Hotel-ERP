@@ -18,7 +18,7 @@ class CreateStaffsTable extends Migration
             $table->string('name');
             $table->string('number');
             $table->string('phone');
-            $table->strign('email');
+            $table->string('email');
             $table->string('adr');
             $table->string('password');
             $table->timestamp('created_at');
