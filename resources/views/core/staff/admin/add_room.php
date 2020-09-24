@@ -6,7 +6,6 @@ include('configs/checklogin.php');
 include('configs/codeGen.php');
 check_login();
 
-//Add Medical Expert
 if (isset($_POST['add'])) {
 
     $id = $_POST['id'];
@@ -18,13 +17,13 @@ if (isset($_POST['add'])) {
     $image = $_FILES['image']['name'];
     move_uploaded_file($_FILES["image"]["tmp_name"], "assets/img/rooms/" . $_FILES["image"]["name"]);
 
-    $query = "INSERT INTO staffs (id, number, type, price, status, details, image) VALUES (?,?,?,?,?,?,?)";
+    $query = "INSERT INTO rooms (id, number, type, price, status, details, image) VALUES (?,?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('sssssss', $id, $number, $type, $price, $status, $details, $images);
+    $rc = $stmt->bind_param('sssssss', $id, $number, $type, $price, $status, $details, $image);
     $stmt->execute();
     if ($stmt) {
         //inject alert that post is shared  
-        $success = "Staff Added" && header("refresh:1; url=manage_rooms.php");
+        $success = "Added" && header("refresh:1; url=manage_rooms.php");
     } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
