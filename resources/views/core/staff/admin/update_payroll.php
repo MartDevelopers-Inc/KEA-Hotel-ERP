@@ -103,7 +103,7 @@ require_once('partials/_head.php');
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Month</label>
                                             <select class='form-control basic' name="month" id="">
-                                                <option selected><?php echo $row->payroll_month; ?></option>
+                                                <option selected><?php echo $row->month; ?></option>
                                                 <option>January</option>
                                                 <option>February</option>
                                                 <option>March</option>
@@ -120,7 +120,7 @@ require_once('partials/_head.php');
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Salary</label>
-                                            <input required type="text" value="<?php echo $row->payroll_salary; ?>" name="salary" class="form-control">
+                                            <input required type="text" value="<?php echo $row->salary; ?>" name="salary" class="form-control">
                                         </div>
                                     </div>
                                     <button type="submit" name="update_payroll" class="btn btn-warning mt-3">Update Payroll</button>
