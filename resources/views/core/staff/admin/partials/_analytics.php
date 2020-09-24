@@ -375,3 +375,8 @@ $stmt->execute();
 $stmt->bind_result($accomodation);
 $stmt->fetch();
 $stmt->close();
+
+
+//Total Revenue
+$total_revenue = $Resturant_Service + $accomodation;
+

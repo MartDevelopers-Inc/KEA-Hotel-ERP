@@ -172,17 +172,17 @@ require_once('partials/_head.php');
 
                                     <div class="acc-total-info">
                                         <h5>Account Balance</h5>
-                                        <p class="acc-amount">Ksh 100 </p>
+                                        <p class="acc-amount">Ksh <?php echo $total_revenue;?> </p>
                                     </div>
 
                                     <div class="inv-detail">
                                         <div class="info-detail-1">
                                             <p>Resturant Sales</p>
-                                            <p>Ksh 100</p>
+                                            <p>Ksh <?php echo $Resturant_Service;?></p>
                                         </div>
                                         <div class="info-detail-2">
-                                            <p>Room Reserbations</p>
-                                            <p>Ksh 100</p>
+                                            <p>Room Reservations</p>
+                                            <p>Ksh <?php echo $accomodation;?></p>
                                         </div>
                                     </div>
 
