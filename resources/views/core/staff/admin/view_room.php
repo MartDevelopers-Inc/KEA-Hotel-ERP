@@ -77,7 +77,7 @@ require_once('partials/_head.php');
                             <div class="user-profile layout-spacing">
                                 <div class="widget-content widget-content-area">
                                     <div class="d-flex justify-content-between">
-                                        <h3 class="text-warning"><?php echo $row->number;?></h3>
+                                        <h3 class="text-warning"><?php echo $row->number; ?></h3>
                                         <a href="update_room.php?update=<?php echo $row->id; ?>" class="mt-2 edit-profile"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
                                                 <path d="M12 20h9"></path>
                                                 <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
@@ -93,17 +93,26 @@ require_once('partials/_head.php');
                                             <ul class="contacts-block list-unstyled">
 
                                                 <li class="contacts-block__item">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path><polyline points="23 3 12 14 9 11"></polyline></svg> 
-                                                     <?php echo $row->type; ?>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
+                                                        <path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path>
+                                                        <polyline points="23 3 12 14 9 11"></polyline>
+                                                    </svg>
+                                                    <?php echo $row->type; ?>
                                                 </li>
 
                                                 <li class="contacts-block__item">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path><polyline points="23 3 12 14 9 11"></polyline></svg> 
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
+                                                        <path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path>
+                                                        <polyline points="23 3 12 14 9 11"></polyline>
+                                                    </svg>
                                                     <?php echo $row->status; ?>
                                                 </li>
 
                                                 <li class="contacts-block__item">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path><polyline points="23 3 12 14 9 11"></polyline></svg> 
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
+                                                        <path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path>
+                                                        <polyline points="23 3 12 14 9 11"></polyline>
+                                                    </svg>
                                                     Ksh <?php echo $row->price; ?>
                                                 </li>
 
