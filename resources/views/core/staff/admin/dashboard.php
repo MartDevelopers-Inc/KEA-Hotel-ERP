@@ -90,9 +90,9 @@ require_once('partials/_head.php');
                     <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-chart-one">
                             <div class="widget-heading">
-                                <h5 class="">Income Per Month</h5>
+                                <h5 class="text-warning">Income Per Month</h5>
                                 <ul class="tabs tab-pills">
-                                    <li><a href="javascript:void(0);" id="tb_1" class="tabmenu">Monthly</a></li>
+                                    <?php require_once('partials/_timeAPI.php');?>
                                 </ul>
                             </div>
 
@@ -109,7 +109,7 @@ require_once('partials/_head.php');
                     <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-chart-two">
                             <div class="widget-heading">
-                                <h5 class="">Reservations</h5>
+                                <h5 class="text-warning">Reservations</h5>
                             </div>
                             <div class="widget-content">
                                 <div id="chart-2" class=""></div>
@@ -120,7 +120,7 @@ require_once('partials/_head.php');
                     <div class="col-xl-8 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-table-one">
                             <div class="widget-heading">
-                                <h5 class="">Recent Room Reservations<span class="badge outline-badge-success"><a href="reservations.php">View All</a></span> </h5>
+                                <h5 class="text-warning">Recent Room Reservations<span class="badge outline-badge-warning"> <a href="reservations.php"> View All </a></span> </h5>
                             </div>
 
                             <div class="widget-content">
@@ -164,7 +164,7 @@ require_once('partials/_head.php');
                         <div class="widget widget-account-invoice-one">
 
                             <div class="widget-heading">
-                                <h5 class="">Account Info</h5>
+                                <h5 class="text-warning">Account Info</h5>
                             </div>
 
                             <div class="widget-content">
@@ -172,17 +172,17 @@ require_once('partials/_head.php');
 
                                     <div class="acc-total-info">
                                         <h5>Account Balance</h5>
-                                        <p class="acc-amount">Ksh 100 </p>
+                                        <p class="acc-amount">Ksh <?php echo $total_revenue;?> </p>
                                     </div>
 
                                     <div class="inv-detail">
                                         <div class="info-detail-1">
                                             <p>Resturant Sales</p>
-                                            <p>Ksh 100</p>
+                                            <p>Ksh <?php echo $Resturant_Service;?></p>
                                         </div>
                                         <div class="info-detail-2">
-                                            <p>Room Reserbations</p>
-                                            <p>Ksh 100</p>
+                                            <p>Room Reservations</p>
+                                            <p>Ksh <?php echo $accomodation;?></p>
                                         </div>
                                     </div>
 
@@ -199,7 +199,7 @@ require_once('partials/_head.php');
                         <div class="widget widget-table-two">
 
                             <div class="widget-heading">
-                                <h5 class="">Recently Employed Staffs</h5>
+                                <h5 class="text-warning">Recently Employed Staffs</h5>
                             </div>
 
                             <div class="widget-content">
@@ -263,7 +263,7 @@ require_once('partials/_head.php');
                         <div class="widget widget-table-three">
 
                             <div class="widget-heading">
-                                <h5 class="">Top Reserved Rooms</h5>
+                                <h5 class="text-warning">Top Reserved Rooms</h5>
                             </div>
 
                             <div class="widget-content">
