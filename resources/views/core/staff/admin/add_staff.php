@@ -14,12 +14,14 @@ if (isset($_POST['add'])) {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $bio = $_POST['bio'];
+    $adr = $_POST['adr'];
+    $password = sha1(md5($_POST['password']));
     $dpic = $_FILES['dpic']['name'];
     move_uploaded_file($_FILES["dpic"]["tmp_name"], "assets/img/staffs/" . $_FILES["dpic"]["name"]);
 
-    $query = "INSERT INTO staffs (id, number, name, email, phone, bio, dpic) VALUES (?,?,?,?,?,?,?)";
+    $query = "INSERT INTO staffs (id, number, name, email, phone, bio, dpic, adr, password) VALUES (?,?,?,?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('sssssss', $id, $number, $name, $email, $phone, $bio, $dpic);
+    $rc = $stmt->bind_param('sssssssss', $id, $number, $name, $email, $phone, $bio, $dpic, $adr, $password);
     $stmt->execute();
     if ($stmt) {
         //inject alert that post is shared  
@@ -113,7 +115,15 @@ require_once('partials/_head.php');
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Profile Picture</label>
-                                        <input required type="file" name="dpic" class="form-control btn btn-success">
+                                        <input required type="file" name="dpic" class="form-control btn btn-warning">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Address</label>
+                                        <input required type="text" name="adr" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Password</label>
+                                        <input required type="password" name="password" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-row mb-4">
