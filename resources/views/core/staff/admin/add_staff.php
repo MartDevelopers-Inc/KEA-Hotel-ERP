@@ -133,7 +133,7 @@ require_once('partials/_head.php');
                                     </div>
                                 </div>
 
-                                <button type="submit" name="add" class="btn btn-primary mt-3">Submit</button>
+                                <button type="submit" name="add" class="btn btn-warning mt-3">Submit</button>
                             </form>
                         </div>
                     </div>

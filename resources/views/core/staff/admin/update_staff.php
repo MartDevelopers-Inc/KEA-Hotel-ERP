@@ -7,7 +7,7 @@ include('configs/codeGen.php');
 check_login();
 
 //Add Medical Expert
-if (isset($_POST['upate'])) {
+if (isset($_POST['update'])) {
     $update = $_GET['update'];
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -126,7 +126,7 @@ require_once('partials/_head.php');
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Address</label>
-                                            <input required type="text" <?php echo $row->adr; ?> name="adr" class="form-control">
+                                            <input required type="text" value="<?php echo $row->adr; ?>"" name="adr" class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Password</label>
@@ -136,11 +136,11 @@ require_once('partials/_head.php');
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-12">
                                             <label for="inputAddress">Biography</label>
-                                            <textarea id="medical-expert-bio" name="bio" rows="10" class="form-control"><?php echo $bio->bio; ?></textarea>
+                                            <textarea id="medical-expert-bio" name="bio" rows="10" class="form-control"><?php echo $row->bio; ?></textarea>
                                         </div>
                                     </div>
 
-                                    <button type="submit" name="update" class="btn btn-primary mt-3">Submit</button>
+                                    <button type="submit" name="update" class="btn btn-warning mt-3">Submit</button>
                                 </form>
                             </div>
                         </div>
