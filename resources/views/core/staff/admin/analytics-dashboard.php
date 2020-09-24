@@ -94,55 +94,8 @@ require_once('partials/_head.php');
                             <div class="widget-content">
                                 <div class="w-content">
                                     <div class="w-info">
-                                        <h6 class="value"><?php echo $staffs;?></h6>
-                                        <p class="text-success">Staffs</p>
-                                    </div>
-                                    <div class="">
-                                        <div class="w-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="8.5" cy="7" r="4"></circle>
-                                                <polyline points="17 11 19 13 23 9"></polyline>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                        <div class="widget widget-card-four">
-                            <div class="widget-content">
-                                <div class="w-content">
-                                    <div class="w-info">
-                                        <h6 class="value"><?php echo $rooms;?></h6>
-                                        <p class="text-success">Total Hotel Rooms</p>
-                                    </div>
-                                    <div class="">
-                                        <div class="w-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="8.5" cy="7" r="4"></circle>
-                                                <line x1="18" y1="8" x2="23" y2="13"></line>
-                                                <line x1="23" y1="8" x2="18" y2="13"></line>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                        <div class="widget widget-card-four">
-                            <div class="widget-content">
-                                <div class="w-content">
-                                    <div class="w-info">
-                                        <h6 class="value"><?php echo $rooms_occupied;?></h6>
-                                        <p class="text-success">Occupied Rooms</p>
+                                        <h6 class="value"><?php echo $staffs; ?></h6>
+                                        <p class="text-warning">Staffs</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
@@ -165,13 +118,14 @@ require_once('partials/_head.php');
                             <div class="widget-content">
                                 <div class="w-content">
                                     <div class="w-info">
-                                        <h6 class="value"><?php echo $rooms_vacant;?></h6>
-                                        <p class="text-success">Empty Rooms</p>
+                                        <h6 class="value"><?php echo $rooms; ?></h6>
+                                        <p class="text-warning">Total Hotel Rooms</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
                                             </svg>
                                         </div>
                                     </div>
@@ -186,14 +140,14 @@ require_once('partials/_head.php');
                             <div class="widget-content">
                                 <div class="w-content">
                                     <div class="w-info">
-                                        <h6 class="value"><?php echo $Resturant_Service;?></h6>
-                                        <p class="text-success">Resturant Revenue</p>
+                                        <h6 class="value"><?php echo $rooms_occupied; ?></h6>
+                                        <p class="text-warning">Occupied Rooms</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                                                <polyline points="17 6 23 6 23 12"></polyline>
+                                                <path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path>
+                                                <polyline points="23 3 12 14 9 11"></polyline>
                                             </svg>
                                         </div>
                                     </div>
@@ -208,14 +162,15 @@ require_once('partials/_head.php');
                             <div class="widget-content">
                                 <div class="w-content">
                                     <div class="w-info">
-                                        <h6 class="value"><?php echo $accomodation;?></h6>
-                                        <p class="text-success">Accomodation Revenue</p>
+                                        <h6 class="value"><?php echo $rooms_vacant; ?></h6>
+                                        <p class="text-warning">Empty Rooms</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
-                                                <polyline points="17 18 23 18 23 12"></polyline>
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                                <line x1="12" y1="16" x2="12" y2="16"></line>
                                             </svg>
                                         </div>
                                     </div>
@@ -224,7 +179,54 @@ require_once('partials/_head.php');
                             </div>
                         </div>
                     </div>
- 
+
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+                        <div class="widget widget-card-four">
+                            <div class="widget-content">
+                                <div class="w-content">
+                                    <div class="w-info">
+                                        <h6 class="value"><?php echo $Resturant_Service; ?></h6>
+                                        <p class="text-warning">Resturant Revenue</p>
+                                    </div>
+                                    <div class="">
+                                        <div class="w-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
+                                                <circle cx="8" cy="21" r="2"></circle>
+                                                <circle cx="20" cy="21" r="2"></circle>
+                                                <path d="M5.67 6H23l-1.68 8.39a2 2 0 0 1-2 1.61H8.75a2 2 0 0 1-2-1.74L5.23 2.74A2 2 0 0 0 3.25 1H1"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+                        <div class="widget widget-card-four">
+                            <div class="widget-content">
+                                <div class="w-content">
+                                    <div class="w-info">
+                                        <h6 class="value"><?php echo $accomodation; ?></h6>
+                                        <p class="text-warning">Accomodation Revenue</p>
+                                    </div>
+                                    <div class="">
+                                        <div class="w-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
+                                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                                <polyline points="7 3 7 8 15 8"></polyline>
+                                            </svg>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-chart-three">
                             <div class="widget-heading">

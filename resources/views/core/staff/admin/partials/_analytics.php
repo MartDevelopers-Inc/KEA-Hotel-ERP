@@ -361,7 +361,7 @@ $stmt->fetch();
 $stmt->close();
 
 //Resturant Revenue
-$query = "SELECT COUNT(*) FROM `payments` WHERE service_paid ='Resturant Service' ";
+$query = "SELECT SUM(amt) FROM `payments` WHERE service_paid ='Resturant Service' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($Resturant_Service);
@@ -369,7 +369,7 @@ $stmt->fetch();
 $stmt->close();
 
 //Accomodation Revenue
-$query = "SELECT COUNT(*) FROM `payments` WHERE service_paid !='Resturant Service' ";
+$query = "SELECT SUM(amt) FROM `payments` WHERE service_paid !='Resturant Service' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($accomodation);
