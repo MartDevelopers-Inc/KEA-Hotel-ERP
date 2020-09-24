@@ -89,14 +89,13 @@ require_once('partials/_head.php');
 
                 <div class="row layout-top-spacing">
 
-                    <!-- Medical Experts -->
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
                         <div class="widget widget-card-four">
                             <div class="widget-content">
                                 <div class="w-content">
                                     <div class="w-info">
                                         <h6 class="value"></h6>
-                                        <p class="text-success">Verified Medical Experts</p>
+                                        <p class="text-success">Staffs</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
@@ -119,7 +118,7 @@ require_once('partials/_head.php');
                                 <div class="w-content">
                                     <div class="w-info">
                                         <h6 class="value"></h6>
-                                        <p class="text-success">Un Verified Medical Experts</p>
+                                        <p class="text-success">Total Hotel Rooms</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
@@ -143,7 +142,7 @@ require_once('partials/_head.php');
                                 <div class="w-content">
                                     <div class="w-info">
                                         <h6 class="value"></h6>
-                                        <p class="text-success">Total Enrolled Medical Experts</p>
+                                        <p class="text-success">Occupied Rooms</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
@@ -160,16 +159,14 @@ require_once('partials/_head.php');
                             </div>
                         </div>
                     </div>
-                    <!-- End Medical Experts -->
 
-                    <!-- Members / Clients -->
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
                         <div class="widget widget-card-four">
                             <div class="widget-content">
                                 <div class="w-content">
                                     <div class="w-info">
                                         <h6 class="value"></h6>
-                                        <p class="text-success">Gold Package Members</p>
+                                        <p class="text-success">Empty Rooms</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
@@ -190,7 +187,7 @@ require_once('partials/_head.php');
                                 <div class="w-content">
                                     <div class="w-info">
                                         <h6 class="value"></h6>
-                                        <p class="text-success">Silver Package Members</p>
+                                        <p class="text-success">Resturant Revenue</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
@@ -212,7 +209,7 @@ require_once('partials/_head.php');
                                 <div class="w-content">
                                     <div class="w-info">
                                         <h6 class="value"></h6>
-                                        <p class="text-success">Bronze Package Members</p>
+                                        <p class="text-success">Accomodation Revenue</p>
                                     </div>
                                     <div class="">
                                         <div class="w-icon">
@@ -227,151 +224,12 @@ require_once('partials/_head.php');
                             </div>
                         </div>
                     </div>
-                    <!--End  Packages Analytics -->
-
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                        <div class="widget widget-card-four">
-                            <div class="widget-content">
-                                <div class="w-content">
-                                    <div class="w-info">
-                                        <h6 class="value"></h6>
-                                        <p class="text-success">Consultations</p>
-                                    </div>
-                                    <div class="">
-                                        <div class="w-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                        <div class="widget widget-card-four">
-                            <div class="widget-content">
-                                <div class="w-content">
-                                    <div class="w-info">
-                                        <h6 class="value"></h6>
-                                        <p class="text-success">Prescriptions</p>
-                                    </div>
-                                    <div class="">
-                                        <div class="w-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                                                <polyline points="13 2 13 9 20 9"></polyline>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                        <div class="widget widget-card-four">
-                            <div class="widget-content">
-                                <div class="w-content">
-                                    <div class="w-info">
-                                        <h6 class="value"></h6>
-                                        <p class="text-success">Total Enrolled Members</p>
-                                    </div>
-                                    <div class="">
-                                        <div class="w-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="8.5" cy="7" r="4"></circle>
-                                                <line x1="20" y1="8" x2="20" y2="14"></line>
-                                                <line x1="23" y1="11" x2="17" y2="11"></line>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- End Misc -->
-
-                    <!-- Package Payments -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                        <div class="widget widget-card-four">
-                            <div class="widget-content">
-                                <div class="w-content">
-                                    <div class="w-info">
-                                        <h6 class="value"></h6>
-                                        <p class="text-success">Gold Package Payments</p>
-                                    </div>
-                                    <div class="">
-                                        <div class="w-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <circle cx="12" cy="8" r="7"></circle>
-                                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                        <div class="widget widget-card-four">
-                            <div class="widget-content">
-                                <div class="w-content">
-                                    <div class="w-info">
-                                        <h6 class="value"></h6>
-                                        <p class="text-success">Silver Package Payments</p>
-                                    </div>
-                                    <div class="">
-                                        <div class="w-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                        <div class="widget widget-card-four">
-                            <div class="widget-content">
-                                <div class="w-content">
-                                    <div class="w-info">
-                                        <h6 class="value"></h6>
-                                        <p class="text-success">Bronze Package Payments</p>
-                                    </div>
-                                    <div class="">
-                                        <div class="w-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                <path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path>
-                                                <polyline points="23 3 12 14 9 11"></polyline>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Package Payments -->
-
-
+ 
                     <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-chart-three">
                             <div class="widget-heading">
                                 <div class="">
-                                    <h5 class="text-success">Total Income As Per Membership Package</h5>
+                                    <h5 class="text-success">Total Income As Per Room Categories</h5>
                                 </div>
                             </div>
 
@@ -412,18 +270,18 @@ require_once('partials/_head.php');
                                                         <h5>VERIFIED</h5>
                                                     </div>
                                                     <p><span><?php echo $row->code; ?> CONFIRMED</span>
-                                                        <?php echo $row->cust_name ; ?> Paid Ksh <?php echo $row->amt; ?> On
+                                                        <?php echo $row->cust_name; ?> Paid Ksh <?php echo $row->amt; ?> On
                                                         <?php echo date('d M Y', strtotime($row->created_at)); ?> At
-                                                        <?php echo date('g:i', strtotime($row->created_at)); ?> For <?php echo $row->service_paid;?> Using <?php echo $row->payment_means;?>
+                                                        <?php echo date('g:i', strtotime($row->created_at)); ?> For <?php echo $row->service_paid; ?> Using <?php echo $row->payment_means; ?>
                                                     </p>
                                                     <div class="tags">
-                                                    <?php 
-                                                        if($row->service_paid == 'Resturant Service'){
+                                                        <?php
+                                                        if ($row->service_paid == 'Resturant Service') {
                                                             echo "<div class='badge badge-primary'>$row->service_paid</div>";
-                                                        }else{
+                                                        } else {
                                                             echo "<div class='badge badge-success'>$row->service_paid</div>";
                                                         }
-                                                    ?>
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
