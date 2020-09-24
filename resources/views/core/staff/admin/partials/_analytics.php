@@ -325,3 +325,53 @@ $stmt->bind_result($Presidential);
 $stmt->fetch();
 $stmt->close();
 
+
+/* Analytics Dashbaord Structure */
+
+//1.Staffs
+$query = "SELECT COUNT(*) FROM `staffs` ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($staffs);
+$stmt->fetch();
+$stmt->close();
+
+//Rooms
+$query = "SELECT COUNT(*) FROM `rooms` ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($rooms);
+$stmt->fetch();
+$stmt->close();
+
+//Occupied Room
+$query = "SELECT COUNT(*) FROM `rooms` WHERE status ='Occupied' ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($rooms_occupied);
+$stmt->fetch();
+$stmt->close();
+
+//vacant rooms
+$query = "SELECT COUNT(*) FROM `rooms` WHERE status !='Occupied' ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($rooms_vacant);
+$stmt->fetch();
+$stmt->close();
+
+//Resturant Revenue
+$query = "SELECT COUNT(*) FROM `payments` WHERE service_paid ='Resturant Service' ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($Resturant_Service);
+$stmt->fetch();
+$stmt->close();
+
+//Accomodation Revenue
+$query = "SELECT COUNT(*) FROM `payments` WHERE service_paid !='Resturant Service' ";
+$stmt = $mysqli->prepare($query);
+$stmt->execute();
+$stmt->bind_result($accomodation);
+$stmt->fetch();
+$stmt->close();
