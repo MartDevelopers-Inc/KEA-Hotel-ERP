@@ -117,7 +117,7 @@ require_once('partials/_head.php');
                                         ?>
                                             <tr>
                                                 <td>
-                                                    <a class="badge outline-badge-success" href="view_payroll.php?view=<?php echo $row->id; ?>">
+                                                    <a class="badge outline-badge-warning" href="view_payroll.php?view=<?php echo $row->id; ?>">
                                                         <?php echo $row->code; ?>
                                                     </a>
                                                 </td>
