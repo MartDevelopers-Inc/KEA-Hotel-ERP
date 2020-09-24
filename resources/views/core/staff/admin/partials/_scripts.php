@@ -1,5 +1,5 @@
 <?php require_once('partials/_analytics.php'); ?>
- <script src="plugins/ckeditor/ckeditor.js"></script>
+<script src="plugins/ckeditor/ckeditor.js"></script>
 <script>
     //Medical Expert Bio Instance
     CKEDITOR.replace('medical-expert-bio');
@@ -13,9 +13,6 @@
     CKEDITOR.replace('fb');
     //Complains
     CKEDITOR.replace('cp');
-
-
-
 </script>
 <script src="assets/js/authentication/form-2.js"></script>
 <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
@@ -364,7 +361,7 @@
                 type: 'donut',
                 width: 380
             },
-            colors: ['#5c1ac3', '#e2a03f', '#e7515a', '#e2a03f', '#e2a03f', '#5c1ac3'  ],
+            colors: ['#5c1ac3', '#e2a03f', '#e7515a', '#e2a03f', '#e2a03f', '#5c1ac3'],
             dataLabels: {
                 enabled: false
             },
@@ -424,7 +421,7 @@
                 show: true,
                 width: 25,
             },
-            series: [<?php echo $single; ?>, <?php echo $double; ?>, <?php echo $deluxe; ?>, <?php echo $regular;?>, <?php echo $penthouse;?>, <?php echo $presidential;?>],
+            series: [<?php echo $single; ?>, <?php echo $double; ?>, <?php echo $deluxe; ?>, <?php echo $regular; ?>, <?php echo $penthouse; ?>, <?php echo $presidential; ?>],
             labels: ['Single Rooms', 'Double Rooms', 'Deluxe Rooms', 'Regular Suites', 'Penthouse Suites', 'Presidential Suites'],
             responsive: [{
                 breakpoint: 1599,
@@ -563,7 +560,7 @@
             },
             series: [{
                 name: 'Room Type:',
-                data: [<?php echo $Single; ?>, <?php echo $Double; ?>, <?php echo $Deluxe; ?>, <?php echo $Regular;?>, <?php echo $Penthouse;?>, <?php echo $Presidential;?>]
+                data: [<?php echo $Single; ?>, <?php echo $Double; ?>, <?php echo $Deluxe; ?>, <?php echo $Regular; ?>, <?php echo $Penthouse; ?>, <?php echo $Presidential; ?>]
             }],
             xaxis: {
                 categories: ['Single Rooms', 'Double Rooms', 'Deluxe Rooms', 'Regular Suites', 'Penthouse Suites', 'Presidential Suites'],

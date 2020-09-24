@@ -231,7 +231,7 @@ require_once('partials/_head.php');
                         <div class="widget widget-chart-three">
                             <div class="widget-heading">
                                 <div class="">
-                                    <h5 class="text-success">Total Income As Per Room Categories</h5>
+                                    <h5 class="text-warning">Total Income As Per Room Categories</h5>
                                 </div>
                             </div>
 
@@ -245,7 +245,7 @@ require_once('partials/_head.php');
                         <div class="widget widget-activity-three">
 
                             <div class="widget-heading">
-                                <h5 class="text-success">Hotel Bill Payment Logs</h5>
+                                <h5 class="text-warning">Hotel Bill Payment Logs</h5>
                             </div>
 
                             <div class="widget-content">
