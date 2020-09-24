@@ -123,10 +123,7 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="housekeeping" data-parent="#accordionExample">
                     <li>
-                        <a href="cleaners.php"> Cleaners </a>
-                    </li>
-                    <li>
-                        <a href="assignments.php"> Assignments </a>
+                        <a href="house_keeping.php">Manage Records</a>
                     </li>
                 </ul>
             </li>
