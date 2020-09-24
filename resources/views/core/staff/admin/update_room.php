@@ -6,7 +6,7 @@ include('configs/checklogin.php');
 include('configs/codeGen.php');
 check_login();
 
-if (isset($_POST['add'])) {
+if (isset($_POST['update'])) {
 
     $update = $_GET['update'];
     $number = $_POST['number'];
@@ -101,7 +101,7 @@ require_once('partials/_head.php');
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Room Number</label>
-                                            <input required type="text" value="<?php echo $number; ?>" name="number" class="form-control">
+                                            <input required type="text" value="<?php echo $row->number; ?>" name="number" class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Room Type</label>
