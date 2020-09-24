@@ -8,24 +8,23 @@ check_login();
 
 //Add Medical Expert
 if (isset($_POST['add'])) {
+
     $id = $_POST['id'];
     $number = $_POST['number'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $bio = $_POST['bio'];
-    $adr = $_POST['adr'];
-    $password = sha1(md5($_POST['password']));
-    $dpic = $_FILES['dpic']['name'];
-    move_uploaded_file($_FILES["dpic"]["tmp_name"], "assets/img/staffs/" . $_FILES["dpic"]["name"]);
+    $type = $_POST['type'];
+    $price = $_POST['price'];
+    $status = $_POST['status'];
+    $details = $_POST['details'];
+    $image = $_FILES['image']['name'];
+    move_uploaded_file($_FILES["image"]["tmp_name"], "assets/img/rooms/" . $_FILES["image"]["name"]);
 
-    $query = "INSERT INTO staffs (id, number, name, email, phone, bio, dpic, adr, password) VALUES (?,?,?,?,?,?,?,?,?)";
+    $query = "INSERT INTO staffs (id, number, type, price, status, details, image) VALUES (?,?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('sssssssss', $id, $number, $name, $email, $phone, $bio, $dpic, $adr, $password);
+    $rc = $stmt->bind_param('sssssss', $id, $number, $type, $price, $status, $details, $images);
     $stmt->execute();
     if ($stmt) {
         //inject alert that post is shared  
-        $success = "Staff Added" && header("refresh:1; url=manage_staffs.php");
+        $success = "Staff Added" && header("refresh:1; url=manage_rooms.php");
     } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
@@ -61,8 +60,8 @@ require_once('partials/_head.php');
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="manage_staffs.php">HRM</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Add Staff</span></li>
+                                <li class="breadcrumb-item"><a href="manage_rooms.php">Rooms</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Add New</span></li>
                             </ol>
                         </nav>
 
@@ -96,39 +95,47 @@ require_once('partials/_head.php');
                                     <div style="display:none" class="form-group col-md-6">
                                         <label for="inputEmail4">Id</label>
                                         <input type="text" name="id" value="<?php echo $staff_id; ?>" class="form-control">
-                                        <input type="text" name="number" value="<?php echo $a; ?>-<?php echo $b; ?>" class="form-control">
+                                        <input type="text" name="number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-row mb-4">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Full Name</label>
-                                        <input required type="text" name="name" class="form-control">
+                                        <label for="inputEmail4">Room Number</label>
+                                        <input required type="text" value="<?php echo $a; ?>-<?php echo $b; ?>" name="number" class="form-control">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Mobile Phone Number</label>
-                                        <input required type="text" name="phone" class="form-control">
+                                        <label for="inputEmail4">Room Type</label>
+                                        <select class='form-control basic' name="type" id="">
+                                            <option selected>Select Room Type</option>
+                                            <option>Single Rooms</option>
+                                            <option>Double Rooms</option>
+                                            <option>Deluxe Rooms</option>
+                                            <option>Regular Suite</option>
+                                            <option>Penthouse Suites</option>
+                                            <option>Presidential Suites</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Email Address</label>
-                                        <input required type="text" name="email" class="form-control">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail4">Room Status</label>
+                                        <select class='form-control basic' name="status" id="">
+                                            <option selected>Vacant</option>
+                                            <option>Occupied</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Profile Picture</label>
-                                        <input required type="file" name="dpic" class="form-control btn btn-warning">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail4">Room Image</label>
+                                        <input required type="file" name="image" class="form-control btn btn-warning">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Address</label>
-                                        <input required type="text" name="adr" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Password</label>
-                                        <input required type="password" name="password" class="form-control">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail4">Accomodation Price</label>
+                                        <input required type="text"  name="price" class="form-control">
                                     </div>
                                 </div>
+
                                 <div class="form-row mb-4">
                                     <div class="form-group col-md-12">
-                                        <label for="inputAddress">Biography</label>
-                                        <textarea id="medical-expert-bio" name="bio" rows="10" class="form-control"></textarea>
+                                        <label for="inputAddress">Room Details</label>
+                                        <textarea id="medical-expert-bio" name="details" rows="10" class="form-control"></textarea>
                                     </div>
                                 </div>
 
