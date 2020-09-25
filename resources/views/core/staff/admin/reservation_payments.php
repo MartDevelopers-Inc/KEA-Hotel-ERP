@@ -113,7 +113,7 @@ require_once('partials/_head.php');
                                         ?>
                                             <tr>
                                                 <td><?php echo $row->code; ?></td>
-                                                <td><?php echo $row->amt; ?></td>
+                                                <td>Ksh <?php echo $row->amt; ?></td>
                                                 <td><?php echo $row->cust_name; ?></td>
                                                 <td><?php echo $row->payment_means; ?></td>
                                                 <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
