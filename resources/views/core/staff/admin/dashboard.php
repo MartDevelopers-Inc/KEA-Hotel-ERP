@@ -109,7 +109,7 @@ require_once('partials/_head.php');
                     <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-chart-two">
                             <div class="widget-heading">
-                                <h5 class="text-warning">Reservations</h5>
+                                <h5 class="text-warning">Rooms Per Room Type</h5>
                             </div>
                             <div class="widget-content">
                                 <div id="chart-2" class=""></div>
@@ -301,8 +301,11 @@ require_once('partials/_head.php');
                                                         <div class="td-content"><span class="pricing"><?php echo $row->type; ?></span></div>
                                                     </td>
                                                     <td>
+                                                        <div class="td-content"><span class="pricing">Ksh <?php echo $row->price; ?></span></div>
+                                                    </td>
+                                                    <td>
                                                         <?php
-                                                        $room = $row->room_id;
+                                                        $room = $row->id;
                                                         $query = "SELECT COUNT(*) FROM `reservations` WHERE room_id = '$room' ";
                                                         $stmt = $mysqli->prepare($query);
                                                         $stmt->execute();

@@ -274,7 +274,7 @@ require_once('partials/_head.php');
                                                     <p><span><?php echo $row->code; ?> CONFIRMED</span>
                                                         <?php echo $row->cust_name; ?> Paid Ksh <?php echo $row->amt; ?> On
                                                         <?php echo date('d M Y', strtotime($row->created_at)); ?> At
-                                                        <?php echo date('g:i', strtotime($row->created_at)); ?> For <?php echo $row->service_paid; ?> Using <?php echo $row->payment_means; ?>
+                                                        <?php echo date('g:i', strtotime($row->created_at)); ?>  Using <?php echo $row->payment_means; ?>
                                                     </p>
                                                     <div class="tags">
                                                         <?php

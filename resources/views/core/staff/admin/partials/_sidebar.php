@@ -153,6 +153,34 @@
             </li>
 
             <li class="menu">
+                <a href="#payments" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                        <span>Reservations</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </a>
+                <ul class="collapse submenu list-unstyled" id="payments" data-parent="#accordionExample">
+                    <li>
+                        <a href="manage_reservations.php"> Manage  </a>
+                    </li>
+                </ul>
+
+                <ul class="collapse submenu list-unstyled" id="payments" data-parent="#accordionExample">
+                    <li>
+                        <a href="reservation_payments.php"> Payments  </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="menu">
                 <a href="#inventory" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard">
@@ -174,32 +202,7 @@
                 </ul>
             </li>
 
-            <li class="menu">
-                <a href="#payments" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                            <line x1="1" y1="10" x2="23" y2="10"></line>
-                        </svg>
-                        <span>Billings</span>
-                    </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </div>
-                </a>
-                <ul class="collapse submenu list-unstyled" id="payments" data-parent="#accordionExample">
-                    <li>
-                        <a href="payment_means.php"> Payment Means </a>
-                    </li>
-                    <li>
-                        <a href="reservation_payments.php"> Reservation Payments </a>
-                    </li>
-                </ul>
-            </li>
-
-
+            
             <li class="menu">
                 <a href="#Reporting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">

@@ -89,7 +89,18 @@
                 data: 'RoomID=' + val,
                 success: function(data) {
                     //alert(data);
-                    $('#RoomDesc').val(data);
+                    $('#roomCost').val(data);
+                }
+            });
+
+            $.ajax({
+
+                type: "POST",
+                url: "ajax.php",
+                data: 'roomCost=' + val,
+                success: function(data) {
+                    //alert(data);
+                    $('#roomType').val(data);
                 }
             });
 
