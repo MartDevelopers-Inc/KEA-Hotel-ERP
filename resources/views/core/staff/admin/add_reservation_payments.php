@@ -102,12 +102,9 @@ require_once('partials/_head.php');
                                     <thead>
                                         <tr>
                                             <th>Room Number</th>
-                                            <th>Room Type</th>
                                             <th>Check In</th>
                                             <th>Check Out</th>
                                             <th>Customer Name</th>
-                                            <th>Customer ID No</th>
-                                            <th>Reservation Status</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -115,7 +112,7 @@ require_once('partials/_head.php');
 
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM `reservations`";
+                                        $ret = "SELECT * FROM `reservations` WHERE status ='Pending' ";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute(); //ok
                                         $res = $stmt->get_result();
@@ -123,12 +120,10 @@ require_once('partials/_head.php');
                                         ?>
                                             <tr>
                                                 <td><?php echo $row->room_number; ?></td>
-                                                <td><?php echo $row->room_type; ?></td>
                                                 <td><?php echo $row->check_in; ?></td>
                                                 <td><?php echo $row->check_out; ?></td>
                                                 <td><?php echo $row->cust_name; ?></td>
-                                                <td><?php echo $row->cust_id; ?></td>
-                                                <td><?php echo $row->status; ?></td>
+                                                <td><?php echo $row->stats; ?></td>
                                                 <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
                                                 <td>
                                                     <a class="badge outline-badge-warning" href="view_reservation.php?view=<?php echo $row->id; ?>">View</a>
