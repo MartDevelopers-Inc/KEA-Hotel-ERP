@@ -121,30 +121,16 @@ require_once('partials/_head.php');
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-4">
                                             <label for="inputEmail4">Room Number</label>
-                                            <select id="roomNumber" onChange="getRoomDetails(this.value)" class='form-control basic' name="room_number" id="">
-                                                <option selected>Select Room Number</option>
-                                                <?php
-                                                $ret = "SELECT * FROM `rooms` ";
-                                                $stmt = $mysqli->prepare($ret);
-                                                $stmt->execute(); //ok
-                                                $res = $stmt->get_result();
-                                                while ($row = $res->fetch_object()) {
-                                                ?>
-                                                    <option><?php echo $row->number; ?></option>
-
-                                                <?php
-                                                } ?>
-
-                                            </select>
+                                            <input type="text" readonly value=<?php echo $reservation->room_number;?> id="roomCost" name="room_number" class="form-control">
                                             <input type="hidden" name="room_id" id="RoomID" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputEmail4">Room Cost</label>
-                                            <input type="text" readonly id="roomCost" name="room_cost" class="form-control">
+                                            <input type="text" readonly value=<?php echo $reservation->room_cost;?> id="roomCost" name="room_cost" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="inputEmail4">Room Type</label>
-                                            <input type="text" readonly id="roomType" name="room_type" class="form-control">
+                                            <input type="text" readonly value=<?php echo $reservation->room_type;?> id="roomType" name="room_type" class="form-control">
                                         </div>
                                     </div>
                                     <hr>
@@ -155,7 +141,7 @@ require_once('partials/_head.php');
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Check Out</label>
-                                            <input type="date" value="<?php echo $reservation->check_in; ?>" name="check_out" class="form-control">
+                                            <input type="date" value="<?php echo $reservation->check_out; ?>" name="check_out" class="form-control">
                                         </div>
                                     </div>
                                     <hr>
