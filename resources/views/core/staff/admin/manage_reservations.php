@@ -119,7 +119,6 @@ require_once('partials/_head.php');
                                                 <td><?php echo $row->room_type; ?></td>
                                                 <td><?php echo $row->check_in; ?></td>
                                                 <td><?php echo $row->check_out; ?></td>
-                                                <td><?php echo $row->check_out; ?></td>
                                                 <td><?php echo $row->cust_name; ?></td>
                                                 <td><?php echo $row->cust_id; ?></td>
                                                 <td><?php echo $row->status; ?></td>

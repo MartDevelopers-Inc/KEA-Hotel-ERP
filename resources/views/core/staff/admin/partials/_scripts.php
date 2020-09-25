@@ -551,7 +551,7 @@
                 colors: ['transparent']
             },
             series: [{
-                name: 'Room Type:',
+                name: 'Ksh',
                 data: [<?php echo $Single; ?>, <?php echo $Double; ?>, <?php echo $Deluxe; ?>, <?php echo $Regular; ?>, <?php echo $Penthouse; ?>, <?php echo $Presidential; ?>]
             }],
             xaxis: {
