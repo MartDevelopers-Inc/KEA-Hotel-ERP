@@ -6,14 +6,14 @@ require_once('configs/checklogin.php');
 //Delete
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $adn = "DELETE FROM rooms WHERE id =?";
+    $adn = "DELETE FROM room_service WHERE id =?";
     $stmt = $mysqli->prepare($adn);
     $stmt->bind_param('s', $id);
     $stmt->execute();
     $stmt->close();
     if ($stmt) {
         //inject alert that post is shared  
-        $success = "Deleted" && header("refresh:1; url=manage_rooms.php");
+        $success = "Deleted" && header("refresh:1; url=house_keeping.php");
     } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
@@ -46,8 +46,9 @@ require_once('partials/_head.php');
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="manage_rooms.php">Rooms</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Manage Hotel Rooms</span></li>
+                                <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="house_keeping.php">House Keeping</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Manage Records</span></li>
                             </ol>
                         </nav>
 
@@ -79,54 +80,43 @@ require_once('partials/_head.php');
                 <div class="row layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
-
-                            <a class="btn btn-outline-warning" href="add_room.php">
+                            <a class="btn btn-outline-warning" href="add_room_service_record.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                    <polyline points="17 11 19 13 23 9"></polyline>
                                 </svg>
 
-                                Add New Room
+                                Add New Room Service Record
                             </a>
                             <div class="table-responsive mb-4 mt-4">
                                 <table id="zero-config" class="table table-hover" style="width:100%" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Room Number</th>
-                                            <th>Room Type</th>
-                                            <th>Room Status</th>
-                                            <th>Accomodation Price</th>
+                                            <th>Staff Number</th>
+                                            <th>Staff Name</th>
+                                            <th>Time Cleaning</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM `rooms` ";
+                                        $ret = "SELECT * FROM `room_service` ";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute(); //ok
                                         $res = $stmt->get_result();
                                         while ($row = $res->fetch_object()) {
                                         ?>
                                             <tr>
-                                                <td><?php echo $row->number; ?></td>
-                                                <td><?php echo $row->type; ?></td>
+                                                <td><?php echo $row->room_number; ?></td>
+                                                <td><?php echo $row->staff_number; ?></td>
+                                                <td><?php echo $row->staff_name; ?></td>
+                                                <td><?php echo date('d M Y g:i', strtotime($row->created_at)); ?></td>
                                                 <td>
-                                                    <?php 
-                                                        if($row->status =='Occupied')
-                                                        {
-                                                            echo "<span class='badge badge-outline-danger'>$row->status</span>";
-                                                        }else{
-                                                            echo "<span class='badge badge-outline-warning'>$row->status</span>";
-
-                                                        }
-                                                    ?>
-                                                </td>
-                                                <td>Ksh <?php echo $row->price; ?></td>
-                                                <td>
-                                                    <a class="badge outline-badge-success" href="view_room.php?view=<?php echo $row->id; ?>">View </a>
-                                                    <a class="badge outline-badge-primary" href="update_room.php?update=<?php echo $row->id; ?>">Update</a>
-                                                    <a class="badge outline-badge-danger text-danger" href="manage_rooms.php?delete=<?php echo $row->id; ?>">Delete</a>
+                                                    <a class="badge outline-badge-primary" href="update_record.php?update=<?php echo $row->id; ?>">Update</a>
+                                                    <a class="badge outline-badge-danger text-danger" href="house_keeping.php?delete=<?php echo $row->id; ?>">Delete</a>
                                                 </td>
                                             </tr>
                                         <?php

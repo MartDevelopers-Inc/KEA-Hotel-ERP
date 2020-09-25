@@ -361,7 +361,7 @@
                 type: 'donut',
                 width: 380
             },
-            colors: ['#5c1ac3', '#e2a03f', '#e7515a', '#e2a03f', '#e2a03f', '#5c1ac3'],
+            colors: ['#5c1ac3', '#2a51a3', '#e7515a', '#e2a03f', '#71ff33', ' #ff5533 '],
             dataLabels: {
                 enabled: false
             },
@@ -455,11 +455,7 @@
             }]
         }
 
-        /*
-            ================================
-                Montly Member Enrollment
-            ================================
-        */
+        
         var chart1 = new ApexCharts(
             document.querySelector("#revenueMonthly"),
             options1
@@ -467,11 +463,7 @@
 
         chart1.render();
 
-        /*
-            =================================
-                Membership Packages
-            =================================
-        */
+       
         var chart = new ApexCharts(
             document.querySelector("#chart-2"),
             options
@@ -559,7 +551,7 @@
                 colors: ['transparent']
             },
             series: [{
-                name: 'Room Type:',
+                name: 'Ksh',
                 data: [<?php echo $Single; ?>, <?php echo $Double; ?>, <?php echo $Deluxe; ?>, <?php echo $Regular; ?>, <?php echo $Penthouse; ?>, <?php echo $Presidential; ?>]
             }],
             xaxis: {

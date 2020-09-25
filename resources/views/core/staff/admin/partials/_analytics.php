@@ -270,7 +270,7 @@ $stmt->close();
 
 //1. Single Rooms
 
-$query = "SELECT COUNT(*) FROM `reservations` WHERE room_type ='Single Rooms' ";
+$query = "SELECT SUM(room_cost) FROM `reservations` WHERE room_type ='Single Rooms' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($Single);
@@ -279,7 +279,7 @@ $stmt->close();
 
 //2. Double Rooms
 
-$query = "SELECT COUNT(*) FROM `reservations` WHERE room_type ='Double Rooms' ";
+$query = "SELECT SUM(room_cost) FROM `reservations` WHERE room_type ='Double Rooms' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($Double);
@@ -289,7 +289,7 @@ $stmt->close();
 
 //3. Deluxe Rooms
 
-$query = "SELECT COUNT(*) FROM `reservations` WHERE room_type ='Deluxe Rooms' ";
+$query = "SELECT SUM(room_cost) FROM `reservations` WHERE room_type ='Deluxe Rooms' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($Deluxe);
@@ -298,7 +298,7 @@ $stmt->close();
 
 //4. Regular Suite
 
-$query = "SELECT COUNT(*) FROM `reservations` WHERE room_type ='Regular Suites' ";
+$query = "SELECT SUM(room_cost) FROM `reservations` WHERE room_type ='Regular Suites' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($Regular);
@@ -308,7 +308,7 @@ $stmt->close();
 
 //5. Penthouse Suites
 
-$query = "SELECT COUNT(*) FROM `reservations` WHERE room_type ='Penthouse Suites' ";
+$query = "SELECT SUM(room_cost) FROM `reservations` WHERE room_type ='Penthouse Suites' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($Penthouse);
@@ -318,7 +318,7 @@ $stmt->close();
 
 //6. Presidential Suites
 
-$query = "SELECT COUNT(*) FROM `reservations` WHERE room_type ='Presidential Suites' ";
+$query = "SELECT SUM(room_cost) FROM `reservations` WHERE room_type ='Presidential Suites' ";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($Presidential);

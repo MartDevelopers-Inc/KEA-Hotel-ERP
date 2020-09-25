@@ -70,15 +70,15 @@
 
     <?php } ?>
     <script>
-        function getDoctorDetails(val) {
+        function getRoomDetails(val) {
             $.ajax({
 
                 type: "POST",
                 url: "ajax.php",
-                data: 'docNumber=' + val,
+                data: 'roomNumber=' + val,
                 success: function(data) {
                     //alert(data);
-                    $('#docName').val(data);
+                    $('#RoomID').val(data);
                 }
             });
 
@@ -86,10 +86,21 @@
 
                 type: "POST",
                 url: "ajax.php",
-                data: 'docName=' + val,
+                data: 'RoomID=' + val,
                 success: function(data) {
                     //alert(data);
-                    $('#docId').val(data);
+                    $('#roomCost').val(data);
+                }
+            });
+
+            $.ajax({
+
+                type: "POST",
+                url: "ajax.php",
+                data: 'roomCost=' + val,
+                success: function(data) {
+                    //alert(data);
+                    $('#roomType').val(data);
                 }
             });
 
