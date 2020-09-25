@@ -6,12 +6,18 @@ require_once('configs/checklogin.php');
 //Delete
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
+    $room_id = $_GET['room_id'];
     $adn = "DELETE FROM reservations WHERE id =?";
+    $rooms = "UPDATE rooms SET status ='Vacant' WHERE room_id =?";
     $stmt = $mysqli->prepare($adn);
+    $roomsStmt = $mysqli->prepare($rooms);
     $stmt->bind_param('s', $id);
+    $roomsStmt->bind_param('s', $room_id);
     $stmt->execute();
+    $roomsStmt->execute();
     $stmt->close();
-    if ($stmt) {
+    $roomsStmt->close();
+    if ($stmt && $roomsStmt) {
         //inject alert that post is shared  
         $success = "Deleted" && header("refresh:1; url=manage_reservations.php");
     } else {
@@ -126,7 +132,7 @@ require_once('partials/_head.php');
                                                 <td>
                                                     <a class="badge outline-badge-warning" href="view_reservation.php?view=<?php echo $row->id; ?>">View</a>
                                                     <a class="badge outline-badge-primary" href="update_reservation.php?update=<?php echo $row->id; ?>">Update</a>
-                                                    <a class="badge outline-badge-danger text-danger" href="manage_reservations.php?delete=<?php echo $row->id; ?>">Delete</a>
+                                                    <a class="badge outline-badge-danger text-danger" href="manage_reservations.php?delete=<?php echo $row->id; ?>$room_id=<?php echo $row->room_id;?>">Delete</a>
                                                 </td>
                                             </tr>
                                         <?php
