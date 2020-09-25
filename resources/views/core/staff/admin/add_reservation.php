@@ -143,7 +143,7 @@ require_once('partials/_head.php');
                                 <div class="form-row mb-4">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Check In</label>
-                                        <input type="date" name="check_in" class="form-control">
+                                        <input type="date"  name="check_in" class="form-control">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Check Out</label>
