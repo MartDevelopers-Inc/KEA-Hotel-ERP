@@ -124,7 +124,7 @@ require_once('partials/_head.php');
                                                 <td><?php echo $row->status; ?></td>
                                                 <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
                                                 <td>
-                                                    <a class="badge outline-badge-warning" href="view_reservation.php?update=<?php echo $row->id; ?>">View</a>
+                                                    <a class="badge outline-badge-warning" href="view_reservation.php?view=<?php echo $row->id; ?>">View</a>
                                                     <a class="badge outline-badge-primary" href="update_reservation.php?update=<?php echo $row->id; ?>">Update</a>
                                                     <a class="badge outline-badge-danger text-danger" href="manage_reservations.php?delete=<?php echo $row->id; ?>">Delete</a>
                                                 </td>
