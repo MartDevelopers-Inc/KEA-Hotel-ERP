@@ -45,7 +45,8 @@ require_once('partials/_head.php');
                         <nav class="breadcrumb-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-                                <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>                                <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="manage_inventory.php">Inventory</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"><span>Manage</span></li>
                             </ol>
@@ -80,7 +81,7 @@ require_once('partials/_head.php');
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
 
-                            <a class="btn btn-outline-warning" href="add_staff.php">
+                            <a class="btn btn-outline-warning" href="add_new_asset.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
                                     <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="8.5" cy="7" r="4"></circle>
@@ -112,7 +113,7 @@ require_once('partials/_head.php');
                                                 <td><?php echo $row->code; ?></td>
                                                 <td><?php echo $row->name; ?></td>
                                                 <td><?php echo $row->status; ?></td>
-                                                <td><?php echo date('d M Y', strtotime($row->created_at));?></td>
+                                                <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
                                                 <td>
                                                     <a class="badge outline-badge-success" href="view_asset.php?view=<?php echo $row->id; ?>">View </a>
                                                     <a class="badge outline-badge-primary" href="update_asset.php?update=<?php echo $row->id; ?>">Update</a>
