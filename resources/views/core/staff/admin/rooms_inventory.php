@@ -3,6 +3,23 @@ session_start();
 require_once('configs/config.php');
 require_once('configs/checklogin.php');
 
+//Delete
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $adn = "DELETE FROM rooms WHERE id =?";
+    $stmt = $mysqli->prepare($adn);
+    $stmt->bind_param('s', $id);
+    $stmt->execute();
+    $stmt->close();
+    if ($stmt) {
+        //inject alert that post is shared  
+        $success = "Deleted" && header("refresh:1; url=manage_rooms.php");
+    } else {
+        //inject alert that task failed
+        $info = "Please Try Again Or Try Later";
+    }
+}
+
 require_once('partials/_head.php');
 ?>
 
@@ -95,20 +112,28 @@ require_once('partials/_head.php');
                                                 <td><?php echo $row->number; ?></td>
                                                 <td><?php echo $row->type; ?></td>
                                                 <td>
-                                                    <?php 
-                                                        if($row->status =='Occupied')
-                                                        {
-                                                            echo "<span class='badge outline-badge-danger'>$row->status</span>";
-                                                        }else{
-                                                            echo "<span class='badge outline-badge-warning'>$row->status</span>";
-
-                                                        }
+                                                    <?php
+                                                    if ($row->status == 'Occupied') {
+                                                        echo "<span class='badge outline-badge-danger'>$row->status</span>";
+                                                    } else {
+                                                        echo "<span class='badge outline-badge-warning'>$row->status</span>";
+                                                    }
                                                     ?>
                                                 </td>
                                                 <td>Ksh <?php echo $row->price; ?></td>
                                                 <td>
                                                     <a class="badge outline-badge-success" href="view_room.php?view=<?php echo $row->id; ?>">View </a>
-                                                    <a class="badge outline-badge-primary" href="update_room.php?update=<?php echo $row->id; ?>">Update</a>
+                                                    <!-- Prevent Deleting / Updating Occupied Room -->
+                                                    <?php
+                                                    if ($row->status == 'Occupied') {
+                                                        //Shut the fuck up
+                                                    } else {
+                                                        //delete room
+                                                        echo "<a class='badge outline-badge-primary' href='update_room.php?update=$row->id'>Update</a>";
+
+                                                        echo "<a class='badge outline-badge-danger text-danger' href='manage_rooms.php?delete=$row->id;'>Delete</a>";
+                                                    }
+                                                    ?>
                                                 </td>
                                             </tr>
                                         <?php

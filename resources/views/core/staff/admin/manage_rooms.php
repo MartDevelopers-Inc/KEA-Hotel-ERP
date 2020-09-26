@@ -112,22 +112,29 @@ require_once('partials/_head.php');
                                                 <td><?php echo $row->number; ?></td>
                                                 <td><?php echo $row->type; ?></td>
                                                 <td>
-                                                    <?php 
-                                                        if($row->status =='Occupied')
-                                                        {
-                                                            echo "<span class='badge badge-outline-danger'>$row->status</span>";
-                                                        }else{
-                                                            echo "<span class='badge badge-outline-warning'>$row->status</span>";
-
-                                                        }
+                                                    <?php
+                                                    if ($row->status == 'Occupied') {
+                                                        echo "<span class='badge outline-badge-danger'>$row->status</span>";
+                                                    } else {
+                                                        echo "<span class='badge outline-badge-warning'>$row->status</span>";
+                                                    }
                                                     ?>
                                                 </td>
                                                 <td>Ksh <?php echo $row->price; ?></td>
                                                 <td>
                                                     <a class="badge outline-badge-success" href="view_room.php?view=<?php echo $row->id; ?>">View </a>
-                                                    <a class="badge outline-badge-primary" href="update_room.php?update=<?php echo $row->id; ?>">Update</a>
-                                                    <a class="badge outline-badge-danger text-danger" href="manage_rooms.php?delete=<?php echo $row->id; ?>">Delete</a>
-                                                </td>
+                                                    <!-- Prevent Deleting / Updating Occupied Room -->
+                                                    <?php
+                                                    if ($row->status == 'Occupied') {
+                                                        //Shut the fuck up
+                                                    } else {
+                                                        //Update And Delete
+                                                        echo "<a class='badge outline-badge-primary' href='update_room.php?update=$row->id'>Update</a>";
+                                                    
+                                                        echo "<a class='badge outline-badge-danger text-danger' href='manage_rooms.php?delete=$row->id'>Delete</a>";
+                                                    }
+
+                                                    ?> </td>
                                             </tr>
                                         <?php
                                         } ?>
