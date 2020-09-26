@@ -130,7 +130,7 @@ require_once('partials/_head.php');
                                                     } else {
                                                         //Update And Delete
                                                         echo "<a class='badge outline-badge-primary' href='update_room.php?update=$row->id'>Update</a>";
-                                                    
+                                                        echo "<p></p>";
                                                         echo "<a class='badge outline-badge-danger text-danger' href='manage_rooms.php?delete=$row->id'>Delete</a>";
                                                     }
 
