@@ -227,13 +227,13 @@
                         <a href="hr_reports.php"> HR Reports </a>
                     </li>
                     <li>
-                        <a href="member_reports.php"> Resturant Sales </a>
+                        <a href="rooms_reports.php"> Rooms </a>
                     </li>
                     <li>
-                        <a href="prescriptions_reports.php"> Bills </a>
+                        <a href="reservation_reports.php"> Reservations </a>
                     </li>
                     <li>
-                        <a href="payment_reports.php"> Reservations </a>
+                        <a href="revenue_reports.php"> Revenue Reports </a>
                     </li>
                 </ul>
             </li>
