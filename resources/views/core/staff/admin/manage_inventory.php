@@ -6,39 +6,14 @@ require_once('configs/checklogin.php');
 //Delete
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $room_id = $_GET['room_id'];
-    $status = $_GET['status'];
-    $adn = "DELETE FROM reservations WHERE id =?";
-    $rooms = "UPDATE rooms SET status =? WHERE  id =?";
+    $adn = "DELETE FROM assets WHERE id =?";
     $stmt = $mysqli->prepare($adn);
-    $roomsStmt = $mysqli->prepare($rooms);
     $stmt->bind_param('s', $id);
-    $roomsStmt->bind_param('ss', $status, $room_id);
     $stmt->execute();
-    $roomsStmt->execute();
     $stmt->close();
-    $roomsStmt->close();
-    if ($stmt && $roomsStmt) {
+    if ($stmt) {
         //inject alert that post is shared  
-        $success = "Deleted" && header("refresh:1; url=manage_reservations.php");
-    } else {
-        //inject alert that task failed
-        $info = "Please Try Again Or Try Later";
-    }
-}
-
-//Vacate Room
-if (isset($_GET['vacate'])) {
-    $room_id = $_GET['vacate'];
-    $status = $_GET['status'];
-    $rooms = "UPDATE rooms SET status =? WHERE  id =?";
-    $roomsStmt = $mysqli->prepare($rooms);
-    $roomsStmt->bind_param('ss', $status, $room_id);
-    $roomsStmt->execute();
-    $roomsStmt->close();
-    if ($roomsStmt) {
-        //inject alert that post is shared  
-        $success = "Deleted" && header("refresh:1; url=manage_reservations.php");
+        $success = "Deleted" && header("refresh:1; url=manage_inventory.php");
     } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
@@ -71,8 +46,9 @@ require_once('partials/_head.php');
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="manage_reservations.php">Reservations</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Manage Reservations</span></li>
+                                <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="manage_inventory.php">Inventory</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Manage</span></li>
                             </ol>
                         </nav>
 
@@ -105,27 +81,21 @@ require_once('partials/_head.php');
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
 
-                            <a class="btn btn-outline-warning" href="add_reservation.php">
+                            <a class="btn btn-outline-warning" href="add_new_asset.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="12" y1="18" x2="12" y2="12"></line>
-                                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="8.5" cy="7" r="4"></circle>
+                                    <polyline points="17 11 19 13 23 9"></polyline>
                                 </svg>
-
-                                Add New Reservation
+                                Register New Asset
                             </a>
                             <div class="table-responsive mb-4 mt-4">
                                 <table id="zero-config" class="table table-hover" style="width:100%" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Room Number</th>
-                                            <th>Room Type</th>
-                                            <th>Check In</th>
-                                            <th>Check Out</th>
-                                            <th>Customer Name</th>
-                                            <th>Customer ID No</th>
-                                            <th>Reservation Status</th>
+                                            <th>Asset Code</th>
+                                            <th>Asset Name</th>
+                                            <th>Asset Status</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -133,29 +103,21 @@ require_once('partials/_head.php');
 
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM `reservations`";
+                                        $ret = "SELECT * FROM `assets` ";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute(); //ok
                                         $res = $stmt->get_result();
                                         while ($row = $res->fetch_object()) {
                                         ?>
                                             <tr>
-                                                <td><?php echo $row->room_number; ?></td>
-                                                <td><?php echo $row->room_type; ?></td>
-                                                <td><?php echo $row->check_in; ?></td>
-                                                <td><?php echo $row->check_out; ?></td>
-                                                <td><?php echo $row->cust_name; ?></td>
-                                                <td><?php echo $row->cust_id; ?></td>
+                                                <td><?php echo $row->code; ?></td>
+                                                <td><?php echo $row->name; ?></td>
                                                 <td><?php echo $row->status; ?></td>
                                                 <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
                                                 <td>
-                                                    <a class="badge outline-badge-warning" href="view_reservation.php?view=<?php echo $row->id; ?>">View</a>
-                                                    <p></p>
-                                                    <a class="badge outline-badge-primary" href="update_reservation.php?update=<?php echo $row->id; ?>">Update</a>
-                                                    <p></p>
-                                                    <a class="badge outline-badge-danger text-danger" href="manage_reservations.php?delete=<?php echo $row->id; ?>&room_id=<?php echo $row->room_id; ?>&status=Vacant">Delete</a>
-                                                    <p></p>
-                                                    <a class="badge outline-badge-success text-success" href="manage_reservations.php?vacate=<?php echo $row->room_id; ?>&status=Vacant">Vacate Room</a>
+                                                    <a class="badge outline-badge-success" href="view_asset.php?view=<?php echo $row->id; ?>">View </a>
+                                                    <a class="badge outline-badge-primary" href="update_asset.php?update=<?php echo $row->id; ?>">Update</a>
+                                                    <a class="badge outline-badge-danger text-danger" href="manage_inventory.php?delete=<?php echo $row->id; ?>">Delete</a>
                                                 </td>
                                             </tr>
                                         <?php

@@ -46,8 +46,8 @@ require_once('partials/_head.php');
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="manage_rooms.php">Rooms</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Manage Hotel Rooms</span></li>
+                                <li class="breadcrumb-item"><a href="rooms_reports.php">Reports</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Rooms Reports</span></li>
                             </ol>
                         </nav>
 
@@ -80,23 +80,15 @@ require_once('partials/_head.php');
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
 
-                            <a class="btn btn-outline-warning" href="add_room.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                                </svg>
-
-                                Add New Room
-                            </a>
+                            
                             <div class="table-responsive mb-4 mt-4">
-                                <table id="zero-config" class="table table-hover" style="width:100%" style="width:100%">
+                                <table id="html5-extension" class="table table-hover" style="width:100%" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Room Number</th>
                                             <th>Room Type</th>
                                             <th>Room Status</th>
                                             <th>Accomodation Price</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
 
@@ -109,7 +101,8 @@ require_once('partials/_head.php');
                                         while ($row = $res->fetch_object()) {
                                         ?>
                                             <tr>
-                                                <td><?php echo $row->number; ?></td>
+                                                <td>
+                                                    <a href="view_room.php?view=<?php echo $row->id; ?>" class="badge outline-badge-warning"><?php echo $row->number; ?></a></td>
                                                 <td><?php echo $row->type; ?></td>
                                                 <td>
                                                     <?php
@@ -121,20 +114,7 @@ require_once('partials/_head.php');
                                                     ?>
                                                 </td>
                                                 <td>Ksh <?php echo $row->price; ?></td>
-                                                <td>
-                                                    <a class="badge outline-badge-success" href="view_room.php?view=<?php echo $row->id; ?>">View </a>
-                                                    <!-- Prevent Deleting / Updating Occupied Room -->
-                                                    <?php
-                                                    if ($row->status == 'Occupied') {
-                                                        //Shut the fuck up
-                                                    } else {
-                                                        //Update And Delete
-                                                        echo "<a class='badge outline-badge-primary' href='update_room.php?update=$row->id'>Update</a>";
-                                                        echo "<p></p>";
-                                                        echo "<a class='badge outline-badge-danger text-danger' href='manage_rooms.php?delete=$row->id'>Delete</a>";
-                                                    }
 
-                                                    ?> </td>
                                             </tr>
                                         <?php
                                         } ?>
