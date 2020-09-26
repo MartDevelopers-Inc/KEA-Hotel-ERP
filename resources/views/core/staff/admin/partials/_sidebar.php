@@ -197,7 +197,10 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="inventory" data-parent="#accordionExample">
                     <li>
-                        <a href="manage_inventory.php"> Manage Inventory </a>
+                        <a href="manage_inventory.php"> Manage Assets </a>
+                    </li>
+                    <li>
+                        <a href="rooms_inventory.php"> Rooms </a>
                     </li>
                 </ul>
             </li>
@@ -227,19 +230,10 @@
                         <a href="member_reports.php"> Resturant Sales </a>
                     </li>
                     <li>
-                        <a href="package_reports.php"> Stock Reports </a>
-                    </li>
-                    <li>
-                        <a href="consultations_reports.php"> Suppliers </a>
-                    </li>
-                    <li>
                         <a href="prescriptions_reports.php"> Bills </a>
                     </li>
                     <li>
                         <a href="payment_reports.php"> Reservations </a>
-                    </li>
-                    <li>
-                        <a href="tax_reports.php"> Tax Reports </a>
                     </li>
                 </ul>
             </li>
