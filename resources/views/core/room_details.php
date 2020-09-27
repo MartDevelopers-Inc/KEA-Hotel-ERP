@@ -54,8 +54,8 @@ while ($row = $res->fetch_object()) {
                 <div class="container intro__container">
                     <div class="row h-100 align-items-center align-items-center justify-content-center">
                         <div class="col-12 col-xl-8 text-center">
-                            <span class="title title--overhead text-white js-lines"><?php echo $row->number;?></span>
-                            <h1 class="title title--display-1 js-lines"><?php echo $row->type;?></h1>
+                            <span class="title title--overhead text-white js-lines"><?php echo $row->number; ?></span>
+                            <h1 class="title title--display-1 js-lines"><?php echo $row->type; ?></h1>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ while ($row = $res->fetch_object()) {
                     <div class="col-md-12 col-xl-8 order-2 order-xl-1 mt-4 mt-sm-5">
                         <!-- Description room -->
                         <h3 class="title title--h3">Description</h3>
-                        <?php echo $row->details;?>
+                        <?php echo $row->details; ?>
                         <!-- Amenity -->
                         <h3 class="title title--h3 mt-4 mt-sm-5">Amenity</h3>
                         <div class="row">
@@ -204,7 +204,7 @@ while ($row = $res->fetch_object()) {
                             </div>
                         </div>
 
-                        
+
                     </div>
 
                     <!-- Sidebar Booking -->
@@ -212,10 +212,10 @@ while ($row = $res->fetch_object()) {
                         <div class="sidebar-booking sticky-column">
                             <div class="sidebar-booking__priceWrap">
                                 <div class="priceWrap-title">Price</div>
-                                <div class="priceWrap-price">$129<span> night</span></div>
+                                <div class="priceWrap-price">Ksh <?php echo $row->price; ?><span> / Night</span></div>
                             </div>
 
-                            <form class="sidebar-booking__wrap">
+                            <form method="POST" class="sidebar-booking__wrap">
                                 <!-- Dates -->
                                 <div class="form-group">
                                     <label class="label" for="check-in">Dates</label>
@@ -231,30 +231,6 @@ while ($row = $res->fetch_object()) {
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <!-- Persons -->
-                                    <div class="col-12 col-sm-6 form-group">
-                                        <label class="label" for="person-adult">Adults</label>
-                                        <div class="js-quantity">
-                                            <span class="qty-minus icon-minus"></span>
-                                            <input type="number" class="inputText js-quantity-input readonly" id="person-adult" name="person-adult" value="0" min="1" max="8" required="required" autocomplete="off">
-                                            <span class="qty-plus icon-plus"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 form-group">
-                                        <label class="label" for="person-kids">Kids</label>
-                                        <div class="js-quantity">
-                                            <span class="qty-minus icon-minus"></span>
-                                            <input type="number" class="inputText js-quantity-input readonly" id="person-kids" name="person-kids" value="0" min="0" max="8" autocomplete="off">
-                                            <span class="qty-plus icon-plus"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 mt-1">
-                                        <button type="submit" class="btn btn__medium w-100">Reservations</button>
-                                    </div>
-                                    <span class="sidebar-booking__note">Until you pay for anything</span>
-                                </div>
                             </form>
                         </div>
                     </div>
