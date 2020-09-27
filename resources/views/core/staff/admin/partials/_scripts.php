@@ -206,7 +206,7 @@
                 }]
             },
             subtitle: {
-                text: '',
+                text: 'Resturant Sales',
                 align: 'left',
                 margin: 0,
                 offsetX: -10,
@@ -218,7 +218,7 @@
                 }
             },
             title: {
-                text: '',
+                text: 'Room Reservations',
                 align: 'left',
                 margin: 0,
                 offsetX: -10,
