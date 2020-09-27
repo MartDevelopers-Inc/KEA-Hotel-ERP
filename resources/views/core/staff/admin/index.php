@@ -29,8 +29,9 @@ require_once('partials/_head.php');
             <div class="form-form-wrap">
                 <div class="form-container">
                     <div class="form-content">
-                        <h1 class="">KEA Hotel ERP - Admin Module</h1>
-                        <p class="">Log in to your account to continue.</p>
+                        <div>
+                            <img src="assets/img/logo.png" alt="logo" class="img-fluid" >
+                        </div>
                         <form method="POST" class="text-left">
                             <div class="form">
 
