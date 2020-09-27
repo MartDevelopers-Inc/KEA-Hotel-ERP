@@ -5,28 +5,28 @@ include('configs/codeGen.php');
 
 if (isset($_POST['reset_pwd'])) {
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-      $err = 'Invalid Email';
+        $err = 'Invalid Email';
     }
     $checkEmail = mysqli_query($mysqli, "SELECT `email` FROM `admin` WHERE `email` = '" . $_POST['email'] . "'") or exit(mysqli_error($mysqli));
     if (mysqli_num_rows($checkEmail) > 0) {
-      //exit('This email is already being used');
-      //Reset Password
-      $token = $_POST['token'];
-      $email = $_POST['email'];
-      $query = "INSERT INTO password_resets (email, token) VALUES (?,?)";
-      $reset = $mysqli->prepare($query);
-      $rc = $reset->bind_param('ss', $email, $token);
-      $reset->execute();
-      if ($reset) {
-        $success = "Password Reset Instructions Sent To Your Email";
-        // && header("refresh:1; url=index.php");
-      } else {
-        $err = "Please Try Again Or Try Later";
-      }
+        //exit('This email is already being used');
+        //Reset Password
+        $token = $_POST['token'];
+        $email = $_POST['email'];
+        $query = "INSERT INTO password_resets (email, token) VALUES (?,?)";
+        $reset = $mysqli->prepare($query);
+        $rc = $reset->bind_param('ss', $email, $token);
+        $reset->execute();
+        if ($reset) {
+            $success = "Password Reset Instructions Sent To Your Email";
+            // && header("refresh:1; url=index.php");
+        } else {
+            $err = "Please Try Again Or Try Later";
+        }
     } else {
-      $err = "No account with that email";
+        $err = "No account with that email";
     }
-  }
+}
 
 require_once('partials/_head.php');
 ?>
@@ -39,8 +39,9 @@ require_once('partials/_head.php');
             <div class="form-form-wrap">
                 <div class="form-container">
                     <div class="form-content">
-                        <h1 class="">KEA Hotel ERP - Admin Module</h1>
-                        <p class="">Provide Your Email To Reset Password.</p>
+                        <div>
+                            <img src="assets/img/logo.png" alt="logo" class="img-fluid">
+                        </div>
                         <form method="POST" class="text-left">
                             <div class="form">
                                 <div id="username-field" class="field-wrapper input">
