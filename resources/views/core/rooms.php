@@ -45,24 +45,29 @@ require_once('_partials/head.php')
                 <div class="col-12">
                     <h1 class="title title--h1 js-lines">Rooms / Suites.</h1>
                 </div>
-
-                <div class="col-12 js-scroll-show">
-                    <!-- Main ItemRoom -->
-                    <div class="itemRoom itemRoom__main">
-                        <span class="badge">Popular</span>
-                        <figure class="itemRoom__img-wrap">
-                            <a class="itemRoom__link" href="room_details.html">
-                                <img class="cover lazyload" src="assets/images/image_room_06.jpg" alt="room" />
-                            </a>
-                            <div class="itemRoom__details">
-                                <h3 class="title title--h3">Comfort Room</h3>
-                                <div class="itemRoom__price">$89<span>night</span></div>
-                            </div>
-                        </figure>
-                    </div>
-                </div>
-
                 <?php
+                $ret = "SELECT * FROM `rooms` WHERE status ='Vacant' AND type ='Presidential Suites' ORDER BY RAND() LIMIT 1 ";
+                $stmt = $mysqli->prepare($ret);
+                $stmt->execute(); //ok
+                $res = $stmt->get_result();
+                while ($row = $res->fetch_object()) {
+                ?>
+                    <div class="col-12 js-scroll-show">
+                        <!-- Main ItemRoom -->
+                        <div class="itemRoom itemRoom__main">
+                            <span class="badge">Best Selling</span>
+                            <figure class="itemRoom__img-wrap">
+                                <a class="itemRoom__link" href="room_details.html">
+                                    <img class="cover lazyload" src="staff/admin/assets/img/rooms/<?php echo $row->image; ?>" alt="room" />
+                                </a>
+                                <div class="itemRoom__details">
+                                    <h3 class="title title--h3"><?php echo $row->type; ?></h3>
+                                    <div class="itemRoom__price">Ksh <?php echo $row->price; ?> /<span> Night</span></div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                <?php }
                 $ret = "SELECT * FROM `rooms` WHERE status ='Vacant' ";
                 $stmt = $mysqli->prepare($ret);
                 $stmt->execute(); //ok
@@ -73,17 +78,17 @@ require_once('_partials/head.php')
                         <!-- ItemRoom extended -->
                         <div class="itemRoom itemRoom__extended">
                             <figure class="itemRoom__img-wrap">
-                                <a class="itemRoom__link" href="room_details.php?room=<?php echo $row->id;?>">
-                                    <img class="cover lazyload" src="staff/admin/assets/img/<?php echo $row->image;?>" alt="room" />
+                                <a class="itemRoom__link" href="room_details.php?room=<?php echo $row->id; ?>">
+                                    <img class="cover lazyload" src="staff/admin/assets/img/rooms/<?php echo $row->image; ?>" alt="room" />
                                 </a>
                                 <div class="itemRoom__details">
-                                    <h4 class="title title--h4"><?php echo $row->type;?></h4>
-                                    <div class="itemRoom__price">Ksh <?php echo $row->price;?><span>Night</span></div>
+                                    <h4 class="title title--h4"><?php echo $row->type; ?></h4>
+                                    <div class="itemRoom__price">Ksh <?php echo $row->price; ?> / <span>Night</span></div>
                                 </div>
                             </figure>
 
                             <div class="itemRoom__details-extended">
-                                <div class="item-extended mr-4"><i class="icon-maximize"></i><?php echo $row->number;?></div>
+                                <div class="item-extended mr-4"><i class="icon-maximize"></i><?php echo $row->number; ?></div>
                             </div>
                         </div>
                     </div>
