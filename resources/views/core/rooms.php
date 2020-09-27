@@ -1,7 +1,6 @@
 <?php
 require_once('staff/admin/configs/config.php');
-
-require_once('_partials/head.php')
+require_once('_partials/head.php');
 ?>
 
 <body>
@@ -57,7 +56,7 @@ require_once('_partials/head.php')
                         <div class="itemRoom itemRoom__main">
                             <span class="badge">Best Selling</span>
                             <figure class="itemRoom__img-wrap">
-                                <a class="itemRoom__link" href="room_details.html">
+                                <a class="itemRoom__link" href="room_details.php?room=<?php echo $row->id; ?>">
                                     <img class="cover lazyload" src="staff/admin/assets/img/rooms/<?php echo $row->image; ?>" alt="room" />
                                 </a>
                                 <div class="itemRoom__details">
