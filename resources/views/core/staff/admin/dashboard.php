@@ -120,7 +120,7 @@ require_once('partials/_head.php');
                     <div class="col-xl-8 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-table-one">
                             <div class="widget-heading">
-                                <h5 class="text-warning">Recent Room Reservations<span class="badge outline-badge-warning"> <a href="reservations.php"> View All </a></span> </h5>
+                                <h5 class="text-warning">Recent Room Reservations<span class="badge outline-badge-warning"> <a href="reservation_reports.php"> View All </a></span> </h5>
                             </div>
 
                             <div class="widget-content">
@@ -187,11 +187,10 @@ require_once('partials/_head.php');
                                     </div>
 
                                     <div class="inv-action">
-                                        <a href="" class="btn btn-dark">View Summary</a>
+                                        <a href="revenue_reports.php" class="btn btn-dark">View Summary</a>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
