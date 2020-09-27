@@ -1,6 +1,6 @@
 <header class="header">
     <nav class="navbar navbar-white navbar-overlay">
-        <a class="logo-link" href="home.html">
+        <a class="logo-link" href="index.php">
             <img class="logotype" src="assets/images/ui/logo-white.svg" alt="Sochi">
         </a>
         <div class="navbar__menu">
