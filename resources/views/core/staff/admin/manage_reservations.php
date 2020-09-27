@@ -133,7 +133,7 @@ require_once('partials/_head.php');
 
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM `reservations`";
+                                        $ret = "SELECT * FROM `reservations` ORDER BY `reservations`.`created_at` DESC";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute(); //ok
                                         $res = $stmt->get_result();
