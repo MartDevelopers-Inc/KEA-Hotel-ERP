@@ -20,7 +20,7 @@ while ($row = $res->fetch_object()) {
         <!-- Header -->
         <header class="header">
             <nav class="navbar navbar-white navbar-overlay">
-                <a class="logo-link" href="home.html">
+                <a class="logo-link" href="index.php">
                     <img class="logotype" src="assets/images/ui/logo-white.svg" alt="Sochi">
                 </a>
                 <div class="navbar__menu">
@@ -29,16 +29,16 @@ while ($row = $res->fetch_object()) {
                         <span></span>
                     </button>
                     <ul class="nav">
-                        <li class="nav__item is-current"><a class="nav__link" href="rooms.html"><span data-hover="Rooms">Rooms</span></a></li>
-                        <li class="nav__item"><a class="nav__link" href="gallery.html"><span data-hover="Gallery">Gallery</span></a></li>
-                        <li class="nav__item"><a class="nav__link" href="about.html"><span data-hover="About Us">About Us</span></a></li>
-                        <li class="nav__item"><a class="nav__link" href="blog.html"><span data-hover="Blog">Blog</span></a></li>
-                        <li class="nav__item"><a class="nav__link" href="contact.html"><span data-hover="Contact Us">Contact Us</span></a></li>
+                        <li class="nav__item _is-current"><a class="nav__link" href="rooms.php"><span data-hover="Rooms">Rooms</span></a></li>
+                        <li class="nav__item"><a class="nav__link" href="gallery.php"><span data-hover="Gallery">Gallery</span></a></li>
+                        <li class="nav__item"><a class="nav__link" href="about.php"><span data-hover="About Us">About Us</span></a></li>
+                        <li class="nav__item"><a class="nav__link" href="blog.php"><span data-hover="Blog">Blog</span></a></li>
+                        <li class="nav__item"><a class="nav__link" href="contact.php"><span data-hover="Contact Us">Contact Us</span></a></li>
                         <li class="nav__item"><a class="btn btn__medium" href="#"><i class="btn-icon-left icon-bookmark"></i>Reservations</a></li>
                     </ul>
                 </div>
                 <div class="navbar__btn">
-                    <a class="btn btn__medium" href="rooms.html"><i class="btn-icon-left icon-bookmark"></i>Reservations</a>
+                    <a class="btn btn__medium" href="staff/"><i class="btn-icon-left icon-login"></i>Staff Login</a>
                 </div>
             </nav>
         </header>
@@ -49,13 +49,13 @@ while ($row = $res->fetch_object()) {
             <!-- Intro -->
             <section class="intro">
                 <div class="intro__bg-wrap">
-                    <div class="overlay intro__bg js-image js-parallax js-scale-down" data-image="assets/images/image_room_06.jpg"></div>
+                    <div class="overlay intro__bg js-image js-parallax js-scale-down" data-image="staff/admin/assets/img/rooms/<?php echo $row->image; ?>"></div>
                 </div>
                 <div class="container intro__container">
                     <div class="row h-100 align-items-center align-items-center justify-content-center">
                         <div class="col-12 col-xl-8 text-center">
-                            <span class="title title--overhead text-white js-lines">Rosa Khutor</span>
-                            <h1 class="title title--display-1 js-lines">Apartments</h1>
+                            <span class="title title--overhead text-white js-lines"><?php echo $row->number;?></span>
+                            <h1 class="title title--display-1 js-lines"><?php echo $row->type;?></h1>
                         </div>
                     </div>
                 </div>
@@ -64,30 +64,13 @@ while ($row = $res->fetch_object()) {
             </section>
             <!-- /Intro -->
 
-            <!-- Room base info -->
-            <div class="bottom-panel bottom-panelRoom">
-                <div class="bottom-panel__wrap">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12 col-md-12 col-xl-8">
-                            <div class="row room-details">
-                                <div class="col-4 room-details__item slash"><i class="icon-maximize"></i>1500 sq.</div>
-                                <div class="col-4 room-details__item slash"><i class="icon-bed"></i>4 Bed<span>rooms</span></div>
-                                <div class="col-4 room-details__item"><i class="icon-bath"></i>2 Bath<span>room</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Room base info -->
-
             <!-- Content -->
             <section id="content" class="container">
                 <div class="row sticky-parent">
                     <div class="col-md-12 col-xl-8 order-2 order-xl-1 mt-4 mt-sm-5">
                         <!-- Description room -->
                         <h3 class="title title--h3">Description</h3>
-                        <p>Modern open plan super spacious penthouses in historic Sochi. Windows from floor to ceiling to give you the best views of Sochi and full view of majestic Table Mountain anywhere in the penthouse . The big patio with jacuzzi bath is ideal to watch the sunset and the city lights. Coffee shops, museums, theatre within walking distance. Separate scullery/laundry & full open plan kitchen & shared pool.24 hour security and indoor parking included.</p>
-
+                        <?php echo $row->details;?>
                         <!-- Amenity -->
                         <h3 class="title title--h3 mt-4 mt-sm-5">Amenity</h3>
                         <div class="row">
@@ -151,13 +134,7 @@ while ($row = $res->fetch_object()) {
                         <div class="slider-room ltr swiper-container mt-3">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <div class="coverSlider js-image" data-image="assets/images/image_room_05.jpg"></div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="coverSlider js-image" data-image="assets/images/image_room_06.jpg"></div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="coverSlider js-image" data-image="assets/images/image_room_07.jpg"></div>
+                                    <div class="coverSlider js-image" data-image="staff/admin/assets/img/rooms/<?php echo $row->image; ?>"></div>
                                 </div>
                             </div>
 
@@ -227,62 +204,7 @@ while ($row = $res->fetch_object()) {
                             </div>
                         </div>
 
-                        <div class="mt-4">
-                            <!-- Review item -->
-                            <div class="testimonials-item testimonials-item--v2 js-scroll-show">
-                                <h4 class="title title--h5">Best hotel!</h4>
-                                <p class="testimonials-item__caption">The hotel has everything you need. On the ground floor there is a lobby bar, on the second floor there is a zone with an indoor pool and sauna, on the seventh floor there is a restaurant and spa-salon. The rooms are cleaned every day.</p>
-                                <div class="author-wrap">
-                                    <div class="author-picture"><img class="cover" src="assets/images/person.jpg" alt="Jacob Lane" /></div>
-                                    <div>
-                                        <div class="author-name">Jacob Lane</div>
-                                        <div class="author-country">from USA</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Review item -->
-
-                            <!-- Review item -->
-                            <div class="testimonials-item testimonials-item--v2 js-scroll-show">
-                                <h4 class="title title--h5">Comfortable hotel.</h4>
-                                <p class="testimonials-item__caption">Well, what can I say, every year, day and hour, this place is being transformed for the better. The staff is completely competent and friendly, Everything around is blooming, pleasing, nourishing and making the holiday bright.</p>
-                                <div class="author-wrap">
-                                    <div class="author-picture"><img class="cover" src="assets/images/person2.jpg" alt="Victoria Wilson" /></div>
-                                    <div>
-                                        <div class="author-name">Victoria Wilson</div>
-                                        <div class="author-country">from France</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Review item -->
-
-                            <!-- Review item -->
-                            <div class="testimonials-item testimonials-item--v2 js-scroll-show">
-                                <h4 class="title title--h5">The modern.</h4>
-                                <p class="testimonials-item__caption">The modern 5 * Hotel Sochi Center is an ideal solution for combining business and leisure. Stylish design and exceptional service will satisfy the desires of any guest. 150 rooms with balcony (non-smoking), sea view, trendy restaurant.</p>
-                                <div class="author-wrap">
-                                    <div class="author-picture"><img class="cover" src="assets/images/person3.jpg" alt="Max Edwards" /></div>
-                                    <div>
-                                        <div class="author-name">Max Edwards</div>
-                                        <div class="author-country">from Germany</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Review item -->
-
-                            <!-- Pagination -->
-                            <div class="pagination justify-content-between justify-content-sm-center">
-                                <a class="page-link page-link__control" href="#" aria-label="Prev"><i class="icon-arrow-left"></i></a>
-                                <div class="d-flex">
-                                    <a class="page-link current" href="#">1</a>
-                                    <a class="page-link" href="#">2</a>
-                                    <a class="page-link" href="#">3</a>
-                                    <span class="page-link">...</span>
-                                    <a class="page-link" href="#">10</a>
-                                </div>
-                                <a class="page-link page-link__control" href="#" aria-label="Next"><i class="icon-arrow-right"></i></a>
-                            </div>
-                        </div>
+                        
                     </div>
 
                     <!-- Sidebar Booking -->
@@ -340,9 +262,6 @@ while ($row = $res->fetch_object()) {
                 </div>
             </section>
             <!-- /Content -->
-
-            <!-- Map -->
-            <div class="map-bottom" id="map"></div>
 
         </main>
         <!-- /Content -->
