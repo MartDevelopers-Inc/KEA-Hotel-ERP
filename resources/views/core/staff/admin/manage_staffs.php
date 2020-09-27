@@ -102,7 +102,7 @@ require_once('partials/_head.php');
 
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM `staffs` ";
+                                        $ret = "SELECT * FROM `staffs`  ORDER BY `staffs`.`name` ASC ";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute(); //ok
                                         $res = $stmt->get_result();

@@ -213,7 +213,7 @@
                 offsetY: 35,
                 floating: false,
                 style: {
-                    fontSize: '14px',
+                    fontSize: '0px',
                     color: '#888ea8'
                 }
             },
@@ -225,7 +225,7 @@
                 offsetY: 0,
                 floating: false,
                 style: {
-                    fontSize: '25px',
+                    fontSize: '0px',
                     color: '#0e1726'
                 },
             },
