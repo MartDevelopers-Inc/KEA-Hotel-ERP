@@ -6,25 +6,24 @@ include('configs/checklogin.php');
 include('configs/codeGen.php');
 check_login();
 
-//Add Medical Expert
 if (isset($_POST['update'])) {
-    $update = $_GET['update'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $bio = $_POST['bio'];
-    $adr = $_POST['adr'];
-    $password = sha1(md5($_POST['password']));
-    $dpic = $_FILES['dpic']['name'];
-    move_uploaded_file($_FILES["dpic"]["tmp_name"], "assets/img/staffs/" . $_FILES["dpic"]["name"]);
 
-    $query = "UPDATE staffs SET name =?, email =?, phone =?, bio =?, dpic =?, adr =?, password =? WHERE id =?";
+    $update = $_GET['update'];
+    $number = $_POST['number'];
+    $type = $_POST['type'];
+    $price = $_POST['price'];
+    $status = $_POST['status'];
+    $details = $_POST['details'];
+    $image = $_FILES['image']['name'];
+    move_uploaded_file($_FILES["image"]["tmp_name"], "admin/assets/img/rooms/" . $_FILES["image"]["name"]);
+
+    $query = "UPDATE rooms SET number =?, type =?, price =?, status =?, details =?, image =? WHERE id =?";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('ssssssss', $name, $email, $phone, $bio, $dpic, $adr, $password, $update);
+    $rc = $stmt->bind_param('sssssss', $number, $type, $price, $status, $details, $image, $update);
     $stmt->execute();
     if ($stmt) {
         //inject alert that post is shared  
-        $success = "Updated" && header("refresh:1; url=manage_staffs.php");
+        $success = "Added" && header("refresh:1; url=manage_rooms.php");
     } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
@@ -60,8 +59,8 @@ require_once('partials/_head.php');
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="manage_staffs.php">HRM</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Update Staff</span></li>
+                                <li class="breadcrumb-item"><a href="manage_rooms.php">Rooms</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Update</span></li>
                             </ol>
                         </nav>
 
@@ -82,7 +81,7 @@ require_once('partials/_head.php');
         <?php
         require_once('partials/_sidebar.php');
         $update = $_GET['update'];
-        $ret = "SELECT * FROM `staffs` WHERE id ='$update' ";
+        $ret = "SELECT * FROM `rooms` WHERE id ='$update' ";
         $stmt = $mysqli->prepare($ret);
         $stmt->execute(); //ok
         $res = $stmt->get_result();
@@ -100,42 +99,44 @@ require_once('partials/_head.php');
                             <div class="widget-content widget-content-area br-6">
                                 <form method="POST" enctype="multipart/form-data">
                                     <div class="form-row mb-4">
-                                        <div style="display:none" class="form-group col-md-6">
-                                            <label for="inputEmail4">Id</label>
-                                            <input type="text" name="id" value="<?php echo $staff_id; ?>" class="form-control">
-                                            <input type="text" name="number" value="<?php echo $a; ?>-<?php echo $b; ?>" class="form-control">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">Room Number</label>
+                                            <input required type="text" value="<?php echo $row->number; ?>" name="number" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">Room Type</label>
+                                            <select class='form-control basic' name="type" id="">
+                                                <option><?php echo $row->type; ?></option>
+                                                <option>Single Rooms</option>
+                                                <option>Double Rooms</option>
+                                                <option>Deluxe Rooms</option>
+                                                <option>Regular Suite</option>
+                                                <option>Penthouse Suites</option>
+                                                <option>Presidential Suites</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputEmail4">Room Status</label>
+                                            <select class='form-control basic' name="status" id="">
+                                                <option selected><?php echo $row->status; ?></option>
+                                                <option>Vacant</option>
+                                                <option>Occupied</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputEmail4">Room Image</label>
+                                            <input required type="file" name="image" class="form-control btn btn-warning">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputEmail4">Accomodation Price</label>
+                                            <input required type="text" value="<?php echo $row->price; ?>" name="price" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="form-row mb-4">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Full Name</label>
-                                            <input required type="text" value="<?php echo $row->name; ?>" name="name" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Mobile Phone Number</label>
-                                            <input required type="text" value="<?php echo $row->phone; ?>" name="phone" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Email Address</label>
-                                            <input required type="text" value="<?php echo $row->email; ?>" name="email" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Profile Picture</label>
-                                            <input required type="file" name="dpic" class="form-control btn btn-warning">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Address</label>
-                                            <input required type="text" value="<?php echo $row->adr; ?>"" name="adr" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Password</label>
-                                            <input required type="password" name="password" class="form-control">
-                                        </div>
-                                    </div>
+
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-12">
-                                            <label for="inputAddress">Biography</label>
-                                            <textarea id="medical-expert-bio" name="bio" rows="10" class="form-control"><?php echo $row->bio; ?></textarea>
+                                            <label for="inputAddress">Room Details</label>
+                                            <textarea id="medical-expert-bio" name="details" rows="10" class="form-control"><?php echo $row->details; ?></textarea>
                                         </div>
                                     </div>
 

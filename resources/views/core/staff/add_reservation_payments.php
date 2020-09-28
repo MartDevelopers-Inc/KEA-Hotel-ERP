@@ -3,23 +3,6 @@ session_start();
 require_once('configs/config.php');
 require_once('configs/checklogin.php');
 
-//Delete
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $adn = "DELETE FROM payments WHERE id =?";
-    $stmt = $mysqli->prepare($adn);
-    $stmt->bind_param('s', $id);
-    $stmt->execute();
-    $stmt->close();
-    if ($stmt) {
-        //inject alert that post is shared  
-        $success = "Deleted" && header("refresh:1; url=reservation_payments.php");
-    } else {
-        //inject alert that task failed
-        $info = "Please Try Again Or Try Later";
-    }
-}
-
 require_once('partials/_head.php');
 ?>
 
@@ -47,7 +30,7 @@ require_once('partials/_head.php');
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="manage_reservations.php">Reservations</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Payments</span></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Add Reservation Payment</span></li>
                             </ol>
                         </nav>
 
@@ -79,25 +62,16 @@ require_once('partials/_head.php');
                 <div class="row layout-top-spacing">
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
-
-                            <a class="btn btn-outline-warning" href="add_reservation_payments.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="12" y1="18" x2="12" y2="12"></line>
-                                    <line x1="9" y1="15" x2="15" y2="15"></line>
-                                </svg>
-
-                                Add New Reservation Payment Record
-                            </a>
                             <div class="table-responsive mb-4 mt-4">
                                 <table id="zero-config" class="table table-hover" style="width:100%" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Code</th>
-                                            <th>Amount</th>
+                                            <th>Room Number</th>
+                                            <th>Check In</th>
+                                            <th>Check Out</th>
                                             <th>Customer Name</th>
-                                            <th>Payment Means</th>
+                                            <th>Days Reserved</th>
+                                            <th>Amount</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -105,20 +79,32 @@ require_once('partials/_head.php');
 
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM `payments` WHERE service_paid ='Reservations' ";
+                                        $ret = "SELECT * FROM `reservations` WHERE status ='Pending' ";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute(); //ok
                                         $res = $stmt->get_result();
                                         while ($row = $res->fetch_object()) {
+                                            //Get days reserved room
+                                            $date1 = date_create("$row->check_in");
+                                            $date2 = date_create("$row->check_out");
+
+                                            $diff = date_diff($date1, $date2);
+                                            $days_stayed =  $diff->format("%a");
+
+                                            //Payment
+                                            $amount = $days_stayed * $row->room_cost;
+
                                         ?>
                                             <tr>
-                                                <td><?php echo $row->code; ?></td>
-                                                <td>Ksh <?php echo $row->amt; ?></td>
+                                                <td><?php echo $row->room_number; ?></td>
+                                                <td><?php echo $row->check_in; ?></td>
+                                                <td><?php echo $row->check_out; ?></td>
                                                 <td><?php echo $row->cust_name; ?></td>
-                                                <td><?php echo $row->payment_means; ?></td>
+                                                <td><?php echo $days_stayed;?>Days</td>
+                                                <td>Ksh <?php echo $amount;?></td>
                                                 <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
                                                 <td>
-                                                    <a class="badge outline-badge-danger text-danger" href="reservation_payments.php?delete=<?php echo $row->id; ?>">Delete</a>
+                                                    <a class="badge outline-badge-warning text-warning" href="pay_reservation.php?cust_name=<?php echo $row->cust_name; ?>&amt=<?php echo $amount;?>&r_id=<?php echo $row->id;?>&status=Paid">Pay Reservation Fee</a>
                                                 </td>
                                             </tr>
                                         <?php

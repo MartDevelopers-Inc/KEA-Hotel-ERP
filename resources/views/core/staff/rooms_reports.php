@@ -2,23 +2,23 @@
 session_start();
 require_once('configs/config.php');
 require_once('configs/checklogin.php');
-
+/* 
 //Delete
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $adn = "DELETE FROM payments WHERE id =?";
+    $adn = "DELETE FROM rooms WHERE id =?";
     $stmt = $mysqli->prepare($adn);
     $stmt->bind_param('s', $id);
     $stmt->execute();
     $stmt->close();
     if ($stmt) {
         //inject alert that post is shared  
-        $success = "Deleted" && header("refresh:1; url=reservation_payments.php");
+        $success = "Deleted" && header("refresh:1; url=manage_rooms.php");
     } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
     }
-}
+} */
 
 require_once('partials/_head.php');
 ?>
@@ -46,8 +46,8 @@ require_once('partials/_head.php');
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="manage_reservations.php">Reservations</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Payments</span></li>
+                                <li class="breadcrumb-item"><a href="rooms_reports.php">Reports</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Rooms Reports</span></li>
                             </ol>
                         </nav>
 
@@ -80,46 +80,41 @@ require_once('partials/_head.php');
                     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                         <div class="widget-content widget-content-area br-6">
 
-                            <a class="btn btn-outline-warning" href="add_reservation_payments.php">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="12" y1="18" x2="12" y2="12"></line>
-                                    <line x1="9" y1="15" x2="15" y2="15"></line>
-                                </svg>
-
-                                Add New Reservation Payment Record
-                            </a>
+                            
                             <div class="table-responsive mb-4 mt-4">
-                                <table id="zero-config" class="table table-hover" style="width:100%" style="width:100%">
+                                <table id="html5-extension" class="table table-hover" style="width:100%" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>Code</th>
-                                            <th>Amount</th>
-                                            <th>Customer Name</th>
-                                            <th>Payment Means</th>
-                                            <th>Created At</th>
-                                            <th>Action</th>
+                                            <th>Room Number</th>
+                                            <th>Room Type</th>
+                                            <th>Room Status</th>
+                                            <th>Accomodation Price</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM `payments` WHERE service_paid ='Reservations' ";
+                                        $ret = "SELECT * FROM `rooms` ";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute(); //ok
                                         $res = $stmt->get_result();
                                         while ($row = $res->fetch_object()) {
                                         ?>
                                             <tr>
-                                                <td><?php echo $row->code; ?></td>
-                                                <td>Ksh <?php echo $row->amt; ?></td>
-                                                <td><?php echo $row->cust_name; ?></td>
-                                                <td><?php echo $row->payment_means; ?></td>
-                                                <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
                                                 <td>
-                                                    <a class="badge outline-badge-danger text-danger" href="reservation_payments.php?delete=<?php echo $row->id; ?>">Delete</a>
+                                                    <a href="view_room.php?view=<?php echo $row->id; ?>" class="badge outline-badge-warning"><?php echo $row->number; ?></a></td>
+                                                <td><?php echo $row->type; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($row->status == 'Occupied') {
+                                                        echo "<span class='badge outline-badge-danger'>$row->status</span>";
+                                                    } else {
+                                                        echo "<span class='badge outline-badge-warning'>$row->status</span>";
+                                                    }
+                                                    ?>
                                                 </td>
+                                                <td>Ksh <?php echo $row->price; ?></td>
+
                                             </tr>
                                         <?php
                                         } ?>
