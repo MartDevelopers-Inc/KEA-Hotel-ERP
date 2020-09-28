@@ -38,13 +38,14 @@ if (isset($_POST['reservation'])) {
     }
 }
 
-require_once('_partials/head.php');
 $room = $_GET['room'];
 $ret = "SELECT * FROM `rooms` WHERE id ='$room' ";
 $stmt = $mysqli->prepare($ret);
 $stmt->execute(); //ok
 $res = $stmt->get_result();
 while ($row = $res->fetch_object()) {
+    require_once('_partials/head.php');
+
 ?>
 
     <body>
