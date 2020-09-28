@@ -23,7 +23,7 @@
                 <ul class="nav">
                     <li class="nav__item "><a class="nav__link" href="rooms.php"><span data-hover="Rooms">Rooms</span></a></li>
                     <li class="nav__item"><a class="nav__link" href="gallery.php"><span data-hover="Gallery">Gallery</span></a></li>
-                    <li class="nav__item_is-current"><a class="nav__link" href="about.php"><span data-hover="About Us">About Us</span></a></li>
+                    <li class="nav__item _is-current"><a class="nav__link" href="about.php"><span data-hover="About Us">About Us</span></a></li>
                     <li class="nav__item"><a class="nav__link" href="contact.php"><span data-hover="Contact Us">Contact Us</span></a></li>
                     <li class="nav__item"><a class="btn btn__medium" href="#"><i class="btn-icon-left icon-bookmark"></i>Reservations</a></li>
                 </ul>
@@ -84,8 +84,8 @@
 			        <h1 class="title title--h1 js-lines">A Brief History of KEA Hotel.</h1>
 			    </div>
 				<div class="col-12 col-lg-6 offset-lg-1 offset-top">
-				    <p class="paragraph js-scroll-show">The humid subtropical climate, high mountains, exotic vegetation, endless beaches, national parks, historic architecture, exciting attraction sites, art festivals and lively multicultural environment make Sochi a prominent resort destination.</p>
-				    <p class="paragraph js-scroll-show">KEA Hotel has a lot to offer for anyone who loves nature, sports, history, sunny beach leisure and active adventures. There is too much to do and too many things to see in Sochi so you will never be bored.</p>
+				    <p class="paragraph js-scroll-show">The humid subtropical climate, high mountains, exotic vegetation, endless beaches, national parks, historic architecture, exciting attraction sites, art festivals and lively multicultural environment make KEA Hotel a prominent resort destination.</p>
+				    <p class="paragraph js-scroll-show">KEA Hotel has a lot to offer for anyone who loves nature, sports, history, sunny beach leisure and active adventures. There is too much to do and too many things to see in KEA Hotel  so you will never be bored.</p>
 				</div>
 
 		        <div class="slider-about col-fullwidth swiper-container">
