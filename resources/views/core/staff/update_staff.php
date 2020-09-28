@@ -6,7 +6,6 @@ include('configs/checklogin.php');
 include('configs/codeGen.php');
 check_login();
 
-//Add Medical Expert
 if (isset($_POST['update'])) {
     $update = $_GET['update'];
     $name = $_POST['name'];
@@ -14,17 +13,16 @@ if (isset($_POST['update'])) {
     $phone = $_POST['phone'];
     $bio = $_POST['bio'];
     $adr = $_POST['adr'];
-    $password = sha1(md5($_POST['password']));
     $dpic = $_FILES['dpic']['name'];
     move_uploaded_file($_FILES["dpic"]["tmp_name"], "assets/img/staffs/" . $_FILES["dpic"]["name"]);
 
-    $query = "UPDATE staffs SET name =?, email =?, phone =?, bio =?, dpic =?, adr =?, password =? WHERE id =?";
+    $query = "UPDATE staffs SET name =?, email =?, phone =?, bio =?, dpic =?, adr =? WHERE id =?";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('ssssssss', $name, $email, $phone, $bio, $dpic, $adr, $password, $update);
+    $rc = $stmt->bind_param('ssssssss', $name, $email, $phone, $bio, $dpic, $adr, $update);
     $stmt->execute();
     if ($stmt) {
         //inject alert that post is shared  
-        $success = "Updated" && header("refresh:1; url=manage_staffs.php");
+        $success = "Updated" && header("refresh:1; url=user_profile.php");
     } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
@@ -60,8 +58,7 @@ require_once('partials/_head.php');
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="manage_staffs.php">HRM</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><span>Update Staff</span></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>Profile</span></li>
                             </ol>
                         </nav>
 
@@ -103,7 +100,6 @@ require_once('partials/_head.php');
                                         <div style="display:none" class="form-group col-md-6">
                                             <label for="inputEmail4">Id</label>
                                             <input type="text" name="id" value="<?php echo $staff_id; ?>" class="form-control">
-                                            <input type="text" name="number" value="<?php echo $a; ?>-<?php echo $b; ?>" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
@@ -123,13 +119,9 @@ require_once('partials/_head.php');
                                             <label for="inputEmail4">Profile Picture</label>
                                             <input required type="file" name="dpic" class="form-control btn btn-warning">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-12">
                                             <label for="inputEmail4">Address</label>
                                             <input required type="text" value="<?php echo $row->adr; ?>"" name="adr" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Password</label>
-                                            <input required type="password" name="password" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
