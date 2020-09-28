@@ -2,6 +2,55 @@
 session_start();
 require_once('configs/config.php');
 require_once('configs/checklogin.php');
+
+if (isset($_POST['change_password'])) {
+
+    //Change Password
+    $error = 0;
+    if (isset($_POST['old_password']) && !empty($_POST['old_password'])) {
+        $old_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['old_password']))));
+    } else {
+        $error = 1;
+        $err = "Old Password Cannot Be Empty";
+    }
+    if (isset($_POST['new_password']) && !empty($_POST['new_password'])) {
+        $new_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['new_password']))));
+    } else {
+        $error = 1;
+        $err = "New Password Cannot Be Empty";
+    }
+    if (isset($_POST['confirm_password']) && !empty($_POST['confirm_password'])) {
+        $confirm_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['confirm_password']))));
+    } else {
+        $error = 1;
+        $err = "Confirmation Password Cannot Be Empty";
+    }
+    $id = $_SESSION['id'];
+    if (!$error) {
+        $sql = "SELECT * FROM  staffs  WHERE id = '$id'";
+        $res = mysqli_query($mysqli, $sql);
+        if (mysqli_num_rows($res) > 0) {
+            $row = mysqli_fetch_assoc($res);
+            if ($old_password != $row['password']) {
+                $err =  "Please Enter Correct Old Password";
+            } elseif ($new_password != $confirm_password) {
+                $err = "Confirmation Password Does Not Match";
+            } else {
+                $new_password  = sha1(md5($_POST['new_password']));
+                $query = "UPDATE staffs SET  password =? WHERE id =?";
+                $stmt = $mysqli->prepare($query);
+                $rc = $stmt->bind_param('ss', $new_password, $id);
+                $stmt->execute();
+
+                if ($stmt) {
+                    $success = "Password Changed" && header("refresh:1; url=user_profile.php");
+                } else {
+                    $err = "Please Try Again Or Try Later";
+                }
+            }
+        }
+    }
+}
 require_once('partials/_head.php');
 ?>
 
@@ -10,17 +59,18 @@ require_once('partials/_head.php');
     <!--  BEGIN NAVBAR  -->
     <?php
     require_once('partials/_nav.php');
-    $view = $_SESSION['id'];
-    $ret = "SELECT * FROM `staffs` WHERE id ='$view' ";
+
+    $id = $_SESSION['id'];
+    $ret = "SELECT * FROM `staffs` WHERE id ='$id' ";
     $stmt = $mysqli->prepare($ret);
     $stmt->execute(); //ok
     $res = $stmt->get_result();
     while ($row = $res->fetch_object()) {
         if ($row->dpic == '') {
             //Load Default Image
-            $profile = "<img src='../admin/assets/img/admin.png' class='img-fluid img-thumbnail' alt='avatar'>";
+            $profile = "<img src='admin/assets/img/admin.png' class='img-fluid img-thumbnail' alt='avatar'>";
         } else {
-            $profile = "<img src='../admin/assets/img/staffs/$row->dpic' class='img-fluid img-thumbnail' alt='avatar'>";
+            $profile = "<img src='admin/assets/img/staffs/$row->dpic' class='img-fluid img-thumbnail' alt='avatar'>";
         }
 
     ?>
@@ -314,6 +364,26 @@ require_once('partials/_head.php');
                                     </div> -->
                                 </div>
                             </div>
+                            <div class="bio layout-spacing ">
+                                <div class="widget-content widget-content-area">
+                                    <h3 class="">Change Password</h3>
+                                    <form method="POST">
+                                        <div class="form-group mb-4">
+                                            <input type="password" required name="old_password" class="form-control" placeholder="Old Password">
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <input type="password" required name="new_password" class="form-control" placeholder="New Password">
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <input type="password" required name="confirm_password" class="form-control" placeholder="Confirm New Password">
+                                        </div>
+                                        <small id="emailHelp" class="form-text text-muted">*Required Fields</small>
+                                        <button type="submit" name="change_password" class="btn btn-primary mt-4">Change Password</button>
+                                    </form>
+                                    <br>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
