@@ -1,6 +1,7 @@
 <?php
-	require_once('_partials/head.php')
+require_once('_partials/head.php')
 ?>
+
 <body>
 	<!-- Preloader -->
 	<div class="preloader">
@@ -13,7 +14,7 @@
 	<header class="header">
 		<nav class="navbar">
 			<a class="logo-link" href="index.php">
-				<img class="logotype" src="assets/images/ui/logo-white.svg" alt="Sochi">
+				<img class="logotype" src="assets/images/ui/logo-black.svg" alt="KEA">
 			</a>
 			<div class="navbar__menu">
 				<button class="hamburger" type="button">

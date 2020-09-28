@@ -1,6 +1,7 @@
 <?php
-    require_once('_partials/head.php')
+require_once('_partials/head.php')
 ?>
+
 <body>
     <!-- Preloader -->
     <div class="preloader">
@@ -13,7 +14,7 @@
     <header class="header">
         <nav class="navbar">
             <a class="logo-link" href="index.php">
-                <img class="logotype" src="assets/images/ui/logo-white.svg" alt="Sochi">
+                <img class="logotype" src="assets/images/ui/logo-black.svg" alt="KEA">
             </a>
             <div class="navbar__menu">
                 <button class="hamburger" type="button">
@@ -40,7 +41,7 @@
         <section class="container section section-first">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="title title--h1 js-lines">Contact.</h1>
+                    <h1 class="title title--h1 js-lines">Contact Us.</h1>
                 </div>
             </div>
             <div class="row">
@@ -54,7 +55,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 col-contact js-scroll-show">
                     <h4 class="title title--h4">Follow Us</h4>
-                    <p class="paragraph">Connect with me on <a class="link-underline" href="https://www.facebook.com/">facebook</a>,<br><a class="link-underline" href="https://twitter.com/">twitter</a> or <a class="link-underline" href="https://www.instagram.com/">instagram</a></p>
+                    <p class="paragraph">Connect With KEA Hotel On <a class="link-underline" href="https://www.facebook.com/">Facebook</a>,<br><a class="link-underline" href="https://twitter.com/">Twitter</a> or <a class="link-underline" href="https://www.instagram.com/">Instagram</a></p>
                 </div>
             </div>
         </section>
