@@ -37,7 +37,25 @@
     <link rel="shortcut icon" href="assets/images/favicons/favicon.png" type="image/png">
 
     <!-- Styles -->
+    <script src="staff/admin/plugins/sweetalerts/promise-polyfill.js"></script>
+    <link href="staff/admin/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="staff/admin/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css" />
     <link rel="stylesheet" type="text/css" href="assets/demo/style-demo.css" />
+    <?php if (isset($success)) { ?>
+        <!--This code for injecting success alert-->
+        <script>
+            setTimeout(function() {
+                    swal({
+                        title: 'Success',
+                        text: "<?php echo $success; ?>",
+                        type: 'success',
+                        padding: '2em'
+                    })
+                },
+                100);
+        </script>
+
+    <?php } ?>
 
 </head>
