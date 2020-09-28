@@ -45,15 +45,15 @@ require_once('_partials/head.php');
 					<h1 class="title title--h1 js-lines">Begin your amazing adventure.</h1>
 				</div>
 				<div class="col-12 col-lg-6 text-left text-sm-justify">
-					<p class="mr-0 mr-lg-4 paragraph js-scroll-show">The humid subtropical climate, high mountains, exotic vegetation, endless beaches, national parks, historic architecture, exciting attraction sites, art festivals and lively multicultural environment make Sochi a prominent resort destination.</p>
+					<p class="mr-0 mr-lg-4 paragraph js-scroll-show">The humid subtropical climate, high mountains, exotic vegetation, endless beaches, national parks, historic architecture, exciting attraction sites, art festivals and lively multicultural environment make KEA Hotel a prominent resort destination.</p>
 				</div>
 				<div class="col-12 col-lg-6 text-left text-sm-justify">
-					<p class="ml-0 ml-lg-4 paragraph js-scroll-show">Sochi has a lot to offer for anyone who loves nature, sports, history, sunny beach leisure and active adventures. There is too much to do and too many things to see in Sochi so you will never be bored.</p>
+					<p class="ml-0 ml-lg-4 paragraph js-scroll-show">KEA Hotel has a lot to offer for anyone who loves nature, sports, history, sunny beach leisure and active adventures. There is too much to do and too many things to see in KEA Hotel so you will never be bored.</p>
 				</div>
 
 				<div class="col-12 col-lg-6">
 					<figure class="about-image-wrap mr-0 mr-lg-4">
-						<a class="about-link" href="about.html">Explore More <i class="icon-arrow-special"></i></a>
+						<a class="about-link" href="about.php">Explore More <i class="icon-arrow-special"></i></a>
 						<img class="cover about-image-portrait" src="assets/images/about_image_01.jpg" alt="about" />
 					</figure>
 				</div>
