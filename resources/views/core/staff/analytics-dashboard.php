@@ -179,7 +179,7 @@ require_once('partials/_head.php');
                             <div class="widget-content">
                                 <div class="w-content">
                                     <div class="w-info">
-                                        <h6 class="value"><?php echo $Resturant_Service; ?></h6>
+                                        <h6 class="value">Ksh <?php echo $Resturant_Service; ?></h6>
                                         <p class="text-warning">Resturant Revenue</p>
                                     </div>
                                     <div class="">
@@ -202,7 +202,7 @@ require_once('partials/_head.php');
                             <div class="widget-content">
                                 <div class="w-content">
                                     <div class="w-info">
-                                        <h6 class="value"><?php echo $accomodation; ?></h6>
+                                        <h6 class="value"> Ksh <?php echo $accomodation; ?></h6>
                                         <p class="text-warning">Accomodation Revenue</p>
                                     </div>
                                     <div class="">
