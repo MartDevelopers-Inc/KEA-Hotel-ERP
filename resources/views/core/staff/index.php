@@ -5,10 +5,10 @@ include('configs/config.php');
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = sha1(md5($_POST['password'])); //double encrypt to increase security
-    $stmt = $mysqli->prepare("SELECT email, password, id  FROM staffs  WHERE (email =? AND password =?)");
-    $stmt->bind_param('ss', $email, $password); //bind fetched parameters
+    $stmt = $mysqli->prepare("SELECT email, number, password, id  FROM staffs  WHERE (email =? || number =? AND password =?)");
+    $stmt->bind_param('sss', $email, $email, $password); //bind fetched parameters
     $stmt->execute(); //execute bind 
-    $stmt->bind_result($email, $password, $id); //bind result
+    $stmt->bind_result($email,$email, $password, $id); //bind result
     $rs = $stmt->fetch();
     $_SESSION['id'] = $id;
     if ($rs) {
@@ -36,12 +36,12 @@ require_once('partials/_head.php');
                             <div class="form">
 
                                 <div id="username-field" class="field-wrapper input">
-                                    <label for="username">EMAIL</label>
+                                    <label for="username">EMAIL | STAFF NUMBER</label>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
                                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                         <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
-                                    <input id="username" required name="email" type="email" class="form-control">
+                                    <input id="username" required name="email" type="text" class="form-control">
                                 </div>
 
                                 <div id="password-field" class="field-wrapper input mb-2">
@@ -64,19 +64,15 @@ require_once('partials/_head.php');
                                         <button type="submit" name="login" class="btn btn-primary mixin" value="">Log In</button>
                                     </div>
                                 </div>
-
-                                <!-- <div class="division">
+                                <div class="division">
                                     <span>OR</span>
                                 </div>
 
                                 <div class="social">
-                                    <a href="doc/" class="btn social-fb">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook">
-                                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                                        </svg>
-                                        <span class="brand-name">Login In As Doctor</span>
+                                    <a href="admin/" class="btn social-fb">
+                                        <span class="brand-name">Login In As Admin</span>
                                     </a>
-                                </div>-->
+                                </div>
 
                                 <p class="signup-link"><a href="../">Home</a></p>
                             </div>
