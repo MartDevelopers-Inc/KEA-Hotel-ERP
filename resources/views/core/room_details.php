@@ -1,12 +1,51 @@
 <?php
 require_once('staff/admin/configs/config.php');
-require_once('_partials/head.php');
+include('staff/admin/configs/codeGen.php');
+
+if (isset($_POST['reservation'])) {
+
+    $id = $_POST['id'];
+    $room = $_GET['room'];
+    $room_number = $_POST['room_number'];
+    $room_cost = $_POST['room_cost'];
+    $room_type = $_POST['room_type'];
+    $check_in = $_POST['check_in'];
+    $check_out = $_POST['check_out'];
+    $cust_name = $_POST['cust_name'];
+    $cust_id = $_POST['cust_id'];
+    $cust_phone = $_POST['cust_phone'];
+    $cust_email = $_POST['cust_email'];
+    $cust_adr = $_POST['cust_adr'];
+    $status = $_POST['status'];
+
+    //Update Room That It Has Been Occupied
+    $room_status = $_POST['room_status'];
+
+    $query = "INSERT INTO reservations (id, room_id, room_number, room_cost, room_type, check_in, check_out, cust_name, cust_id, cust_phone, cust_email, cust_adr, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $room_querry = "UPDATE rooms SET status =? WHERE id =?";
+    $stmt = $mysqli->prepare($query);
+    $roomstmt = $mysqli->prepare($room_querry);
+    $rc = $stmt->bind_param('sssssssssssss', $id, $room, $room_number, $room_cost, $room_type, $check_in, $check_out, $cust_name, $cust_id, $cust_phone, $cust_email, $cust_adr, $status);
+    $rc = $roomstmt->bind_param('ss', $room_status, $room);
+    $stmt->execute();
+    $roomstmt->execute();
+    if ($stmt && $roomstmt) {
+        //inject alert that post is shared  
+        $success = "Reservation Added" && header("refresh:1; url=rooms.php");
+    } else {
+        //inject alert that task failed
+        $info = "Please Try Again Or Try Later";
+    }
+}
+
 $room = $_GET['room'];
 $ret = "SELECT * FROM `rooms` WHERE id ='$room' ";
 $stmt = $mysqli->prepare($ret);
 $stmt->execute(); //ok
 $res = $stmt->get_result();
 while ($row = $res->fetch_object()) {
+    require_once('_partials/head.php');
+
 ?>
 
     <body>
@@ -32,7 +71,6 @@ while ($row = $res->fetch_object()) {
                         <li class="nav__item _is-current"><a class="nav__link" href="rooms.php"><span data-hover="Rooms">Rooms</span></a></li>
                         <li class="nav__item"><a class="nav__link" href="gallery.php"><span data-hover="Gallery">Gallery</span></a></li>
                         <li class="nav__item"><a class="nav__link" href="about.php"><span data-hover="About Us">About Us</span></a></li>
-                        <li class="nav__item"><a class="nav__link" href="blog.php"><span data-hover="Blog">Blog</span></a></li>
                         <li class="nav__item"><a class="nav__link" href="contact.php"><span data-hover="Contact Us">Contact Us</span></a></li>
                         <li class="nav__item"><a class="btn btn__medium" href="#"><i class="btn-icon-left icon-bookmark"></i>Reservations</a></li>
                     </ul>
@@ -218,18 +256,68 @@ while ($row = $res->fetch_object()) {
                             <form method="POST" class="sidebar-booking__wrap">
                                 <!-- Dates -->
                                 <div class="form-group">
-                                    <label class="label" for="check-in">Dates</label>
+                                    <label class="label" for="check-in">Check In Date</label>
                                     <div class="form-dual form-dual--mobile">
-                                        <div class="form-dual__left">
-                                            <input type="text" class="inputText inputText__icon readonly js-datepicker" id="check-in" name="check-in" placeholder="Select data" required="required" autocomplete="off">
+                                        <div class="form-dual__right">
+                                            <input type="date" class="inputText inputText__icon readonly " id="" name="check_in" placeholder="Check In" required="required" autocomplete="off">
                                             <span class="input-icon icon-calendar"></span>
                                         </div>
+                                        <div style="display: none;">
+                                            <input type="text" name="room_number" value="<?php echo $row->number; ?>">
+                                            <input type="text" name="room_cost" value="<?php echo $row->price; ?>">
+                                            <input type="text" name="room_type" value="<?php echo $row->type; ?>">
+                                            <input type="text" name="status" value="Pending">
+                                            <input type="text" name="id" value="<?php echo $assign_id; ?>" class="form-control">
+                                            <input type="text" name="room_status" value="Occupied" class="form-control">
+                                        </div>
+                                    </div>
+                                    <label class="label" for="check-in">Check Out Date</label>
+                                    <div class="form-dual form-dual--mobile">
                                         <div class="form-dual__right">
-                                            <input type="text" class="inputText inputText__icon readonly js-datepicker" id="check-out" name="check-out" placeholder="Select data" required="required" autocomplete="off">
+                                            <input type="date" class="inputText inputText__icon readonly " id="" name="check_out" placeholder="Check Out" required="required" autocomplete="off">
                                             <span class="input-icon icon-calendar"></span>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 form-group">
+                                            <label class="label" for="person-adult">Full Name</label>
+                                            <div class="js-quantity">
+                                                <input type="text" class="inputText js-quantity-input " name="cust_name" required="required" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 form-group">
+                                            <label class="label" for="person-adult">Natioanal ID Number</label>
+                                            <div class="js-quantity">
+                                                <input type="text" class="inputText js-quantity-input " name="cust_id" required="required" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 form-group">
+                                            <label class="label" for="person-adult">Phone Number</label>
+                                            <div class="js-quantity">
+                                                <input type="text" class="inputText js-quantity-input " name="cust_phone" required="required" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 form-group">
+                                            <label class="label" for="person-adult">Email Address</label>
+                                            <div class="js-quantity">
+                                                <input type="email" class="inputText js-quantity-input " name="cust_email" required="required" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-12 form-group">
+                                            <label class="label" for="person-adult">Address</label>
+                                            <div class="js-quantity">
+                                                <input type="text" class="inputText js-quantity-input " name="cust_adr" autocomplete="off">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12 mt-1">
+                                            <button type="submit" name="reservation" class="btn btn__medium w-100">Submit Reservation</button>
+                                        </div>
+                                        <span class="sidebar-booking__note">Proceed To Reception To Pay For Your Reservation</span>
+                                    </div>
                                 </div>
+
 
                             </form>
                         </div>
@@ -260,6 +348,8 @@ while ($row = $res->fetch_object()) {
         <script src="assets/js/mapbox.init.js"></script>
 
         <script src="assets/demo/plugins-demo.js"></script>
+        <script src="staff/admin/plugins/sweetalerts/sweetalert2.min.js"></script>
+        <script src="staff/admin/plugins/sweetalerts/custom-sweetalert.js"></script>
     </body>
 
     </html>

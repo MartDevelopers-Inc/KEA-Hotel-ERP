@@ -2,7 +2,6 @@
 require_once('staff/admin/configs/config.php');
 require_once('_partials/head.php');
 ?>
-
 <body>
     <!-- Preloader -->
     <div class="preloader">
@@ -15,7 +14,7 @@ require_once('_partials/head.php');
     <header class="header">
         <nav class="navbar">
             <a class="logo-link" href="index.php">
-                <img class="logotype" src="assets/images/ui/logo-black.svg" alt="Sochi">
+                <img class="logotype" src="assets/images/ui/logo-black.svg" alt="KEA">
             </a>
             <div class="navbar__menu">
                 <button class="hamburger" type="button">
@@ -26,7 +25,6 @@ require_once('_partials/head.php');
                     <li class="nav__item _is-current"><a class="nav__link" href="rooms.php"><span data-hover="Rooms">Rooms</span></a></li>
                     <li class="nav__item"><a class="nav__link" href="gallery.php"><span data-hover="Gallery">Gallery</span></a></li>
                     <li class="nav__item"><a class="nav__link" href="about.php"><span data-hover="About Us">About Us</span></a></li>
-                    <li class="nav__item"><a class="nav__link" href="blog.php"><span data-hover="Blog">Blog</span></a></li>
                     <li class="nav__item"><a class="nav__link" href="contact.php"><span data-hover="Contact Us">Contact Us</span></a></li>
                     <li class="nav__item"><a class="btn btn__medium" href="#"><i class="btn-icon-left icon-bookmark"></i>Reservations</a></li>
                 </ul>
