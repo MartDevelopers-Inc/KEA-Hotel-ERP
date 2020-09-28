@@ -56,15 +56,10 @@ require_once('partials/_head.php');
                             </svg></a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
-                            <a class="dropdown-item" data-value="Sales" href="hr_reports.php">Resturant Sales</a>
-                            <a class="dropdown-item" data-value="Stock Reports" href="member_reports.php">Stock Reports</a>
-                            <a class="dropdown-item" data-value="Supplier Outsanding" href="package_reports.php">Supplier Outstanding</a>
-                            <a class="dropdown-item" data-value="Bills" href="payment_reports.php">Bills</a>
-                            <a class="dropdown-item" data-value="Tax Reports" href="payment_reports.php">Tax Reports</a>
-                            <a class="dropdown-item" data-value="Reservation Reports" href="payment_reports.php">Reservation Reports</a>
-                            <a class="dropdown-item" data-value="HR Reports" href="payment_reports.php">HR Reports</a>
-
-
+                            <a class="dropdown-item" data-value="Revenue Reports" href="revenue_reports.php">Revenue</a>
+                            <a class="dropdown-item" data-value="Reservations" href="reservation_reports.php">Reservations</a>
+                            <a class="dropdown-item" data-value="Rooms Reports" href="rooms_reports.php">Room Reports</a>
+                            <a class="dropdown-item" data-value="HR Reports" href="hr_reports.php">HR Reports</a>
                         </div>
                     </div>
                 </li>
@@ -274,7 +269,7 @@ require_once('partials/_head.php');
                                                     <p><span><?php echo $row->code; ?> CONFIRMED</span>
                                                         <?php echo $row->cust_name; ?> Paid Ksh <?php echo $row->amt; ?> On
                                                         <?php echo date('d M Y', strtotime($row->created_at)); ?> At
-                                                        <?php echo date('g:i', strtotime($row->created_at)); ?>  Using <?php echo $row->payment_means; ?>
+                                                        <?php echo date('g:i', strtotime($row->created_at)); ?> Using <?php echo $row->payment_means; ?>
                                                     </p>
                                                     <div class="tags">
                                                         <?php

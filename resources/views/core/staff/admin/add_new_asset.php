@@ -12,11 +12,11 @@ if (isset($_POST['add'])) {
     $code = $_POST['code'];
     $name = $_POST['name'];
     $status = $_POST['status'];
-    $desc = $_POST['desc'];
+    $details = $_POST['details'];
 
-    $query = "INSERT INTO assets (id, code, name, status, desc) VALUES (?,?,?,?,?)";
+    $query = "INSERT INTO assets (id, code, name, status, details) VALUES (?,?,?,?,?)";
     $stmt = $mysqli->prepare($query);
-    $rc = $stmt->bind_param('sssss', $id, $code, $name, $status, $desc);
+    $rc = $stmt->bind_param('sssss', $id, $code, $name, $status, $details);
     $stmt->execute();
     if ($stmt) {
         //inject alert that post is shared  
@@ -106,7 +106,7 @@ require_once('partials/_head.php');
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputEmail4">Asset Description</label>
-                                        <textarea rows="10" required type="text" id="kbase" name="desc" class="form-control"></textarea>
+                                        <textarea rows="10" required type="text" id="kbase" name="details" class="form-control"></textarea>
                                     </div>
                                 </div>
 

@@ -54,15 +54,10 @@ require_once('partials/_head.php');
                             </svg></a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
-                            <a class="dropdown-item" data-value="Sales" href="hr_reports.php">Resturant Sales</a>
-                            <a class="dropdown-item" data-value="Stock Reports" href="member_reports.php">Stock Reports</a>
-                            <a class="dropdown-item" data-value="Supplier Outsanding" href="package_reports.php">Supplier Outstanding</a>
-                            <a class="dropdown-item" data-value="Bills" href="payment_reports.php">Bills</a>
-                            <a class="dropdown-item" data-value="Tax Reports" href="payment_reports.php">Tax Reports</a>
-                            <a class="dropdown-item" data-value="Reservation Reports" href="payment_reports.php">Reservation Reports</a>
-                            <a class="dropdown-item" data-value="HR Reports" href="payment_reports.php">HR Reports</a>
-
-
+                            <a class="dropdown-item" data-value="Revenue Reports" href="revenue_reports.php">Revenue</a>
+                            <a class="dropdown-item" data-value="Reservations" href="reservation_reports.php">Reservations</a>
+                            <a class="dropdown-item" data-value="Rooms Reports" href="rooms_reports.php">Room Reports</a>
+                            <a class="dropdown-item" data-value="HR Reports" href="hr_reports.php">HR Reports</a>
                         </div>
                     </div>
                 </li>
@@ -92,7 +87,7 @@ require_once('partials/_head.php');
                             <div class="widget-heading">
                                 <h5 class="text-warning">Income Per Month</h5>
                                 <ul class="tabs tab-pills">
-                                    <?php require_once('partials/_timeAPI.php');?>
+                                    <?php require_once('partials/_timeAPI.php'); ?>
                                 </ul>
                             </div>
 
@@ -120,7 +115,7 @@ require_once('partials/_head.php');
                     <div class="col-xl-8 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-table-one">
                             <div class="widget-heading">
-                                <h5 class="text-warning">Recent Room Reservations<span class="badge outline-badge-warning"> <a href="reservations.php"> View All </a></span> </h5>
+                                <h5 class="text-warning">Recent Room Reservations<span class="badge outline-badge-warning"> <a href="reservation_reports.php"> View All </a></span> </h5>
                             </div>
 
                             <div class="widget-content">
@@ -172,26 +167,25 @@ require_once('partials/_head.php');
 
                                     <div class="acc-total-info">
                                         <h5>Account Balance</h5>
-                                        <p class="acc-amount">Ksh <?php echo $total_revenue;?> </p>
+                                        <p class="acc-amount">Ksh <?php echo $total_revenue; ?> </p>
                                     </div>
 
                                     <div class="inv-detail">
                                         <div class="info-detail-1">
                                             <p>Resturant Sales</p>
-                                            <p>Ksh <?php echo $Resturant_Service;?></p>
+                                            <p>Ksh <?php echo $Resturant_Service; ?></p>
                                         </div>
                                         <div class="info-detail-2">
                                             <p>Room Reservations</p>
-                                            <p>Ksh <?php echo $accomodation;?></p>
+                                            <p>Ksh <?php echo $accomodation; ?></p>
                                         </div>
                                     </div>
 
                                     <div class="inv-action">
-                                        <a href="" class="btn btn-dark">View Summary</a>
+                                        <a href="revenue_reports.php" class="btn btn-dark">View Summary</a>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -226,7 +220,7 @@ require_once('partials/_head.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ret = "SELECT * FROM `staffs` ";
+                                            $ret = "SELECT * FROM `staffs` ORDER BY `staffs`.`created_at` DESC ";
                                             $stmt = $mysqli->prepare($ret);
                                             $stmt->execute(); //ok
                                             $res = $stmt->get_result();
@@ -247,7 +241,7 @@ require_once('partials/_head.php');
                                                         <div class="td-content pricing"><span class=""><?php echo $row->phone; ?></span></div>
                                                     </td>
                                                     <td>
-                                                        <div class="td-content pricing"><span class=""><?php echo date('d M Y',strtotime($row->created_at)); ?></span></div>
+                                                        <div class="td-content pricing"><span class=""><?php echo date('d M Y', strtotime($row->created_at)); ?></span></div>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

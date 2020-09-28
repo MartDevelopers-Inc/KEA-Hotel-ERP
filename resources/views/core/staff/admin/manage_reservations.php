@@ -27,6 +27,24 @@ if (isset($_GET['delete'])) {
     }
 }
 
+//Vacate Room
+if (isset($_GET['vacate'])) {
+    $room_id = $_GET['vacate'];
+    $status = $_GET['status'];
+    $rooms = "UPDATE rooms SET status =? WHERE  id =?";
+    $roomsStmt = $mysqli->prepare($rooms);
+    $roomsStmt->bind_param('ss', $status, $room_id);
+    $roomsStmt->execute();
+    $roomsStmt->close();
+    if ($roomsStmt) {
+        //inject alert that post is shared  
+        $success = "Deleted" && header("refresh:1; url=manage_reservations.php");
+    } else {
+        //inject alert that task failed
+        $info = "Please Try Again Or Try Later";
+    }
+}
+
 require_once('partials/_head.php');
 ?>
 
@@ -115,7 +133,7 @@ require_once('partials/_head.php');
 
                                     <tbody>
                                         <?php
-                                        $ret = "SELECT * FROM `reservations`";
+                                        $ret = "SELECT * FROM `reservations` ORDER BY `reservations`.`created_at` DESC";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute(); //ok
                                         $res = $stmt->get_result();
@@ -132,8 +150,12 @@ require_once('partials/_head.php');
                                                 <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
                                                 <td>
                                                     <a class="badge outline-badge-warning" href="view_reservation.php?view=<?php echo $row->id; ?>">View</a>
+                                                    <p></p>
                                                     <a class="badge outline-badge-primary" href="update_reservation.php?update=<?php echo $row->id; ?>">Update</a>
-                                                    <a class="badge outline-badge-danger text-danger" href="manage_reservations.php?delete=<?php echo $row->id; ?>&room_id=<?php echo $row->room_id;?>&status=Vacant">Delete</a>
+                                                    <p></p>
+                                                    <a class="badge outline-badge-danger text-danger" href="manage_reservations.php?delete=<?php echo $row->id; ?>&room_id=<?php echo $row->room_id; ?>&status=Vacant">Delete</a>
+                                                    <p></p>
+                                                    <a class="badge outline-badge-success text-success" href="manage_reservations.php?vacate=<?php echo $row->room_id; ?>&status=Vacant">Vacate Room</a>
                                                 </td>
                                             </tr>
                                         <?php

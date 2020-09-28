@@ -11,17 +11,11 @@ require_once('partials/_head.php');
     <?php
     require_once('partials/_nav.php');
     $view = $_GET['view'];
-    $ret = "SELECT * FROM `rooms` WHERE id ='$view' ";
+    $ret = "SELECT * FROM `assets` WHERE id ='$view' ";
     $stmt = $mysqli->prepare($ret);
     $stmt->execute(); //ok
     $res = $stmt->get_result();
     while ($row = $res->fetch_object()) {
-        if ($row->image == '') {
-            //Load Default Image
-            $img = "<img src='assets/img/admin.png' class='img-fluid img-thumbnail' alt='avatar'>";
-        } else {
-            $img = "<img src='assets/img/rooms/$row->image' class='img-fluid img-thumbnail' alt='avatar'>";
-        }
 
     ?>
         <!--  END NAVBAR  -->
@@ -43,8 +37,9 @@ require_once('partials/_head.php');
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                     <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="manage_rooms.php">Rooms</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><span>View Room</span></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="manage_inventory.php">Inventory</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><span>View</span></li>
                                 </ol>
                             </nav>
 
@@ -77,27 +72,14 @@ require_once('partials/_head.php');
                             <div class="user-profile layout-spacing">
                                 <div class="widget-content widget-content-area">
                                     <div class="d-flex justify-content-between">
-                                        <h3 class="text-warning"><?php echo $row->number; ?></h3>
-                                        <?php
-                                        if ($row->status == 'Occupied') {
-                                            //Fuck Off
-                                        } else {
-                                            echo
-                                                "
-                                            <a href='update_room.php?update=$row->id' class='mt-2 edit-profile'>
-                                                <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-edit-3'>
-                                                    <path d='M12 20h9'></path>
-                                                    <path d='M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z'></path>
-                                                </svg>
-                                            </a>
-                                            ";
-                                        }
-                                        ?>
-
+                                        <h3 class="text-warning"><?php echo $row->name; ?></h3>
+                                        <a href="update_asset.php?update=<?php echo $row->id; ?>" class="mt-2 edit-profile"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
+                                                <path d="M12 20h9"></path>
+                                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                            </svg></a>
                                     </div>
                                     <div class="text-center user-info">
-                                        <?php echo $img; ?>
-                                        <p class="text-warning"><?php echo $row->number; ?></p>
+                                    <img src='assets/img/Asset.jpeg' class='img-fluid img-thumbnail' alt='avatar'>                                        
                                     </div>
                                     <div class="user-info-list">
 
@@ -109,7 +91,7 @@ require_once('partials/_head.php');
                                                         <path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path>
                                                         <polyline points="23 3 12 14 9 11"></polyline>
                                                     </svg>
-                                                    <?php echo $row->type; ?>
+                                                    Asset Code: <?php echo $row->code; ?>
                                                 </li>
 
                                                 <li class="contacts-block__item">
@@ -117,7 +99,7 @@ require_once('partials/_head.php');
                                                         <path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path>
                                                         <polyline points="23 3 12 14 9 11"></polyline>
                                                     </svg>
-                                                    <?php echo $row->status; ?>
+                                                   Asset Name: <?php echo $row->name; ?>
                                                 </li>
 
                                                 <li class="contacts-block__item">
@@ -125,7 +107,14 @@ require_once('partials/_head.php');
                                                         <path d="M22 11.07V12a10 10 0 1 1-5.93-9.14"></path>
                                                         <polyline points="23 3 12 14 9 11"></polyline>
                                                     </svg>
-                                                    Ksh <?php echo $row->price; ?>
+                                                    Asset Status: 
+                                                    <?php 
+                                                        if($row->status =='Operational'){
+                                                            echo "<span class='badge outline-badge-warning'>$row->status</span>";
+                                                        }else{
+                                                            echo "<span class='badge outline-badge-danger'>$row->status</span>";
+                                                        }
+                                                    ?>
                                                 </li>
 
                                             </ul>
@@ -257,7 +246,7 @@ require_once('partials/_head.php');
 
                             <div class="bio layout-spacing ">
                                 <div class="widget-content widget-content-area">
-                                    <h3 class="text-warning">Room Details </h3>
+                                    <h3 class="text-warning">Asset Details </h3>
                                     <?php echo $row->details; ?>
                                     <br>
                                     <!-- <div class="bio-skill-box">
