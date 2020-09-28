@@ -99,7 +99,6 @@ require_once('partials/_head.php');
                                             <th>Customer Name</th>
                                             <th>Payment Means</th>
                                             <th>Created At</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
 
@@ -117,9 +116,6 @@ require_once('partials/_head.php');
                                                 <td><?php echo $row->cust_name; ?></td>
                                                 <td><?php echo $row->payment_means; ?></td>
                                                 <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
-                                                <td>
-                                                    <a class="badge outline-badge-danger text-danger" href="reservation_payments.php?delete=<?php echo $row->id; ?>">Delete</a>
-                                                </td>
                                             </tr>
                                         <?php
                                         } ?>
