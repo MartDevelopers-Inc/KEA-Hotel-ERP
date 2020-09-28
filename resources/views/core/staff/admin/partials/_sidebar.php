@@ -238,7 +238,7 @@
                 </ul>
             </li>
 
-            <li class="menu">
+            <!-- <li class="menu">
                 <a href="#settings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
@@ -258,7 +258,7 @@
                         <a href="system_settings.php"> Landing Pages </a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
 
             <li class="menu">
                 <a href="log_out.php" aria-expanded="false" class="dropdown-toggle">

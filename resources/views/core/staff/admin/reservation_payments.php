@@ -118,7 +118,6 @@ require_once('partials/_head.php');
                                                 <td><?php echo $row->payment_means; ?></td>
                                                 <td><?php echo date('d M Y', strtotime($row->created_at)); ?></td>
                                                 <td>
-                                                    <a class="badge outline-badge-primary" href="update_reservation_payment.php?update=<?php echo $row->id; ?>">Update</a>
                                                     <a class="badge outline-badge-danger text-danger" href="reservation_payments.php?delete=<?php echo $row->id; ?>">Delete</a>
                                                 </td>
                                             </tr>

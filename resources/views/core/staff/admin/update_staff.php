@@ -60,7 +60,6 @@ require_once('partials/_head.php');
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="manage_staffs.php">HRM</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"><span>Update Staff</span></li>
                             </ol>
