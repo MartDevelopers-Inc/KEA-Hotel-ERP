@@ -31,7 +31,7 @@ if (isset($_POST['reservation'])) {
     $roomstmt->execute();
     if ($stmt && $roomstmt) {
         //inject alert that post is shared  
-        $success = "Reservation Added"; // && header("refresh:1; url=rooms.php");
+        $success = "Reservation Added" && header("refresh:1; url=rooms.php");
     } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
@@ -299,13 +299,13 @@ while ($row = $res->fetch_object()) {
                                         <div class="col-12 col-sm-12 form-group">
                                             <label class="label" for="person-adult">Email Address</label>
                                             <div class="js-quantity">
-                                                <input type="text" class="inputText js-quantity-input " name="cust_email" required="required" autocomplete="off">
+                                                <input type="email" class="inputText js-quantity-input " name="cust_email" required="required" autocomplete="off">
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-12 form-group">
                                             <label class="label" for="person-adult">Address</label>
                                             <div class="js-quantity">
-                                                <input type="text" class="inputText js-quantity-input " name="cust_adr" required="required" autocomplete="off">
+                                                <input type="text" class="inputText js-quantity-input " name="cust_adr" autocomplete="off">
                                             </div>
                                         </div>
 
@@ -347,6 +347,8 @@ while ($row = $res->fetch_object()) {
         <script src="assets/js/mapbox.init.js"></script>
 
         <script src="assets/demo/plugins-demo.js"></script>
+        <script src="staff/admin/plugins/sweetalerts/sweetalert2.min.js"></script>
+        <script src="staff/admin/plugins/sweetalerts/custom-sweetalert.js"></script>
     </body>
 
     </html>
