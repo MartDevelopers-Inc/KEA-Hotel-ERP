@@ -143,9 +143,9 @@ require_once('partials/_head.php');
                                                                 while ($row = $res->fetch_object()) {
                                                                     if ($row->dpic == '') {
                                                                         //Load Default Image
-                                                                        echo  "<img src='assets/img/admin.png' class='img-fluid img-thumbnail' alt='avatar'>";
+                                                                        echo  "<img src='admin/assets/img/admin.png' class='img-fluid img-thumbnail' alt='avatar'>";
                                                                     } else {
-                                                                        echo   "<img src='assets/img/staffs/$row->dpic' class='img-fluid img-thumbnail' alt='avatar'>";
+                                                                        echo   "<img src='admin/assets/img/staffs/$row->dpic' class='img-fluid img-thumbnail' alt='avatar'>";
                                                                     } ?>
                                                                 <?php
                                                                 } ?>
