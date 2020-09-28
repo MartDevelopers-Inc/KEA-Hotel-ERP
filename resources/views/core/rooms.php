@@ -2,7 +2,6 @@
 require_once('staff/admin/configs/config.php');
 require_once('_partials/head.php');
 ?>
-
 <body>
     <!-- Preloader -->
     <div class="preloader">

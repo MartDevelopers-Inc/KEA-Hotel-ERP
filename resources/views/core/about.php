@@ -177,7 +177,6 @@ require_once('_partials/head.php')
 	<div class="btn-floating js-show-to-scroll"><i class="icon-bubble"></i></div>
 
 
-
 	<!-- JavaScripts -->
 	<script src="assets/js/jquery-3.4.1.min.js"></script>
 	<script src="assets/js/plugins.min.js"></script>
