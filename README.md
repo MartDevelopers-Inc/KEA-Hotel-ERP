@@ -2,6 +2,8 @@
 
 ![Jekyll site CI](https://github.com/MartMbithi/KEA-Hotel-ERP/workflows/Jekyll%20site%20CI/badge.svg)
 
+![Laravel](https://github.com/MartMbithi/KEA-Hotel-ERP/workflows/Laravel/badge.svg)
+
 ## About KEA-Hotel-ERP
 
 KEA -Hotel-ERP is a software solution tool developed for  Hotel management and designed for hoteliers to manage
