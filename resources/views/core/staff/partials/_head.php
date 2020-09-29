@@ -6,7 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>KEA HOTEL ERP - Experience Life, Live The Moment</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicons/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicons/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" href="assets/img/favicons/favicon.ico" type="image/png">
+    <!--sTYLES  -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
