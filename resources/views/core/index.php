@@ -188,7 +188,7 @@ require_once('_partials/head.php');
 									<h4 class="title title--h4">Best hotel!</h4>
 									<p class="testimonials-item__caption">— The hotel has everything you need. On the ground floor there is a lobby bar, on the second floor there is a zone with an indoor pool and sauna, on the seventh floor there is a restaurant and spa-salon. The rooms are cleaned every day.</p>
 									<div class="author-wrap">
-										<div class="author-picture"><img class="cover" src="assets/images/person.jpg" alt="Jacob Lane" /></div>
+										<div class="author-picture"><img class="cover" src="assets/images/ui/logo.png" alt="Jacob Lane" /></div>
 										<div>
 											<div class="author-name">Jacob Lane</div>
 											<div class="author-country">from USA</div>
@@ -200,7 +200,7 @@ require_once('_partials/head.php');
 									<h4 class="title title--h4">Comfortable hotel.</h4>
 									<p class="testimonials-item__caption">— Well, what can I say, every year, day and hour, this place is being transformed for the better. The staff is completely competent and friendly, Everything around is blooming, pleasing, nourishing and making the holiday bright.</p>
 									<div class="author-wrap">
-										<div class="author-picture"><img class="cover" src="assets/images/person2.jpg" alt="Victoria Wilson" /></div>
+										<div class="author-picture"><img class="cover" src="assets/images/ui/logo.png" alt="Victoria Wilson" /></div>
 										<div>
 											<div class="author-name">Victoria Wilson</div>
 											<div class="author-country">from France</div>
@@ -212,7 +212,7 @@ require_once('_partials/head.php');
 									<h4 class="title title--h4">The modern.</h4>
 									<p class="testimonials-item__caption">— The modern 5 * Hotel Sochi Center is an ideal solution for combining business and leisure. Stylish design and exceptional service will satisfy the desires of any guest. 150 rooms with balcony (non-smoking), sea view, trendy restaurant.</p>
 									<div class="author-wrap">
-										<div class="author-picture"><img class="cover" src="assets/images/person3.jpg" alt="Max Edwards" /></div>
+										<div class="author-picture"><img class="cover" src="assets/images/ui/logo.png" alt="Max Edwards" /></div>
 										<div>
 											<div class="author-name">Max Edwards</div>
 											<div class="author-country">from Germany</div>
@@ -224,7 +224,7 @@ require_once('_partials/head.php');
 									<h4 class="title title--h4">Best hotel!</h4>
 									<p class="testimonials-item__caption">— The hotel has everything you need. On the ground floor there is a lobby bar, on the second floor there is a zone with an indoor pool and sauna, on the seventh floor there is a restaurant and spa-salon. The rooms are cleaned every day.</p>
 									<div class="author-wrap">
-										<div class="author-picture"><img class="cover" src="assets/images/person.jpg" alt="Jacob Lane" /></div>
+										<div class="author-picture"><img class="cover" src="assets/images/ui/logo.png" alt="Jacob Lane" /></div>
 										<div>
 											<div class="author-name">Jacob Lane</div>
 											<div class="author-country">from USA</div>
@@ -236,7 +236,7 @@ require_once('_partials/head.php');
 									<h4 class="title title--h4">Comfortable hotel.</h4>
 									<p class="testimonials-item__caption">— Well, what can I say, every year, day and hour, this place is being transformed for the better. The staff is completely competent and friendly, Everything around is blooming, pleasing, nourishing and making the holiday bright.</p>
 									<div class="author-wrap">
-										<div class="author-picture"><img class="cover" src="assets/images/person2.jpg" alt="Victoria Wilson" /></div>
+										<div class="author-picture"><img class="cover" src="assets/images/ui/logo.png" alt="Victoria Wilson" /></div>
 										<div>
 											<div class="author-name">Victoria Wilson</div>
 											<div class="author-country">from France</div>
@@ -248,7 +248,7 @@ require_once('_partials/head.php');
 									<h4 class="title title--h4">The modern.</h4>
 									<p class="testimonials-item__caption">— The modern 5 * Hotel Sochi Center is an ideal solution for combining business and leisure. Stylish design and exceptional service will satisfy the desires of any guest. 150 rooms with balcony (non-smoking), sea view, trendy restaurant.</p>
 									<div class="author-wrap">
-										<div class="author-picture"><img class="cover" src="assets/images/person3.jpg" alt="Max Edwards" /></div>
+										<div class="author-picture"><img class="cover" src="assets/images/ui/logo.png" alt="Max Edwards" /></div>
 										<div>
 											<div class="author-name">Max Edwards</div>
 											<div class="author-country">from Germany</div>

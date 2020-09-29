@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>KEA HOTEL ERP – KEA -Hotel-ERP is a software solution tool developed for Hotel management and designed for hoteliers to manage their operations in an effective way.</title>
+    <title>KEA HOTEL Experience Life, Live The Moment</title>
 
     <!-- Meta Data -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,11 +30,11 @@
     <meta property="og:site_name" content="KEA Hotel ERP" />
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/apple-touch-icon-57x57.png">
-    <link rel="shortcut icon" href="assets/images/favicons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicons/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/favicons/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" href="assets/images/favicons/favicon.ico" type="image/png">
 
     <!-- Styles -->
     <script src="staff/admin/plugins/sweetalerts/promise-polyfill.js"></script>

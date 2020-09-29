@@ -14,7 +14,7 @@ require_once('_partials/head.php')
     <header class="header">
         <nav class="navbar">
             <a class="logo-link" href="index.php">
-                <img class="logotype" src="assets/images/ui/logo-black.svg" alt="KEA">
+                <img class="logotype" src="assets/images/ui/logo.png" alt="KEA">
             </a>
             <div class="navbar__menu">
                 <button class="hamburger" type="button">
