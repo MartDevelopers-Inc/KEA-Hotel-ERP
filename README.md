@@ -1,5 +1,8 @@
 <p align="center"><img src="https://github.com/MartMbithi/KEA-Hotel-ERP/blob/master/Kea-ERP-Logo.png" width="400"></p>
 
+![Jekyll site CI](https://github.com/MartMbithi/KEA-Hotel-ERP/workflows/Jekyll%20site%20CI/badge.svg)
+
+![Laravel](https://github.com/MartMbithi/KEA-Hotel-ERP/workflows/Laravel/badge.svg)
 
 ## About KEA-Hotel-ERP
 
