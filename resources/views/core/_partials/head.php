@@ -37,29 +37,12 @@
     <link rel="shortcut icon" href="assets/images/favicons/favicon.ico" type="image/png">
 
     <!-- Styles -->
-    <script src="staff/admin/plugins/sweetalerts/promise-polyfill.js"></script>
-    <link href="staff/admin/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-    <link href="staff/admin/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css" />
     <link rel="stylesheet" type="text/css" href="assets/demo/style-demo.css" />
-    <!-- Swal Js -->
-    <script src="staff/admin/plugins/sweetalerts/sweetalert2.min.js"></script>
 
-    <?php if (isset($success)) { ?>
-        <!--This code for injecting success alert-->
-        <script>
-            setTimeout(function() {
-                    swal({
-                        title: 'Success',
-                        text: "<?php echo $success; ?>",
-                        type: 'success',
-                        padding: '2em'
-                    })
-                },
-                100);
-        </script>
+    <!-- Swal Assets-->
+    <link rel="stylesheet" type="text/css" href="assets/js/swal/swal.css" />
+    <script src="assets/js/swal/swal.js"></script>
 
-    <?php } ?>
     
-
 </head>

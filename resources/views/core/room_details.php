@@ -1,6 +1,7 @@
 <?php
 require_once('staff/admin/configs/config.php');
 include('staff/admin/configs/codeGen.php');
+require_once('_partials/head.php');
 
 if (isset($_POST['reservation'])) {
 
@@ -29,9 +30,13 @@ if (isset($_POST['reservation'])) {
     $rc = $roomstmt->bind_param('ss', $room_status, $room);
     $stmt->execute();
     $roomstmt->execute();
+
     if ($stmt && $roomstmt) {
-        $success = "Reservation Added" && header("refresh:1; url=rooms.php");
-    } else {
+        echo "<script>
+        alert('Room Booked Successfully');
+        window.location.href='rooms.php';
+        </script>";
+        } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
     }
@@ -44,19 +49,13 @@ $stmt->execute(); //ok
 $res = $stmt->get_result();
 while ($row = $res->fetch_object()) {
 
+
     
-    require_once('_partials/head.php');
 
 ?>
 
     <body>
-        <!-- Preloader -->
-        <div class="preloader">
-            <div class="preloader__wrap">
-                <div class="preloader__progress"><span></span></div>
-            </div>
-        </div>
-
+        
         <!-- Header -->
         <header class="header">
             <nav class="navbar navbar-white navbar-overlay">
