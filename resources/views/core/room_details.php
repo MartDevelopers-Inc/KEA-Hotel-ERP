@@ -30,7 +30,6 @@ if (isset($_POST['reservation'])) {
     $stmt->execute();
     $roomstmt->execute();
     if ($stmt && $roomstmt) {
-        //inject alert that post is shared  
         $success = "Reservation Added" && header("refresh:1; url=rooms.php");
     } else {
         //inject alert that task failed
@@ -44,6 +43,8 @@ $stmt = $mysqli->prepare($ret);
 $stmt->execute(); //ok
 $res = $stmt->get_result();
 while ($row = $res->fetch_object()) {
+
+    
     require_once('_partials/head.php');
 
 ?>
@@ -346,11 +347,7 @@ while ($row = $res->fetch_object()) {
 
         <!-- Mapbox init -->
         <script src="assets/js/mapbox.init.js"></script>
-
         <script src="assets/demo/plugins-demo.js"></script>
-        <script src="staff/admin/plugins/sweetalerts/sweetalert2.min.js"></script>
-        <script src="staff/admin/plugins/sweetalerts/custom-sweetalert.js"></script>
-    </body>
 
     </html>
 <?php } ?>

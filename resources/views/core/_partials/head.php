@@ -42,6 +42,9 @@
     <link href="staff/admin/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css" />
     <link rel="stylesheet" type="text/css" href="assets/demo/style-demo.css" />
+    <!-- Swal Js -->
+    <script src="staff/admin/plugins/sweetalerts/sweetalert2.min.js"></script>
+
     <?php if (isset($success)) { ?>
         <!--This code for injecting success alert-->
         <script>
@@ -57,5 +60,6 @@
         </script>
 
     <?php } ?>
+    
 
 </head>
