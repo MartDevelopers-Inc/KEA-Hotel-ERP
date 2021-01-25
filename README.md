@@ -4,7 +4,9 @@
 
 ![Laravel](https://github.com/MartMbithi/KEA-Hotel-ERP/workflows/Laravel/badge.svg)
 
-## About KEA-Hotel-ERP
+## NOTE : THIS VERSION IS HIGHLY UNSTABLE
+## About KEA-Hotel-ERP 
+
 
 KEA -Hotel-ERP is a software solution tool developed for  Hotel management and designed for hoteliers to manage
 their operations in an effective way. It helps hotelier to manage hotel billing system, reservation system, online hotel booking system,
