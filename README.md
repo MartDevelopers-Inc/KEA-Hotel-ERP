@@ -44,9 +44,6 @@ room status and much more in a single software. KEA-Hotel-ERP is accessible, pow
 
 <p align="center"><img src="https://github.com/MartDevelopers-Inc/KEA-Hotel-ERP/blob/master/kea-hotel.png" ></p>
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within KEA Hotel ERP , please send an e-mail to MartDevelopers Inc via [martdevelopers254@gmail.com](mailto:martdevelopers254@gmail.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
