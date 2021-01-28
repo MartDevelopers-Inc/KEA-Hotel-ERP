@@ -125,8 +125,7 @@ require_once("../partials/head.php");
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="chart">
-                                                <!-- Sales Chart Canvas -->
-                                                <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                                                <canvas id="RoomsIncome" style="height: 200px;"></canvas>
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +172,7 @@ require_once("../partials/head.php");
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="d-md-flex">
-                                       
+                                        <canvas id="NumberOfRoomsAsType" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +194,7 @@ require_once("../partials/head.php");
                                 <div class="card-body p-0">
                                     <div class="d-md-flex">
                                         <div class="table-responsive">
-                                            
+                                            <canvas id="roomReservations" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +206,9 @@ require_once("../partials/head.php");
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Recent Rooms Reservations <!-- <span class="pull-right badge bg-warning">View All</span> --></h3>
+                                    <h3 class="card-title">Recent Rooms Reservations
+                                        <!-- <span class="pull-right badge bg-warning">View All</span> -->
+                                    </h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
@@ -248,12 +249,12 @@ require_once("../partials/head.php");
                                                         <td>
                                                             <div class="td-content"><span class="badge badge-success"><?php echo $reservation->room_number; ?></span></div>
                                                         </td>
-                                                        
+
                                                         <td>
                                                             KSH <?php echo $reservation->room_cost; ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $reservation->cust_name;?>
+                                                            <?php echo $reservation->cust_name; ?>
                                                         </td>
                                                         <td>
                                                             <?php echo date('d M Y g:i', strtotime($reservation->created_at)); ?>
@@ -348,7 +349,11 @@ require_once("../partials/head.php");
     </div>
     <!-- ./wrapper -->
 
-    <?php require_once('../partials/scripts.php'); ?>
+    <?php
+    require_once('../partials/scripts.php');
+    require_once("../partials/charts.php");
+    ?>
+
 </body>
 
 </html>
