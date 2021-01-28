@@ -1,9 +1,5 @@
 <!-- ChartJS -->
 <script src="../public/plugins/chart.js/Chart.min.js"></script>
-<!-- FLOT CHARTS -->
-<script src="../public/plugins/flot/jquery.flot.js"></script>
-<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-<script src="../public/plugins/flot-old/jquery.flot.resize.min.js"></script>
 <!-- Analytics -->
 <?php require_once('../partials/analytics.php'); ?>
 <!-- Init Charts -->
