@@ -29,7 +29,7 @@ class DataSource
 
     const PASSWORD = '';
 
-    const DATABASENAME = 'iCollege';
+    const DATABASENAME = 'KEA_Hotel_ERP';
 
     private $conn;
 
