@@ -1,9 +1,86 @@
 <?php
 session_start();
 require_once('../config/config.php');
+require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
 sudo(); /* Invoke Admin Check Login */
-require_once('../partials/analytics.php');
+
+if (isset($_POST['add_room'])) {
+    /* Error Handling And Add Room */
+    $error = 0;
+    if (isset($_POST['id']) && !empty($_POST['id'])) {
+        $id = mysqli_real_escape_string($mysqli, trim($_POST['id']));
+    } else {
+        $error = 1;
+        $err = "Room ID  Cannot Be Empty";
+    }
+
+    if (isset($_POST['number']) && !empty($_POST['number'])) {
+        $number = mysqli_real_escape_string($mysqli, trim($_POST['number']));
+    } else {
+        $error = 1;
+        $err = "Room Number  Cannot Be Empty";
+    }
+
+    if (isset($_POST['type']) && !empty($_POST['type'])) {
+        $type = mysqli_real_escape_string($mysqli, trim($_POST['type']));
+    } else {
+        $error = 1;
+        $err = "Room Type Cannot Be Empty";
+    }
+
+    if (isset($_FILES['image']) && !empty($_FILES['image'])) {
+        $image = mysqli_real_escape_string($mysqli, trim($_FILES['image']));
+    } else {
+        $error = 1;
+        $err = "Room Image Cannot Be Empty";
+    }
+
+    if (isset($_POST['price']) && !empty($_POST['price'])) {
+        $price = mysqli_real_escape_string($mysqli, trim($_POST['price']));
+    } else {
+        $error = 1;
+        $err = "Room Price Cannot Be Empty";
+    }
+
+    if (isset($_POST['status']) && !empty($_POST['status'])) {
+        $status = mysqli_real_escape_string($mysqli, trim($_POST['status']));
+    } else {
+        $error = 1;
+        $err = "Room Status Cannot Be Empty";
+    }
+
+    if (isset($_POST['details']) && !empty($_POST['details'])) {
+        $details = mysqli_real_escape_string($mysqli, trim($_POST['details']));
+    } else {
+        $error = 1;
+        $err = "Room details Cannot Be Empty";
+    }
+
+    if (!$error) {
+        //Prevent Double Entries
+        $sql = "SELECT * FROM  rooms  ";
+        $res = mysqli_query($mysqli, $sql);
+        if (mysqli_num_rows($res) > 0) {
+            $row = mysqli_fetch_assoc($res);
+            if ($number == $row['number']) {
+                $err =  "A Room With That Number Already Exists";
+            }
+        } else {
+            move_uploaded_file($_FILES["image"]["tmp_name"], "assets/img/rooms/" . $_FILES["image"]["name"]);
+            $query = "INSERT INTO rooms (id, number, type, price, status, details, image) VALUES (?,?,?,?,?,?,?)";
+            $stmt = $mysqli->prepare($query);
+            $rc = $stmt->bind_param('sssssss', $id, $number, $type, $price, $status, $details, $image);
+            $stmt->execute();
+            if ($stmt) {
+                $success = "Added" && header("refresh:1; url=rooms.php");
+            } else {
+                $info = "Please Try Again Or Try Later";
+            }
+        }
+    }
+}
+
 require_once("../partials/head.php");
 ?>
 
