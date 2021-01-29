@@ -5,7 +5,7 @@ require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
 sudo(); /* Invoke Admin Check Login */
 
-if (isset($_POST['add_room'])) {
+if (isset($_POST['Add_Room'])) {
     /* Error Handling And Add Room */
     $error = 0;
     if (isset($_POST['id']) && !empty($_POST['id'])) {
@@ -27,13 +27,6 @@ if (isset($_POST['add_room'])) {
     } else {
         $error = 1;
         $err = "Room Type Cannot Be Empty";
-    }
-
-    if (isset($_FILES['image']) && !empty($_FILES['image'])) {
-        $image = mysqli_real_escape_string($mysqli, trim($_FILES['image']));
-    } else {
-        $error = 1;
-        $err = "Room Image Cannot Be Empty";
     }
 
     if (isset($_POST['price']) && !empty($_POST['price'])) {
@@ -59,15 +52,18 @@ if (isset($_POST['add_room'])) {
 
     if (!$error) {
         //Prevent Double Entries
-        $sql = "SELECT * FROM  rooms  ";
+        $sql = "SELECT * FROM  rooms WHERE number = '$number'  ";
         $res = mysqli_query($mysqli, $sql);
         if (mysqli_num_rows($res) > 0) {
             $row = mysqli_fetch_assoc($res);
             if ($number == $row['number']) {
                 $err =  "A Room With That Number Already Exists";
+            } else {
+                //
             }
         } else {
-            move_uploaded_file($_FILES["image"]["tmp_name"], "assets/img/rooms/" . $_FILES["image"]["name"]);
+            $image = $_FILES['image']['name'];
+            move_uploaded_file($_FILES["image"]["tmp_name"], "../public/uploads/rooms/" . $_FILES["image"]["name"]);
             $query = "INSERT INTO rooms (id, number, type, price, status, details, image) VALUES (?,?,?,?,?,?,?)";
             $stmt = $mysqli->prepare($query);
             $rc = $stmt->bind_param('sssssss', $id, $number, $type, $price, $status, $details, $image);
@@ -80,6 +76,71 @@ if (isset($_POST['add_room'])) {
         }
     }
 }
+
+
+if (isset($_POST['Update_Room'])) {
+    /* Error Handling And Update Room */
+    $error = 0;
+    if (isset($_POST['id']) && !empty($_POST['id'])) {
+        $id = mysqli_real_escape_string($mysqli, trim($_POST['id']));
+    } else {
+        $error = 1;
+        $err = "Room ID  Cannot Be Empty";
+    }
+
+    if (isset($_POST['number']) && !empty($_POST['number'])) {
+        $number = mysqli_real_escape_string($mysqli, trim($_POST['number']));
+    } else {
+        $error = 1;
+        $err = "Room Number  Cannot Be Empty";
+    }
+
+    if (isset($_POST['type']) && !empty($_POST['type'])) {
+        $type = mysqli_real_escape_string($mysqli, trim($_POST['type']));
+    } else {
+        $error = 1;
+        $err = "Room Type Cannot Be Empty";
+    }
+
+    if (isset($_POST['price']) && !empty($_POST['price'])) {
+        $price = mysqli_real_escape_string($mysqli, trim($_POST['price']));
+    } else {
+        $error = 1;
+        $err = "Room Price Cannot Be Empty";
+    }
+
+    if (isset($_POST['status']) && !empty($_POST['status'])) {
+        $status = mysqli_real_escape_string($mysqli, trim($_POST['status']));
+    } else {
+        $error = 1;
+        $err = "Room Status Cannot Be Empty";
+    }
+
+    if (isset($_POST['details']) && !empty($_POST['details'])) {
+        $details = mysqli_real_escape_string($mysqli, trim($_POST['details']));
+    } else {
+        $error = 1;
+        $err = "Room details Cannot Be Empty";
+    }
+
+    if (!$error) {
+        $image = $_FILES['image']['name'];
+        move_uploaded_file($_FILES["image"]["tmp_name"], "../public/uploads/rooms/" . $_FILES["image"]["name"]);
+        $query = "UPDATE rooms SET number =?, type =?, price =?, status =?, details =?, image =? WHERE id =?";
+        $stmt = $mysqli->prepare($query);
+        $rc = $stmt->bind_param('sssssss', $number, $type, $price, $status, $details, $image, $id);
+        $stmt->execute();
+        if ($stmt) {
+            $success = "Updated" && header("refresh:1; url=rooms.php");
+        } else {
+            //inject alert that task failed
+            $info = "Please Try Again Or Try Later";
+        }
+    }
+}
+
+
+
 
 require_once("../partials/head.php");
 ?>
@@ -186,7 +247,7 @@ require_once("../partials/head.php");
                                             </div>
                                         </div>
                                         <div class="text-right">
-                                            <button type="submit" name="add_room" class="btn btn-primary">Add Room</button>
+                                            <button type="submit" name="Add_Room" class="btn btn-primary">Add Room</button>
                                         </div>
                                     </form>
                                 </div>
@@ -376,6 +437,8 @@ require_once("../partials/head.php");
                                                                     <div class="form-group col-md-6">
                                                                         <label for="inputEmail4">Room Number</label>
                                                                         <input required type="text" value="<?php echo $rooms->number; ?>" name="number" class="form-control">
+                                                                        <!-- Hide This -->
+                                                                        <input required type="hidden" value="<?php echo $rooms->id; ?>" name="id" class="form-control">
                                                                     </div>
                                                                     <div class="form-group col-md-6">
                                                                         <label for="inputEmail4">Room Type</label>
@@ -419,7 +482,7 @@ require_once("../partials/head.php");
                                                                     </div>
                                                                 </div>
                                                                 <div class="text-right">
-                                                                    <button type="submit" name="update_room" class="btn btn-primary">Add Room</button>
+                                                                    <button type="submit" name="Update_Room" class="btn btn-primary">Update Room</button>
                                                                 </div>
                                                             </form>
                                                         </div>
