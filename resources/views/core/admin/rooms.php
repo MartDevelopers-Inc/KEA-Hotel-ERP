@@ -219,25 +219,17 @@ if (isset($_POST['upload'])) {
                 );
             }
 
-            $details = '';
-            if (isset($spreadSheetAry[$i][5])) {
-                $details = mysqli_real_escape_string(
-                    $conn,
-                    $spreadSheetAry[$i][5]
-                );
-            }
-
+            
             if (
                 !empty($id) ||
                 !empty($number) ||
                 !empty($type) ||
                 !empty($price) ||
-                !empty($status) ||
-                !empty($details)
+                !empty($status)
             ) {
-                $query ='INSERT INTO rooms (id, number, type, price, status, details) VALUES (?,?,?,?,?,?)';
-                $paramType = 'ssssss';
-                $paramArray = [$id, $number, $type, $price, $status, $details];
+                $query ='INSERT INTO rooms (id, number, type, price, status) VALUES (?,?,?,?,?)';
+                $paramType = 'sssss';
+                $paramArray = [$id, $number, $type, $price, $status];
                 $insertId = $db->insert($query, $paramType, $paramArray);
                 if (!empty($insertId)) {
                     $err = 'Error Occured While Importing Data';
@@ -376,7 +368,7 @@ require_once("../partials/head.php");
                                 <div class="modal-header">
                                     <h4 class="text-center">
                                         Allowed file types: XLS, XLSX.
-                                        <a class="text-primary" target="_blank" href="../public/templates/rooms.xlsx">Download</a> A Sample File.
+                                        <a class="text-primary" target="_blank" href="../public/templates/Rooms.xlsx">Download</a> A Sample File.
                                     </h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
