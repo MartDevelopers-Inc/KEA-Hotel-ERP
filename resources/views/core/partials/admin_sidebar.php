@@ -30,7 +30,7 @@
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-check"></i>
+                        <i class="nav-icon fas fa-calendar-check"></i>
                         <p>
                             Reservations
                             <i class="fas fa-angle-left right"></i>
@@ -54,7 +54,7 @@
 
                 <li class="nav-item">
                     <a href="resturant_sales.php" class="nav-link">
-                        <i class="nav-icon fas fa-tree"></i>
+                        <i class="nav-icon fas fa-utensils"></i>
                         <p>
                             Resturant Sales
                         </p>
@@ -87,7 +87,7 @@
 
                 <li class="nav-item">
                     <a href="room_service.php" class="nav-link">
-                        <i class="nav-icon fas fa-tree"></i>
+                        <i class="nav-icon fas fa-person-booth"></i>
                         <p>
                             Room Service
                         </p>
@@ -96,7 +96,7 @@
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-dolly-flatbed"></i>
                         <p>
                             Inventory
                             <i class="right fas fa-angle-left"></i>
