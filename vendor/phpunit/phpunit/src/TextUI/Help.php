@@ -36,6 +36,7 @@ final class Help
 
         'Code Coverage Options' => [
             ['arg' => '--coverage-clover <file>', 'desc' => 'Generate code coverage report in Clover XML format'],
+            ['arg' => '--coverage-cobertura <file>', 'desc' => 'Generate code coverage report in Cobertura XML format'],
             ['arg' => '--coverage-crap4j <file>', 'desc' => 'Generate code coverage report in Crap4J XML format'],
             ['arg' => '--coverage-html <dir>', 'desc' => 'Generate code coverage report in HTML format'],
             ['arg' => '--coverage-php <file>', 'desc' => 'Export PHP_CodeCoverage object to file'],
@@ -60,14 +61,16 @@ final class Help
         ],
 
         'Test Selection Options' => [
-            ['arg' => '--filter <pattern>', 'desc' => 'Filter which tests to run'],
+            ['arg' => '--list-suites', 'desc' => 'List available test suites'],
             ['arg' => '--testsuite <name>', 'desc' => 'Filter which testsuite to run'],
+            ['arg' => '--list-groups', 'desc' => 'List available test groups'],
             ['arg' => '--group <name>', 'desc' => 'Only runs tests from the specified group(s)'],
             ['arg' => '--exclude-group <name>', 'desc' => 'Exclude tests from the specified group(s)'],
-            ['arg' => '--list-groups', 'desc' => 'List available test groups'],
-            ['arg' => '--list-suites', 'desc' => 'List available test suites'],
+            ['arg' => '--covers <name>', 'desc' => 'Only runs tests annotated with "@covers <name>"'],
+            ['arg' => '--uses <name>', 'desc' => 'Only runs tests annotated with "@uses <name>"'],
             ['arg' => '--list-tests', 'desc' => 'List available tests'],
             ['arg' => '--list-tests-xml <file>', 'desc' => 'List available tests in XML format'],
+            ['arg' => '--filter <pattern>', 'desc' => 'Filter which tests to run'],
             ['arg' => '--test-suffix <suffixes>', 'desc' => 'Only search for test in files with specified suffix(es). Default: Test.php,.phpt'],
         ],
 

@@ -2,10 +2,63 @@
 
 All notable changes to `ignition` will be documented in this file
 
+## 2.5.9 - 2021-01-26
+
+- fix logged context not being sent to Flare
+
+## 2.5.8 - 2020-12-29
+
+- fix double `$` on PHP 8 (#338)
+
+## 2.5.7 - 2020-12-29
+
+- fix for breaking change in highlight.js (fixes 2.5.5)
+
+## 2.5.6 - 2020-12-29
+
+- revert to compiled js of 2.5.3
+
+## 2.5.5 - 2020-12-29
+
+- added compiled js of previous release
+
+## 2.5.4 - 2020-12-29
+
+- added support for Nova text editor (#343)
+
+## 2.5.3 - 2020-12-08
+
+- Use Livewire compatible compiler engine when using Livewire (#340)
+
+## 2.5.2 - 2020-11-14
+
+- fix `MakeViewVariableOptionalSolution` to disallow stream wrappers and files that do not end in ".blade.php" (#334)
+
+## 2.5.1 - 2020-11-13
+
+- add support for LiveWire component urls
+
+## 2.5.0 - 2020-10-27
+
+- add PHP 8.0-dev support
+- remove unnecessary `scrivo/highlight.php` dependency
+
+## 2.4.1 - 2020-10-14
+
+- fix copy casing
+
+## 2.4.0 - 2020-10-14
+
+- add livewire component discovery solution
+
+## 2.3.8 - 2020-10-02
+
+- Address Missing Mix Manifest Error (#317)
+
 ## 2.3.7 - 2020-09-06
 
 - add loading state on share button (#309)
-- compatiblity fix for L8
+- compatibility fix for L8
 
 ## 2.3.6 - 2020-08-10
 

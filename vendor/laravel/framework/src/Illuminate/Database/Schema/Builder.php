@@ -95,6 +95,28 @@ class Builder
     }
 
     /**
+     * Create a database in the schema.
+     *
+     * @param  string  $name
+     * @return bool
+     */
+    public function createDatabase($name)
+    {
+        throw new LogicException('This database driver does not support creating databases.');
+    }
+
+    /**
+     * Drop a database from the schema if the database exists.
+     *
+     * @param  string  $name
+     * @return bool
+     */
+    public function dropDatabaseIfExists($name)
+    {
+        throw new LogicException('This database driver does not support dropping databases.');
+    }
+
+    /**
      * Determine if the given table exists.
      *
      * @param  string  $table
@@ -224,6 +246,20 @@ class Builder
         $this->build(tap($this->createBlueprint($table), function ($blueprint) {
             $blueprint->dropIfExists();
         }));
+    }
+
+    /**
+     * Drop columns from a table schema.
+     *
+     * @param  string  $table
+     * @param  string|array  $columns
+     * @return void
+     */
+    public function dropColumns($table, $columns)
+    {
+        $this->table($table, function (Blueprint $blueprint) use ($columns) {
+            $blueprint->dropColumn($columns);
+        });
     }
 
     /**

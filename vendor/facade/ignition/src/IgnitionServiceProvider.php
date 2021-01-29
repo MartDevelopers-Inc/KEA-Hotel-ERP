@@ -39,6 +39,8 @@ use Facade\Ignition\SolutionProviders\MergeConflictSolutionProvider;
 use Facade\Ignition\SolutionProviders\MissingAppKeySolutionProvider;
 use Facade\Ignition\SolutionProviders\MissingColumnSolutionProvider;
 use Facade\Ignition\SolutionProviders\MissingImportSolutionProvider;
+use Facade\Ignition\SolutionProviders\MissingLivewireComponentSolutionProvider;
+use Facade\Ignition\SolutionProviders\MissingMixManifestSolutionProvider;
 use Facade\Ignition\SolutionProviders\MissingPackageSolutionProvider;
 use Facade\Ignition\SolutionProviders\RunningLaravelDuskInProductionProvider;
 use Facade\Ignition\SolutionProviders\SolutionProviderRepository;
@@ -129,6 +131,10 @@ class IgnitionServiceProvider extends ServiceProvider
         });
 
         $this->app->make('view.engine.resolver')->register('blade', function () {
+            if (class_exists(\Livewire\CompilerEngineForIgnition::class)) {
+                return new \Livewire\CompilerEngineForIgnition($this->app['blade.compiler']);
+            }
+
             return new CompilerEngine($this->app['blade.compiler']);
         });
 
@@ -371,6 +377,8 @@ class IgnitionServiceProvider extends ServiceProvider
             MissingColumnSolutionProvider::class,
             UnknownValidationSolutionProvider::class,
             UndefinedPropertySolutionProvider::class,
+            MissingMixManifestSolutionProvider::class,
+            MissingLivewireComponentSolutionProvider::class,
         ];
     }
 

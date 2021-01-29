@@ -17,7 +17,7 @@ use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\Exporter\Exporter;
 
 /**
- * Abstract base class for constraints which can be applied to any value.
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
  */
 abstract class Constraint implements Countable, SelfDescribing
 {
@@ -36,8 +36,8 @@ abstract class Constraint implements Countable, SelfDescribing
      * a boolean value instead: true in case of success, false in case of a
      * failure.
      *
-     * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
      */
     public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {
@@ -96,8 +96,8 @@ abstract class Constraint implements Countable, SelfDescribing
      * @param string            $description       Additional information about the test
      * @param ComparisonFailure $comparisonFailure
      *
-     * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
      *
      * @psalm-return never-return
      */

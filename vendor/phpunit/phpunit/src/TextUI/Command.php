@@ -18,7 +18,6 @@ use function class_exists;
 use function copy;
 use function extension_loaded;
 use function fgets;
-use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
 use function getcwd;
@@ -26,19 +25,18 @@ use function ini_get;
 use function ini_set;
 use function is_callable;
 use function is_dir;
+use function is_file;
 use function is_string;
 use function printf;
 use function realpath;
 use function sort;
 use function sprintf;
 use function stream_resolve_include_path;
+use function strpos;
 use function trim;
 use function version_compare;
-use PharIo\Manifest\ApplicationName;
-use PharIo\Manifest\Exception as ManifestException;
-use PharIo\Manifest\ManifestLoader;
-use PharIo\Version\Version as PharIoVersion;
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\Runner\Extension\PharLoader;
 use PHPUnit\Runner\StandardTestSuiteLoader;
 use PHPUnit\Runner\TestSuiteLoader;
 use PHPUnit\Runner\Version;
@@ -51,23 +49,20 @@ use PHPUnit\TextUI\XmlConfiguration\Generator;
 use PHPUnit\TextUI\XmlConfiguration\Loader;
 use PHPUnit\TextUI\XmlConfiguration\Migrator;
 use PHPUnit\TextUI\XmlConfiguration\PhpHandler;
-use PHPUnit\TextUI\XmlConfiguration\TestSuiteMapper;
 use PHPUnit\Util\FileLoader;
 use PHPUnit\Util\Filesystem;
 use PHPUnit\Util\Printer;
 use PHPUnit\Util\TextTestListRenderer;
+use PHPUnit\Util\Xml\SchemaDetector;
 use PHPUnit\Util\XmlTestListRenderer;
 use ReflectionClass;
-use ReflectionException;
 use SebastianBergmann\CodeCoverage\Filter;
 use SebastianBergmann\CodeCoverage\StaticAnalysis\CacheWarmer;
-use SebastianBergmann\FileIterator\Facade as FileIteratorFacade;
 use SebastianBergmann\Timer\Timer;
 use Throwable;
 
 /**
- * A TestRunner for the Command Line Interface (CLI)
- * PHP SAPI Module.
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
  */
 class Command
 {
@@ -99,7 +94,7 @@ class Command
         try {
             return (new static)->run($_SERVER['argv'], $exit);
         } catch (Throwable $t) {
-            throw new Exception(
+            throw new RuntimeException(
                 $t->getMessage(),
                 (int) $t->getCode(),
                 $t
@@ -145,8 +140,8 @@ class Command
 
         try {
             $result = $runner->run($suite, $this->arguments, $this->warnings, $exit);
-        } catch (Exception $e) {
-            print $e->getMessage() . PHP_EOL;
+        } catch (Throwable $t) {
+            print $t->getMessage() . PHP_EOL;
         }
 
         $return = TestRunner::FAILURE_EXIT;
@@ -231,10 +226,6 @@ class Command
             $this->generateConfiguration();
         }
 
-        if ($arguments->hasMigrateConfiguration() && $arguments->migrateConfiguration()) {
-            $this->migrateConfiguration();
-        }
-
         if ($arguments->hasAtLeastVersion()) {
             if (version_compare(Version::id(), $arguments->atLeastVersion(), '>=')) {
                 exit(TestRunner::SUCCESS_EXIT);
@@ -307,26 +298,30 @@ class Command
             $this->arguments['loader'] = $this->handleLoader($this->arguments['loader']);
         }
 
-        if (isset($this->arguments['configuration']) && is_dir($this->arguments['configuration'])) {
-            $configurationFile = $this->arguments['configuration'] . '/phpunit.xml';
+        if (isset($this->arguments['configuration'])) {
+            if (is_dir($this->arguments['configuration'])) {
+                $candidate = $this->configurationFileInDirectory($this->arguments['configuration']);
 
-            if (file_exists($configurationFile)) {
-                $this->arguments['configuration'] = realpath(
-                    $configurationFile
-                );
-            } elseif (file_exists($configurationFile . '.dist')) {
-                $this->arguments['configuration'] = realpath(
-                    $configurationFile . '.dist'
-                );
+                if ($candidate !== null) {
+                    $this->arguments['configuration'] = $candidate;
+                }
             }
-        } elseif (!isset($this->arguments['configuration']) && $this->arguments['useDefaultConfiguration']) {
-            if (file_exists('phpunit.xml')) {
-                $this->arguments['configuration'] = realpath('phpunit.xml');
-            } elseif (file_exists('phpunit.xml.dist')) {
-                $this->arguments['configuration'] = realpath(
-                    'phpunit.xml.dist'
-                );
+        } elseif ($this->arguments['useDefaultConfiguration']) {
+            $candidate = $this->configurationFileInDirectory(getcwd());
+
+            if ($candidate !== null) {
+                $this->arguments['configuration'] = $candidate;
             }
+        }
+
+        if ($arguments->hasMigrateConfiguration() && $arguments->migrateConfiguration()) {
+            if (!isset($this->arguments['configuration'])) {
+                print 'No configuration file found to migrate.' . PHP_EOL;
+
+                exit(TestRunner::EXCEPTION_EXIT);
+            }
+
+            $this->migrateConfiguration(realpath($this->arguments['configuration']));
         }
 
         if (isset($this->arguments['configuration'])) {
@@ -353,7 +348,12 @@ class Command
             }
 
             if (!isset($this->arguments['noExtensions']) && $phpunitConfiguration->hasExtensionsDirectory() && extension_loaded('phar')) {
-                $this->handleExtensions($phpunitConfiguration->extensionsDirectory());
+                $result = (new PharLoader)->loadPharExtensionsInDirectory($phpunitConfiguration->extensionsDirectory());
+
+                $this->arguments['loadedExtensions']    = $result['loadedExtensions'];
+                $this->arguments['notLoadedExtensions'] = $result['notLoadedExtensions'];
+
+                unset($result);
             }
 
             if (!isset($this->arguments['columns'])) {
@@ -383,10 +383,18 @@ class Command
             }
 
             if (!isset($this->arguments['test'])) {
-                $this->arguments['test'] = (new TestSuiteMapper)->map(
-                    $this->arguments['configurationObject']->testSuite(),
-                    $this->arguments['testsuite'] ?? ''
-                );
+                try {
+                    $this->arguments['test'] = (new TestSuiteMapper)->map(
+                        $this->arguments['configurationObject']->testSuite(),
+                        $this->arguments['testsuite'] ?? ''
+                    );
+                } catch (Exception $e) {
+                    $this->printVersionString();
+
+                    print $e->getMessage() . PHP_EOL;
+
+                    exit(TestRunner::EXCEPTION_EXIT);
+                }
             }
         } elseif (isset($this->arguments['bootstrap'])) {
             $this->handleBootstrap($this->arguments['bootstrap']);
@@ -426,6 +434,10 @@ class Command
             $loaderFile = stream_resolve_include_path($loaderFile);
 
             if ($loaderFile) {
+                /**
+                 * @noinspection PhpIncludeInspection
+                 * @psalm-suppress UnresolvableInclude
+                 */
                 require $loaderFile;
             }
         }
@@ -434,8 +446,8 @@ class Command
             try {
                 $class = new ReflectionClass($loaderClass);
                 // @codeCoverageIgnoreStart
-            } catch (ReflectionException $e) {
-                throw new Exception(
+            } catch (\ReflectionException $e) {
+                throw new ReflectionException(
                     $e->getMessage(),
                     (int) $e->getCode(),
                     $e
@@ -483,6 +495,10 @@ class Command
             $printerFile = stream_resolve_include_path($printerFile);
 
             if ($printerFile) {
+                /**
+                 * @noinspection PhpIncludeInspection
+                 * @psalm-suppress UnresolvableInclude
+                 */
                 require $printerFile;
             }
         }
@@ -499,8 +515,8 @@ class Command
         try {
             $class = new ReflectionClass($printerClass);
             // @codeCoverageIgnoreStart
-        } catch (ReflectionException $e) {
-            throw new Exception(
+        } catch (\ReflectionException $e) {
+            throw new ReflectionException(
                 $e->getMessage(),
                 (int) $e->getCode(),
                 $e
@@ -604,43 +620,6 @@ class Command
         exit(TestRunner::FAILURE_EXIT);
     }
 
-    private function handleExtensions(string $directory): void
-    {
-        foreach ((new FileIteratorFacade)->getFilesAsArray($directory, '.phar') as $file) {
-            if (!file_exists('phar://' . $file . '/manifest.xml')) {
-                $this->arguments['notLoadedExtensions'][] = $file . ' is not an extension for PHPUnit';
-
-                continue;
-            }
-
-            try {
-                $applicationName = new ApplicationName('phpunit/phpunit');
-                $version         = new PharIoVersion(Version::series());
-                $manifest        = ManifestLoader::fromFile('phar://' . $file . '/manifest.xml');
-
-                if (!$manifest->isExtensionFor($applicationName)) {
-                    $this->arguments['notLoadedExtensions'][] = $file . ' is not an extension for PHPUnit';
-
-                    continue;
-                }
-
-                if (!$manifest->isExtensionFor($applicationName, $version)) {
-                    $this->arguments['notLoadedExtensions'][] = $file . ' is not compatible with this version of PHPUnit';
-
-                    continue;
-                }
-            } catch (ManifestException $e) {
-                $this->arguments['notLoadedExtensions'][] = $file . ': ' . $e->getMessage();
-
-                continue;
-            }
-
-            require $file;
-
-            $this->arguments['loadedExtensions'][] = $manifest->getName()->asString() . ' ' . $manifest->getVersion()->getVersionString();
-        }
-    }
-
     private function handleListGroups(TestSuite $suite, bool $exit): int
     {
         $this->printVersionString();
@@ -651,6 +630,10 @@ class Command
         sort($groups);
 
         foreach ($groups as $group) {
+            if (strpos($group, '__phpunit_') === 0) {
+                continue;
+            }
+
             printf(
                 ' - %s' . PHP_EOL,
                 $group
@@ -746,6 +729,10 @@ class Command
 
         $src = trim(fgets(STDIN));
 
+        print 'Cache directory (relative to path shown above; default: .phpunit.cache): ';
+
+        $cacheDirectory = trim(fgets(STDIN));
+
         if ($bootstrapScript === '') {
             $bootstrapScript = 'vendor/autoload.php';
         }
@@ -758,6 +745,10 @@ class Command
             $src = 'src';
         }
 
+        if ($cacheDirectory === '') {
+            $cacheDirectory = '.phpunit.cache';
+        }
+
         $generator = new Generator;
 
         file_put_contents(
@@ -766,25 +757,23 @@ class Command
                 Version::series(),
                 $bootstrapScript,
                 $testsDirectory,
-                $src
+                $src,
+                $cacheDirectory
             )
         );
 
-        print PHP_EOL . 'Generated phpunit.xml in ' . getcwd() . PHP_EOL;
+        print PHP_EOL . 'Generated phpunit.xml in ' . getcwd() . '.' . PHP_EOL;
+        print 'Make sure to exclude the ' . $cacheDirectory . ' directory from version control.' . PHP_EOL;
 
         exit(TestRunner::SUCCESS_EXIT);
     }
 
-    private function migrateConfiguration(): void
+    private function migrateConfiguration(string $filename): void
     {
         $this->printVersionString();
 
-        if (file_exists('phpunit.xml')) {
-            $filename = realpath('phpunit.xml');
-        } elseif (file_exists('phpunit.xml.dist')) {
-            $filename = realpath('phpunit.xml.dist');
-        } else {
-            print 'No configuration file found in ' . getcwd() . PHP_EOL;
+        if (!(new SchemaDetector)->detect($filename)->detected()) {
+            print $filename . ' does not need to be migrated.' . PHP_EOL;
 
             exit(TestRunner::EXCEPTION_EXIT);
         }
@@ -801,7 +790,7 @@ class Command
 
             print 'Migrated configuration: ' . $filename . PHP_EOL;
         } catch (Throwable $t) {
-            print 'Migration failed' . PHP_EOL;
+            print 'Migration failed: ' . $t->getMessage() . PHP_EOL;
 
             exit(TestRunner::EXCEPTION_EXIT);
         }
@@ -837,7 +826,7 @@ class Command
         if (isset($this->arguments['coverageCacheDirectory'])) {
             $cacheDirectory = $this->arguments['coverageCacheDirectory'];
         } elseif ($configuration->codeCoverage()->hasCacheDirectory()) {
-            $cacheDirectory = $configuration->codeCoverage()->cacheDirectory();
+            $cacheDirectory = $configuration->codeCoverage()->cacheDirectory()->path();
         } else {
             print 'Cache for static analysis has not been configured' . PHP_EOL;
 
@@ -873,7 +862,7 @@ class Command
         print 'Warming cache for static analysis ... ';
 
         (new CacheWarmer)->warmCache(
-            $cacheDirectory->path(),
+            $cacheDirectory,
             !$configuration->codeCoverage()->disableCodeCoverageIgnore(),
             $configuration->codeCoverage()->ignoreDeprecatedCodeUnits(),
             $filter
@@ -882,5 +871,21 @@ class Command
         print 'done [' . $timer->stop()->asString() . ']' . PHP_EOL;
 
         exit(TestRunner::SUCCESS_EXIT);
+    }
+
+    private function configurationFileInDirectory(string $directory): ?string
+    {
+        $candidates = [
+            $directory . '/phpunit.xml',
+            $directory . '/phpunit.xml.dist',
+        ];
+
+        foreach ($candidates as $candidate) {
+            if (is_file($candidate)) {
+                return realpath($candidate);
+            }
+        }
+
+        return null;
     }
 }

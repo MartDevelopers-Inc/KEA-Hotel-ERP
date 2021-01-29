@@ -4,6 +4,7 @@ namespace Illuminate\Queue;
 
 use Closure;
 use Exception;
+use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,7 +13,7 @@ use ReflectionFunction;
 
 class CallQueuedClosure implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * The serializable Closure instance.
@@ -65,7 +66,7 @@ class CallQueuedClosure implements ShouldQueue
      */
     public function handle(Container $container)
     {
-        $container->call($this->closure->getClosure());
+        $container->call($this->closure->getClosure(), ['job' => $this]);
     }
 
     /**
@@ -86,7 +87,7 @@ class CallQueuedClosure implements ShouldQueue
     /**
      * Handle a job failure.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception  $e
      * @return void
      */
     public function failed(Exception $e)

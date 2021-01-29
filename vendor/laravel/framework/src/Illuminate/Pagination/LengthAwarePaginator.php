@@ -115,11 +115,11 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
             });
         })->prepend([
             'url' => $this->previousPageUrl(),
-            'label' => 'Previous',
+            'label' => function_exists('__') ? __('pagination.previous') : 'Previous',
             'active' => false,
         ])->push([
             'url' => $this->nextPageUrl(),
-            'label' => 'Next',
+            'label' => function_exists('__') ? __('pagination.next') : 'Next',
             'active' => false,
         ]);
     }
@@ -198,7 +198,7 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
             'from' => $this->firstItem(),
             'last_page' => $this->lastPage(),
             'last_page_url' => $this->url($this->lastPage()),
-            'links' => $this->linkCollection(),
+            'links' => $this->linkCollection()->toArray(),
             'next_page_url' => $this->nextPageUrl(),
             'path' => $this->path(),
             'per_page' => $this->perPage(),

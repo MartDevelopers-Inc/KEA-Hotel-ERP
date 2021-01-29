@@ -34,6 +34,8 @@ use function preg_replace;
 use function sprintf;
 use function strncmp;
 use function strpos;
+use function strtolower;
+use function trim;
 use function version_compare;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\CodeCoverageException;
@@ -140,7 +142,10 @@ final class Test
 
     public static function requiresCodeCoverageDataCollection(TestCase $test): bool
     {
-        $annotations = $test->getAnnotations();
+        $annotations = self::parseTestMethodAnnotations(
+            get_class($test),
+            $test->getName(false)
+        );
 
         // If there is no @covers annotation but a @coversNothing annotation on
         // the test method then code coverage data does not need to be collected
@@ -439,6 +444,20 @@ final class Test
             }
         }
 
+        foreach (['method', 'class'] as $element) {
+            if (isset($annotations[$element]['covers'])) {
+                foreach ($annotations[$element]['covers'] as $coversTarget) {
+                    $groups[] = ['__phpunit_covers_' . self::canonicalizeName($coversTarget)];
+                }
+            }
+
+            if (isset($annotations[$element]['uses'])) {
+                foreach ($annotations[$element]['uses'] as $usesTarget) {
+                    $groups[] = ['__phpunit_uses_' . self::canonicalizeName($usesTarget)];
+                }
+            }
+        }
+
         return array_unique(array_merge([], ...$groups));
     }
 
@@ -560,6 +579,10 @@ final class Test
 
     public static function isTestMethod(ReflectionMethod $method): bool
     {
+        if (!$method->isPublic()) {
+            return false;
+        }
+
         if (strpos($method->getName(), 'test') === 0) {
             return true;
         }
@@ -730,7 +753,7 @@ final class Test
      *
      * Zend Framework (http://framework.zend.com/)
      *
-     * @link      http://github.com/zendframework/zf2 for the canonical source repository
+     * @see      http://github.com/zendframework/zf2 for the canonical source repository
      *
      * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
      * @license   http://framework.zend.com/license/new-bsd New BSD License
@@ -752,5 +775,10 @@ final class Test
         }
 
         return $a;
+    }
+
+    private static function canonicalizeName(string $name): string
+    {
+        return strtolower(trim($name, '\\'));
     }
 }

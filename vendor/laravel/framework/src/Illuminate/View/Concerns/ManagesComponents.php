@@ -4,9 +4,9 @@ namespace Illuminate\View\Concerns;
 
 use Closure;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
-use Illuminate\View\View;
 use InvalidArgumentException;
 
 trait ManagesComponents
@@ -42,7 +42,7 @@ trait ManagesComponents
     /**
      * Start a component rendering process.
      *
-     * @param  \Illuminate\View\View|\Illuminate\Contracts\Support\Htmlable|\Closure|string  $view
+     * @param  \Illuminate\Contracts\View\View|\Illuminate\Contracts\Support\Htmlable|\Closure|string  $view
      * @param  array  $data
      * @return void
      */

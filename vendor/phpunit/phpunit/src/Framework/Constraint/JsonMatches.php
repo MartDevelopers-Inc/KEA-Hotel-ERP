@@ -16,7 +16,7 @@ use PHPUnit\Util\Json;
 use SebastianBergmann\Comparator\ComparisonFailure;
 
 /**
- * Asserts whether or not two JSON objects are equal.
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
  */
 final class JsonMatches extends Constraint
 {
@@ -73,9 +73,9 @@ final class JsonMatches extends Constraint
      * @param string            $description       Additional information about the test
      * @param ComparisonFailure $comparisonFailure
      *
-     * @throws ExpectationFailedException
      * @throws \PHPUnit\Framework\Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
      *
      * @psalm-return never-return
      */

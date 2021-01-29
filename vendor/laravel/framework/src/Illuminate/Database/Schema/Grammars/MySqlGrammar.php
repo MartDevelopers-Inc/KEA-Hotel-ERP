@@ -12,7 +12,7 @@ class MySqlGrammar extends Grammar
     /**
      * The possible column modifiers.
      *
-     * @var array
+     * @var string[]
      */
     protected $modifiers = [
         'Unsigned', 'Charset', 'Collate', 'VirtualAs', 'StoredAs', 'Nullable',
@@ -22,9 +22,40 @@ class MySqlGrammar extends Grammar
     /**
      * The possible column serials.
      *
-     * @var array
+     * @var string[]
      */
     protected $serials = ['bigInteger', 'integer', 'mediumInteger', 'smallInteger', 'tinyInteger'];
+
+    /**
+     * Compile a create database command.
+     *
+     * @param  string $name
+     * @param  \Illuminate\Database\Connection  $connection
+     * @return string
+     */
+    public function compileCreateDatabase($name, $connection)
+    {
+        return sprintf(
+            'create database %s default character set %s default collate %s',
+            $this->wrapValue($name),
+            $this->wrapValue($connection->getConfig('charset')),
+            $this->wrapValue($connection->getConfig('collation')),
+        );
+    }
+
+    /**
+     * Compile a drop database if exists command.
+     *
+     * @param  string $name
+     * @return string
+     */
+    public function compileDropDatabaseIfExists($name)
+    {
+        return sprintf(
+            'drop database if exists %s',
+            $this->wrapValue($name)
+        );
+    }
 
     /**
      * Compile the query to determine the list of tables.
@@ -706,9 +737,11 @@ class MySqlGrammar extends Grammar
     {
         $columnType = $column->precision ? "timestamp($column->precision)" : 'timestamp';
 
-        $defaultCurrent = $column->precision ? "CURRENT_TIMESTAMP($column->precision)" : 'CURRENT_TIMESTAMP';
+        $current = $column->precision ? "CURRENT_TIMESTAMP($column->precision)" : 'CURRENT_TIMESTAMP';
 
-        return $column->useCurrent ? "$columnType default $defaultCurrent" : $columnType;
+        $columnType = $column->useCurrent ? "$columnType default $current" : $columnType;
+
+        return $column->useCurrentOnUpdate ? "$columnType on update $current" : $columnType;
     }
 
     /**

@@ -9,6 +9,9 @@
  */
 namespace SebastianBergmann\CodeCoverage\StaticAnalysis;
 
+/**
+ * @internal This class is not covered by the backward compatibility promise for phpunit/php-code-coverage
+ */
 final class CachingUncoveredFileAnalyser extends Cache implements UncoveredFileAnalyser
 {
     /**
@@ -25,13 +28,13 @@ final class CachingUncoveredFileAnalyser extends Cache implements UncoveredFileA
 
     public function executableLinesIn(string $filename): array
     {
-        if ($this->cacheHas($filename, __METHOD__)) {
-            return $this->cacheRead($filename, __METHOD__);
+        if ($this->has($filename, __METHOD__)) {
+            return $this->read($filename, __METHOD__);
         }
 
         $data = $this->uncoveredFileAnalyser->executableLinesIn($filename);
 
-        $this->cacheWrite($filename, __METHOD__, $data);
+        $this->write($filename, __METHOD__, $data);
 
         return $data;
     }

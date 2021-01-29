@@ -18,6 +18,7 @@ use Illuminate\Filesystem\Filesystem;
  * @method static bool delete(string|array $paths)
  * @method static bool deleteDirectory(string $directory)
  * @method static bool exists(string $path)
+ * @method static \Illuminate\Filesystem\FilesystemManager extend(string $driver, \Closure $callback)
  * @method static bool makeDirectory(string $path)
  * @method static bool move(string $from, string $to)
  * @method static bool prepend(string $path, string $data)
@@ -49,9 +50,13 @@ class Storage extends Facade
     {
         $disk = $disk ?: static::$app['config']->get('filesystems.default');
 
-        (new Filesystem)->cleanDirectory(
-            $root = storage_path('framework/testing/disks/'.$disk)
-        );
+        $root = storage_path('framework/testing/disks/'.$disk);
+
+        if ($token = ParallelTesting::token()) {
+            $root = "{$root}_test_{$token}";
+        }
+
+        (new Filesystem)->cleanDirectory($root);
 
         static::set($disk, $fake = static::createLocalDriver(array_merge($config, [
             'root' => $root,

@@ -28,17 +28,17 @@
     },
     "prefer-stable": true,
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": ">=7.3",
         "ext-dom": "*",
         "ext-libxml": "*",
         "ext-xmlwriter": "*",
-        "nikic/php-parser": "^4.8",
+        "nikic/php-parser": "^4.10.2",
         "phpunit/php-file-iterator": "^3.0.3",
         "phpunit/php-text-template": "^2.0.2",
         "sebastian/code-unit-reverse-lookup": "^2.0.2",
         "sebastian/complexity": "^2.0",
         "sebastian/environment": "^5.1.2",
-        "sebastian/lines-of-code": "^1.0",
+        "sebastian/lines-of-code": "^1.0.3",
         "sebastian/version": "^3.0.1",
         "theseer/tokenizer": "^1.2.0"
     },
@@ -62,7 +62,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "9.1-dev"
+            "dev-master": "9.2-dev"
         }
     }
 }

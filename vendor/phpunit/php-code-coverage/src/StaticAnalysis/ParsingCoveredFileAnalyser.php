@@ -27,6 +27,9 @@ use SebastianBergmann\CodeCoverage\ParserException;
 use SebastianBergmann\LinesOfCode\LineCountingVisitor;
 use SebastianBergmann\LinesOfCode\LinesOfCode;
 
+/**
+ * @internal This class is not covered by the backward compatibility promise for phpunit/php-code-coverage
+ */
 final class ParsingCoveredFileAnalyser implements CoveredFileAnalyser
 {
     /**
@@ -116,6 +119,10 @@ final class ParsingCoveredFileAnalyser implements CoveredFileAnalyser
 
         $source      = file_get_contents($filename);
         $linesOfCode = substr_count($source, "\n");
+
+        if ($linesOfCode === 0 && !empty($source)) {
+            $linesOfCode = 1;
+        }
 
         $parser = (new ParserFactory)->create(
             ParserFactory::PREFER_PHP7,

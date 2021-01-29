@@ -1,5 +1,30 @@
 # Change Log
 
+## [3.1.0] - 2020-11-24
+
+### Added
+- Added `CronExpression::getParts()` method to get parts of the expression as an array (#83)
+
+### Changed
+- Changed to Interfaces for some type hints (#97, #86)
+- Dropped minimum PHP version to 7.2
+- Few syntax changes for phpstan compatibility (#93)
+
+### Fixed
+- N/A
+
+### Deprecated
+- Deprecated `CronExpression::factory` in favor of the constructor (#56)
+- Deprecated `CronExpression::YEAR` as a formality, the functionality is already removed (#87)
+
+## [3.0.1] - 2020-10-12
+### Added
+- Added support for PHP 8 (#92)
+### Changed
+- N/A
+### Fixed
+- N/A
+
 ## [3.0.0] - 2020-03-25
 
 **MAJOR CHANGE** - In previous versions of this library, setting both a "Day of Month" and a "Day of Week" would be interpreted as an `AND` statement, not an `OR` statement. For example:
@@ -24,6 +49,14 @@ would evaluate to "Run 30 minutes after the 0 hour when the Day Of Month is 1 AN
 - Fixed bug where single number ranges were allowed (ex: `1/10`)
 - Fixed nullable FieldFactory in CronExpression where no factory could be supplied
 - Fixed issue where logic for dropping seconds to 0 could lead to a timezone change
+
+## [2.3.1] - 2020-10-12
+### Added
+- Added support for PHP 8 (#92)
+### Changed
+- N/A
+### Fixed
+- N/A
 
 ## [2.3.0] - 2019-03-30
 ### Added

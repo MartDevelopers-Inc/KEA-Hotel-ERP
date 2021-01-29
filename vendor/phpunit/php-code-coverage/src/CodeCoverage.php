@@ -18,9 +18,9 @@ use function array_unique;
 use function array_values;
 use function count;
 use function explode;
-use function file_exists;
 use function get_class;
 use function is_array;
+use function is_file;
 use function sort;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\PhptTestCase;
@@ -277,11 +277,13 @@ final class CodeCoverage
                 return;
             }
 
-            $size   = 'unknown';
-            $status = -1;
+            $size         = 'unknown';
+            $status       = -1;
+            $fromTestcase = false;
 
             if ($id instanceof TestCase) {
-                $_size = $id->getSize();
+                $fromTestcase = true;
+                $_size        = $id->getSize();
 
                 if ($_size === Test::SMALL) {
                     $size = 'small';
@@ -294,11 +296,12 @@ final class CodeCoverage
                 $status = $id->getStatus();
                 $id     = get_class($id) . '::' . $id->getName();
             } elseif ($id instanceof PhptTestCase) {
-                $size = 'large';
-                $id   = $id->getName();
+                $fromTestcase = true;
+                $size         = 'large';
+                $id           = $id->getName();
             }
 
-            $this->tests[$id] = ['size' => $size, 'status' => $status];
+            $this->tests[$id] = ['size' => $size, 'status' => $status, 'fromTestcase' => $fromTestcase];
 
             $this->data->markCodeAsExecutedByTestCase($id, $rawData);
         }
@@ -376,9 +379,9 @@ final class CodeCoverage
         return $this->cacheDirectory !== null;
     }
 
-    public function cacheStaticAnalysis(string $cacheDirectory): void
+    public function cacheStaticAnalysis(string $directory): void
     {
-        $this->cacheDirectory = $cacheDirectory;
+        $this->cacheDirectory = $directory;
     }
 
     public function doNotCacheStaticAnalysis(): void
@@ -506,7 +509,7 @@ final class CodeCoverage
         );
 
         foreach ($uncoveredFiles as $uncoveredFile) {
-            if (file_exists($uncoveredFile)) {
+            if (is_file($uncoveredFile)) {
                 $this->append(
                     RawCodeCoverageData::fromUncoveredFile(
                         $uncoveredFile,
@@ -531,7 +534,7 @@ final class CodeCoverage
         $this->driver->start();
 
         foreach ($uncoveredFiles as $uncoveredFile) {
-            if (file_exists($uncoveredFile)) {
+            if (is_file($uncoveredFile)) {
                 include_once $uncoveredFile;
             }
         }

@@ -3,13 +3,14 @@
 namespace Illuminate\Testing;
 
 use ArrayAccess;
+use Countable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Testing\Assert as PHPUnit;
 use JsonSerializable;
 
-class AssertableJsonString implements ArrayAccess
+class AssertableJsonString implements ArrayAccess, Countable
 {
     /**
      * The original encoded json.
@@ -28,7 +29,7 @@ class AssertableJsonString implements ArrayAccess
     /**
      * Create a new assertable JSON string instance.
      *
-     * @param  \Illuminate\Contracts\Support\Jsonable|\JsonSerializable|string  $jsonable
+     * @param  \Illuminate\Contracts\Support\Jsonable|\JsonSerializable|array|string  $jsonable
      * @return void
      */
     public function __construct($jsonable)
@@ -275,8 +276,7 @@ class AssertableJsonString implements ArrayAccess
     /**
      * Reorder associative array keys to make it easy to compare arrays.
      *
-     * @param array $data
-     *
+     * @param  array  $data
      * @return array
      */
     protected function reorderAssocKeys(array $data)
@@ -327,6 +327,16 @@ class AssertableJsonString implements ArrayAccess
             $needle.'}',
             $needle.',',
         ];
+    }
+
+    /**
+     * Get the total number of items in the underlying JSON array.
+     *
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->decoded);
     }
 
     /**

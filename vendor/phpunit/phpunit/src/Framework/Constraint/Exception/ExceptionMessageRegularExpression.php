@@ -13,6 +13,9 @@ use function sprintf;
 use Exception;
 use PHPUnit\Util\RegularExpression as RegularExpressionUtil;
 
+/**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
+ */
 final class ExceptionMessageRegularExpression extends Constraint
 {
     /**
@@ -36,8 +39,8 @@ final class ExceptionMessageRegularExpression extends Constraint
      *
      * @param \PHPUnit\Framework\Exception $other
      *
-     * @throws Exception
      * @throws \PHPUnit\Framework\Exception
+     * @throws Exception
      */
     protected function matches($other): bool
     {

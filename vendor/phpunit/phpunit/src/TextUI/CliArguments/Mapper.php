@@ -68,6 +68,10 @@ final class Mapper
             $result['coverageClover'] = $arguments->coverageClover();
         }
 
+        if ($arguments->hasCoverageCobertura()) {
+            $result['coverageCobertura'] = $arguments->coverageCobertura();
+        }
+
         if ($arguments->hasCoverageCrap4J()) {
             $result['coverageCrap4J'] = $arguments->coverageCrap4J();
         }
@@ -122,6 +126,14 @@ final class Mapper
 
         if ($arguments->hasExcludeGroups()) {
             $result['excludeGroups'] = $arguments->excludeGroups();
+        }
+
+        if ($arguments->hasTestsCovering()) {
+            $result['testsCovering'] = $arguments->testsCovering();
+        }
+
+        if ($arguments->hasTestsUsing()) {
+            $result['testsUsing'] = $arguments->testsUsing();
         }
 
         if ($arguments->hasTestSuffixes()) {
@@ -340,7 +352,7 @@ final class Mapper
             $result['coverageFilter'] = $arguments->coverageFilter();
         }
 
-        if ($arguments->hasRandomOrderSeer()) {
+        if ($arguments->hasRandomOrderSeed()) {
             $result['randomOrderSeed'] = $arguments->randomOrderSeed();
         }
 

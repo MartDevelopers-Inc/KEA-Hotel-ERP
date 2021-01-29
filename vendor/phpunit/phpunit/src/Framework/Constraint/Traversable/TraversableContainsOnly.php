@@ -13,8 +13,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use Traversable;
 
 /**
- * Constraint that asserts that the Traversable it is applied to contains
- * only values of a given type.
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
  */
 final class TraversableContainsOnly extends Constraint
 {
@@ -56,8 +55,8 @@ final class TraversableContainsOnly extends Constraint
      *
      * @param mixed|Traversable $other
      *
-     * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws ExpectationFailedException
      */
     public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
     {
