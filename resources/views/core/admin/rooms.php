@@ -77,7 +77,6 @@ if (isset($_POST['Add_Room'])) {
     }
 }
 
-
 if (isset($_POST['Update_Room'])) {
     /* Error Handling And Update Room */
     $error = 0;
@@ -140,6 +139,7 @@ if (isset($_POST['Update_Room'])) {
 }
 
 if (isset($_GET['Delete_Room'])) {
+    /* Delete Room */
     $id = $_GET['Delete_Room'];
     $adn = "DELETE FROM rooms WHERE id =?";
     $stmt = $mysqli->prepare($adn);
@@ -151,6 +151,103 @@ if (isset($_GET['Delete_Room'])) {
     } else {
         //inject alert that task failed
         $info = "Please Try Again Or Try Later";
+    }
+}
+
+/* Bulk Import Rooms With Excel */
+
+use keaHotelERP\DataSource;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
+require_once '../config/DataSource.php';
+$db = new DataSource();
+$conn = $db->getConnection();
+require_once '../vendor/autoload.php';
+
+if (isset($_POST['upload'])) {
+    $allowedFileType = [
+        'application/vnd.ms-excel',
+        'text/xls',
+        'text/xlsx',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    ];
+
+    if (in_array($_FILES['file']['type'], $allowedFileType)) {
+        $targetPath =
+            '../public/uploads/sys_data/xls/' . $_FILES['file']['name'];
+        move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
+
+        $Reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+
+        $spreadSheet = $Reader->load($targetPath);
+        $excelSheet = $spreadSheet->getActiveSheet();
+        $spreadSheetAry = $excelSheet->toArray();
+        $sheetCount = count($spreadSheetAry);
+
+        for ($i = 1; $i <= $sheetCount; $i++) {
+            $id = '';
+            if (isset($spreadSheetAry[$i][0])) {
+                $id = mysqli_real_escape_string($conn, $spreadSheetAry[$i][0]);
+            }
+
+            $number = '';
+            if (isset($spreadSheetAry[$i][1])) {
+                $number = mysqli_real_escape_string(
+                    $conn,
+                    $spreadSheetAry[$i][1]
+                );
+            }
+
+            $type = '';
+            if (isset($spreadSheetAry[$i][2])) {
+                $type = mysqli_real_escape_string(
+                    $conn,
+                    $spreadSheetAry[$i][2]
+                );
+            }
+
+            $price = '';
+            if (isset($spreadSheetAry[$i][3])) {
+                $price = mysqli_real_escape_string($conn, $spreadSheetAry[$i][3]);
+            }
+
+            $status = '';
+            if (isset($spreadSheetAry[$i][4])) {
+                $status = mysqli_real_escape_string(
+                    $conn,
+                    $spreadSheetAry[$i][4]
+                );
+            }
+
+            $details = '';
+            if (isset($spreadSheetAry[$i][5])) {
+                $details = mysqli_real_escape_string(
+                    $conn,
+                    $spreadSheetAry[$i][5]
+                );
+            }
+
+            if (
+                !empty($id) ||
+                !empty($number) ||
+                !empty($type) ||
+                !empty($price) ||
+                !empty($status) ||
+                !empty($details)
+            ) {
+                $query ='INSERT INTO rooms (id, number, type, price, status, details) VALUES (?,?,?,?,?,?)';
+                $paramType = 'ssssss';
+                $paramArray = [$id, $number, $type, $price, $status, $details];
+                $insertId = $db->insert($query, $paramType, $paramArray);
+                if (!empty($insertId)) {
+                    $err = 'Error Occured While Importing Data';
+                } else {
+                    $success = 'Room Data Imported';
+                }
+            }
+        }
+    } else {
+        $info = 'Invalid File Type. Upload Excel File.';
     }
 }
 
