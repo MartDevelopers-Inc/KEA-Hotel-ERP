@@ -139,7 +139,20 @@ if (isset($_POST['Update_Room'])) {
     }
 }
 
-
+if (isset($_GET['Delete_Room'])) {
+    $id = $_GET['Delete_Room'];
+    $adn = "DELETE FROM rooms WHERE id =?";
+    $stmt = $mysqli->prepare($adn);
+    $stmt->bind_param('s', $id);
+    $stmt->execute();
+    $stmt->close();
+    if ($stmt) {
+        $success = "Deleted" && header("refresh:1; url=rooms.php");
+    } else {
+        //inject alert that task failed
+        $info = "Please Try Again Or Try Later";
+    }
+}
 
 
 require_once("../partials/head.php");
@@ -508,7 +521,7 @@ require_once("../partials/head.php");
                                                             <h4>Delete Room <?php echo $rooms->number; ?> ?</h4>
                                                             <br>
                                                             <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                            <a href="rooms.php?delete=<?php echo $rooms->id; ?>" class="text-center btn btn-danger"> Delete </a>
+                                                            <a href="rooms.php?Delete_Room=<?php echo $rooms->id; ?>" class="text-center btn btn-danger"> Delete </a>
                                                         </div>
                                                     </div>
                                                 </div>
