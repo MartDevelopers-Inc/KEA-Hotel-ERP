@@ -336,7 +336,7 @@ require_once("../partials/head.php");
                                         <div class="form-row mb-4">
                                             <div style="display:none" class="form-group col-md-6">
                                                 <label for="inputEmail4">Id</label>
-                                                <input type="text" name="id" value="<?php echo $assign_id; ?>" class="form-control">
+                                                <input type="text" name="id" value="<?php echo $ID; ?>" class="form-control">
                                                 <input type="text" name="status" value="Pending" class="form-control">
                                                 <input type="text" name="room_status" value="Occupied" class="form-control">
                                             </div>
@@ -357,7 +357,7 @@ require_once("../partials/head.php");
 
                                                     <?php } ?>
                                                 </select>
-                                                <input type="hdden" name="room_id" id="RID" class="form-control">
+                                                <input type="hidden" name="room_id" id="RID" class="form-control">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputEmail4">Room Cost</label>
@@ -404,8 +404,9 @@ require_once("../partials/head.php");
                                                 <input type="text" name="cust_adr" class="form-control">
                                             </div>
                                         </div>
-
-                                        <button type="submit" name="Add_Reservation" class="btn btn-warning mt-3">Submit</button>
+                                        <div class="text-right">
+                                            <button type="submit" name="Add_Reservation" class="btn btn-warning mt-3">Submit</button>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer justify-content-between">
@@ -548,10 +549,10 @@ require_once("../partials/head.php");
                                                             </button>
                                                         </div>
                                                         <div class="modal-body text-center text-danger">
-                                                            <h4>Delete <?php echo $row->cust_name; ?> Room Reservation ?</h4>
+                                                            <h4>Delete <?php echo $reservation->cust_name; ?> Room Reservation ?</h4>
                                                             <br>
                                                             <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                            <a href="rooms.php?Delete_Room=<?php echo $row->id; ?>&room_id=<?php echo $row->room_id; ?>&status=Vacant" class="text-center btn btn-danger"> Delete </a>
+                                                            <a href="reservations.php?Delete_Reservation=<?php echo $reservation->id; ?>&room_id=<?php echo $reservation->room_id; ?>&status=Vacant" class="text-center btn btn-danger"> Delete </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -570,10 +571,10 @@ require_once("../partials/head.php");
                                                             </button>
                                                         </div>
                                                         <div class="modal-body text-center text-danger">
-                                                            <h4>Vacate Room <?php echo $row->room_number; ?> ?</h4>
+                                                            <h4>Vacate Room <?php echo $reservation->room_number; ?> ?</h4>
                                                             <br>
                                                             <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                            <a href="reservations?Vacate_Room=<?php echo $row->room_id; ?>&status=Vacant" class="text-center btn btn-danger"> Vacate Room </a>
+                                                            <a href="reservations.php?Vacate_Room=<?php echo $reservation->room_id; ?>&status=Vacant" class="text-center btn btn-danger"> Vacate Room </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -594,43 +595,7 @@ require_once("../partials/head.php");
     </div>
     <?php require_once("../partials/scripts.php"); ?>
     <!-- Ajax Scripts -->
-    <script>
-        function getRoomDetails(val) {
-            $.ajax({
-
-                type: "POST",
-                url: "../partials/ajax.php",
-                data: 'RNumber=' + val,
-                success: function(data) {
-                    //alert(data);
-                    $('#RID').val(data);
-                }
-            });
-
-            $.ajax({
-
-                type: "POST",
-                url: "../partials/ajax.php",
-                data: 'RID=' + val,
-                success: function(data) {
-                    //alert(data);
-                    $('#RCost').val(data);
-                }
-            });
-
-            $.ajax({
-
-                type: "POST",
-                url: "../partials/ajax.php",
-                data: 'RCost=' + val,
-                success: function(data) {
-                    //alert(data);
-                    $('#RType').val(data);
-                }
-            });
-
-        }
-    </script>
+   
 </body>
 
 </html>

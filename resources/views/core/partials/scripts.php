@@ -40,3 +40,40 @@
     });
 </script>
 <!-- Room Details Async Function -->
+<script>
+    function getRoomDetails(val) {
+        $.ajax({
+
+            type: "POST",
+            url: "../partials/ajax.php",
+            data: 'RNumber=' + val,
+            success: function(data) {
+                //alert(data);
+                $('#RID').val(data);
+            }
+        });
+
+        $.ajax({
+
+            type: "POST",
+            url: "../partials/ajax.php",
+            data: 'RID=' + val,
+            success: function(data) {
+                //alert(data);
+                $('#RCost').val(data);
+            }
+        });
+
+        $.ajax({
+
+            type: "POST",
+            url: "../partials/ajax.php",
+            data: 'RCost=' + val,
+            success: function(data) {
+                //alert(data);
+                $('#RType').val(data);
+            }
+        });
+
+    }
+</script>
