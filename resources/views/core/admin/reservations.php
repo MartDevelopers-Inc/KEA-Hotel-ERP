@@ -12,70 +12,114 @@ if (isset($_POST['Add_Reservation'])) {
         $id = mysqli_real_escape_string($mysqli, trim($_POST['id']));
     } else {
         $error = 1;
+        $err = "Reservation ID  Cannot Be Empty";
+    }
+
+    if (isset($_POST['room_id']) && !empty($_POST['room_id'])) {
+        $room_id = mysqli_real_escape_string($mysqli, trim($_POST['room_id']));
+    } else {
+        $error = 1;
         $err = "Room ID  Cannot Be Empty";
     }
 
-    if (isset($_POST['number']) && !empty($_POST['number'])) {
-        $number = mysqli_real_escape_string($mysqli, trim($_POST['number']));
+    if (isset($_POST['room_number']) && !empty($_POST['room_number'])) {
+        $room_number = mysqli_real_escape_string($mysqli, trim($_POST['room_number']));
     } else {
         $error = 1;
-        $err = "Room Number  Cannot Be Empty";
+        $err = "Room Number Cannot Be Empty";
     }
 
-    if (isset($_POST['type']) && !empty($_POST['type'])) {
-        $type = mysqli_real_escape_string($mysqli, trim($_POST['type']));
+    if (isset($_POST['room_cost']) && !empty($_POST['room_cost'])) {
+        $room_cost = mysqli_real_escape_string($mysqli, trim($_POST['room_cost']));
+    } else {
+        $error = 1;
+        $err = "Room Price Cannot Be Empty";
+    }
+
+    if (isset($_POST['room_type']) && !empty($_POST['room_type'])) {
+        $room_type = mysqli_real_escape_string($mysqli, trim($_POST['room_type']));
     } else {
         $error = 1;
         $err = "Room Type Cannot Be Empty";
     }
 
-    if (isset($_POST['price']) && !empty($_POST['price'])) {
-        $price = mysqli_real_escape_string($mysqli, trim($_POST['price']));
+    if (isset($_POST['check_in']) && !empty($_POST['check_in'])) {
+        $check_in = mysqli_real_escape_string($mysqli, trim($_POST['check_in']));
     } else {
         $error = 1;
-        $err = "Room Price Cannot Be Empty";
+        $err = "Check In  Cannot Be Empty";
+    }
+
+    if (isset($_POST['check_out']) && !empty($_POST['check_out'])) {
+        $check_out = mysqli_real_escape_string($mysqli, trim($_POST['check_out']));
+    } else {
+        $error = 1;
+        $err = "Check Out  Cannot Be Empty";
+    }
+
+    if (isset($_POST['cust_name']) && !empty($_POST['cust_name'])) {
+        $cust_name = mysqli_real_escape_string($mysqli, trim($_POST['cust_name']));
+    } else {
+        $error = 1;
+        $err = "Customer Name  Cannot Be Empty";
+    }
+
+    if (isset($_POST['cust_id']) && !empty($_POST['cust_id'])) {
+        $cust_id = mysqli_real_escape_string($mysqli, trim($_POST['cust_id']));
+    } else {
+        $error = 1;
+        $err = "Customer National ID  Cannot Be Empty";
+    }
+
+    if (isset($_POST['cust_phone']) && !empty($_POST['cust_phone'])) {
+        $cust_phone = mysqli_real_escape_string($mysqli, trim($_POST['cust_phone']));
+    } else {
+        $error = 1;
+        $err = "Customer Phone Number Cannot Be Empty";
+    }
+
+    if (isset($_POST['cust_email']) && !empty($_POST['cust_email'])) {
+        $cust_email = mysqli_real_escape_string($mysqli, trim($_POST['cust_email']));
+    } else {
+        $error = 1;
+        $err = "Customer Email Number Cannot Be Empty";
+    }
+
+    if (isset($_POST['cust_adr']) && !empty($_POST['cust_adr'])) {
+        $cust_adr = mysqli_real_escape_string($mysqli, trim($_POST['cust_adr']));
+    } else {
+        $error = 1;
+        $err = "Customer Address Cannot Be Empty";
     }
 
     if (isset($_POST['status']) && !empty($_POST['status'])) {
         $status = mysqli_real_escape_string($mysqli, trim($_POST['status']));
     } else {
         $error = 1;
-        $err = "Room Status Cannot Be Empty";
+        $err = "Status Cannot Be Empty";
     }
 
-    if (isset($_POST['details']) && !empty($_POST['details'])) {
-        $details = mysqli_real_escape_string($mysqli, trim($_POST['details']));
-    } else {
-        $error = 1;
-        $err = "Room details Cannot Be Empty";
-    }
 
     if (!$error) {
-        //Prevent Double Entries
-        $sql = "SELECT * FROM  rooms WHERE number = '$number'  ";
-        $res = mysqli_query($mysqli, $sql);
-        if (mysqli_num_rows($res) > 0) {
-            $row = mysqli_fetch_assoc($res);
-            if ($number == $row['number']) {
-                $err =  "A Room With That Number Already Exists";
-            } else {
-                //
-            }
+        //Update Room That It Has Been Occupied
+        $room_status = $_POST['room_status'];
+        $query = "INSERT INTO reservations (id, room_id, room_number, room_cost, room_type, check_in, check_out, cust_name, cust_id, cust_phone, cust_email, cust_adr, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $room_querry = "UPDATE rooms SET status =? WHERE id =?";
+        $stmt = $mysqli->prepare($query);
+        $roomstmt = $mysqli->prepare($room_querry);
+        $rc = $stmt->bind_param('sssssssssssss', $id, $room_id, $room_number, $room_cost, $room_type, $check_in, $check_out, $cust_name, $cust_id, $cust_phone, $cust_email, $cust_adr, $status);
+        $rc = $roomstmt->bind_param('ss', $room_status, $room_id);
+        $stmt->execute();
+        $roomstmt->execute();
+        if ($stmt && $roomstmt) {
+            $success = "Added" && header("refresh:1; url=reservations.php");
         } else {
-            $image = $_FILES['image']['name'];
-            move_uploaded_file($_FILES["image"]["tmp_name"], "../public/uploads/rooms/" . $_FILES["image"]["name"]);
-            $query = "INSERT INTO rooms (id, number, type, price, status, details, image) VALUES (?,?,?,?,?,?,?)";
-            $stmt = $mysqli->prepare($query);
-            $rc = $stmt->bind_param('sssssss', $id, $number, $type, $price, $status, $details, $image);
-            $stmt->execute();
-            if ($stmt) {
-                $success = "Added" && header("refresh:1; url=rooms.php");
-            } else {
-                $info = "Please Try Again Or Try Later";
-            }
+            //inject alert that task failed
+            $info = "Please Try Again Or Try Later";
         }
     }
 }
+
 
 if (isset($_POST['Update_Reservation'])) {
     /* Error Handling And Update Room */
