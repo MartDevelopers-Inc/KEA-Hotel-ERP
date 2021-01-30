@@ -301,19 +301,18 @@ require_once("../partials/head.php");
                                         <div class="form-row mb-4">
                                             <div class="form-group col-md-4">
                                                 <label for="inputEmail4">Room Number</label>
-                                                <select id="roomNumber" onChange="getRoomDetails(this.value)" class='form-control basic' name="room_number" id="">
+                                                <select id="roomNumber" onChange="getRoomDetails(this.value)" class='form-control' name="room_number" id="">
                                                     <option selected>Select Room Number</option>
                                                     <?php
                                                     $ret = "SELECT * FROM `rooms` ";
                                                     $stmt = $mysqli->prepare($ret);
                                                     $stmt->execute(); //ok
                                                     $res = $stmt->get_result();
-                                                    while ($row = $res->fetch_object()) {
+                                                    while ($rooms = $res->fetch_object()) {
                                                     ?>
-                                                        <option><?php echo $row->number; ?></option>
+                                                        <option><?php echo $rooms->number; ?></option>
 
                                                     <?php } ?>
-
                                                 </select>
                                                 <input type="hidden" name="room_id" id="RoomID" class="form-control">
                                             </div>
@@ -548,6 +547,7 @@ require_once("../partials/head.php");
             </section>
         </div>
         <?php require_once("../partials/footer.php"); ?>
+
     </div>
     <?php require_once("../partials/scripts.php"); ?>
 </body>
