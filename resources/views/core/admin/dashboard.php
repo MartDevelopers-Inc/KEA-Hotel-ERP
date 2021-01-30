@@ -239,7 +239,7 @@ require_once("../partials/head.php");
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $ret = "SELECT * FROM `reservations` ORDER BY `reservations`.`created_at` DESC LIMIT 4  ";
+                                                $ret = "SELECT * FROM `reservations` ORDER BY `reservations`.`created_at` DESC LIMIT 5  ";
                                                 $stmt = $mysqli->prepare($ret);
                                                 $stmt->execute(); //ok
                                                 $res = $stmt->get_result();
@@ -303,7 +303,7 @@ require_once("../partials/head.php");
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $ret = "SELECT * FROM `rooms` ";
+                                                    $ret = "SELECT  * FROM `rooms` ORDER BY RAND() LIMIT 5 ";
                                                     $stmt = $mysqli->prepare($ret);
                                                     $stmt->execute(); //ok
                                                     $res = $stmt->get_result();
