@@ -39,3 +39,41 @@
         tags: true,
     });
 </script>
+<!-- Room Details Async Function -->
+<script>
+    function getRoomDetails(val) {
+        $.ajax({
+
+            type: "POST",
+            url: "ajax.php",
+            data: 'roomNumber=' + val,
+            success: function(data) {
+                //alert(data);
+                $('#RoomID').val(data);
+            }
+        });
+
+        $.ajax({
+
+            type: "POST",
+            url: "ajax.php",
+            data: 'RoomID=' + val,
+            success: function(data) {
+                //alert(data);
+                $('#roomCost').val(data);
+            }
+        });
+
+        $.ajax({
+
+            type: "POST",
+            url: "ajax.php",
+            data: 'roomCost=' + val,
+            success: function(data) {
+                //alert(data);
+                $('#roomType').val(data);
+            }
+        });
+
+    }
+</script>

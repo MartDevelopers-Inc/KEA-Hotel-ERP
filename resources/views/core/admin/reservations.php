@@ -135,7 +135,7 @@ if (isset($_POST['Update_Reservation'])) {
         $error = 1;
         $err = "Customer Name Cannot Be Empty";
     }
-    
+
 
     if (isset($_POST['cust_phone']) && !empty($_POST['cust_phone'])) {
         $cust_phone = mysqli_real_escape_string($mysqli, trim($_POST['cust_phone']));
@@ -171,7 +171,7 @@ if (isset($_POST['Update_Reservation'])) {
         $error = 1;
         $err = "Reservation Status Cannot Be Empty";
     }
-    
+
     if (isset($_POST['room_status']) && !empty($_POST['room_status'])) {
         $room_status = mysqli_real_escape_string($mysqli, trim($_POST['room_status']));
     } else {
@@ -180,7 +180,7 @@ if (isset($_POST['Update_Reservation'])) {
     }
 
     if (!$error) {
-        
+
         $query = "UPDATE reservations SET room_id =?, room_number =?, room_cost =?, room_type =?, check_in =?, check_out =?, cust_name =?, cust_id =?, cust_phone =?, cust_email =?, cust_adr =?, status =? WHERE id =?";
         $room_querry = "UPDATE rooms SET status =? WHERE id =?";
         $stmt = $mysqli->prepare($query);
@@ -288,7 +288,83 @@ require_once("../partials/head.php");
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <form method="POST" enctype="multipart/form-data">
+                                        <div class="form-row mb-4">
+                                            <div style="display:none" class="form-group col-md-6">
+                                                <label for="inputEmail4">Id</label>
+                                                <input type="text" name="id" value="<?php echo $assign_id; ?>" class="form-control">
+                                                <input type="text" name="status" value="Pending" class="form-control">
+                                                <input type="text" name="room_status" value="Occupied" class="form-control">
 
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Room Number</label>
+                                                <select id="roomNumber" onChange="getRoomDetails(this.value)" class='form-control basic' name="room_number" id="">
+                                                    <option selected>Select Room Number</option>
+                                                    <?php
+                                                    $ret = "SELECT * FROM `rooms` ";
+                                                    $stmt = $mysqli->prepare($ret);
+                                                    $stmt->execute(); //ok
+                                                    $res = $stmt->get_result();
+                                                    while ($row = $res->fetch_object()) {
+                                                    ?>
+                                                        <option><?php echo $row->number; ?></option>
+
+                                                    <?php } ?>
+
+                                                </select>
+                                                <input type="hidden" name="room_id" id="RoomID" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Room Cost</label>
+                                                <input type="text" readonly id="roomCost" name="room_cost" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Room Type</label>
+                                                <input type="text" readonly id="roomType" name="room_type" class="form-control">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Check In</label>
+                                                <input type="date" name="check_in" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Check Out</label>
+                                                <input type="date" name="check_out" class="form-control">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Customer Full Name</label>
+                                                <input type="text" name="cust_name" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Customer National ID Number</label>
+                                                <input type="text" name="cust_id" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Customer Phone</label>
+                                                <input type="text" name="cust_phone" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Customer Email</label>
+                                                <input type="email" name="cust_email" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Customer Address</label>
+                                                <input type="text" name="cust_adr" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" name="add" class="btn btn-warning mt-3">Submit</button>
+                                    </form>
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -300,17 +376,17 @@ require_once("../partials/head.php");
 
                     <hr>
                     <div class="col-12">
-                        <table id="dt-1" class="table table-hover" style="width:100%" style="width:100%">
+                        <table id="dt-1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Number</th>
                                     <th>Type</th>
                                     <th>Check In</th>
                                     <th>Check Out</th>
-                                    <th> Name</th>
-                                    <th>Customer ID No</th>
+                                    <th>Name</th>
+                                    <th>ID No</th>
                                     <th>Status</th>
-                                    <th>Created At</th>
+                                    <th>Reserved On </th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -333,10 +409,6 @@ require_once("../partials/head.php");
                                         <td><?php echo $reservation->status; ?></td>
                                         <td><?php echo date('d M Y', strtotime($reservation->created_at)); ?></td>
                                         <td>
-                                            <a class="badge badge-warning" data-toggle="modal" href="#view-<?php echo $reservation->id; ?>">View</a>
-                                            <!-- View Modal -->
-
-                                            <!-- End View Modal -->
                                             <a class="badge badge-primary" data-toggle="modal" href="#update-<?php echo $reservation->id; ?>">Update</a>
                                             <!-- Update Modal -->
                                             <div class="modal fade" id="update-<?php echo $reservation->id; ?>">
@@ -362,7 +434,7 @@ require_once("../partials/head.php");
                                                                     <div class="form-group col-md-4">
                                                                         <label for="inputEmail4">Room Number</label>
                                                                         <input type="text" readonly value=<?php echo $reservation->room_number; ?> id="roomCost" name="room_number" class="form-control">
-                                                                        <input type="hidden" name="room_id" value="<?php echo $reservation->room_id;?>" class="form-control">
+                                                                        <input type="hidden" name="room_id" value="<?php echo $reservation->room_id; ?>" class="form-control">
                                                                     </div>
                                                                     <div class="form-group col-md-4">
                                                                         <label for="inputEmail4">Room Cost</label>
