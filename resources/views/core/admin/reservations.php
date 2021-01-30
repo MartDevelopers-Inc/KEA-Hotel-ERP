@@ -295,13 +295,12 @@ require_once("../partials/head.php");
                                                 <input type="text" name="id" value="<?php echo $assign_id; ?>" class="form-control">
                                                 <input type="text" name="status" value="Pending" class="form-control">
                                                 <input type="text" name="room_status" value="Occupied" class="form-control">
-
                                             </div>
                                         </div>
                                         <div class="form-row mb-4">
                                             <div class="form-group col-md-4">
                                                 <label for="inputEmail4">Room Number</label>
-                                                <select id="roomNumber" onChange="getRoomDetails(this.value)" class='form-control' name="room_number" id="">
+                                                <select id="RNumber" onchange="getRoomDetails(this.value);" class='form-control' name="room_number" id="">
                                                     <option selected>Select Room Number</option>
                                                     <?php
                                                     $ret = "SELECT * FROM `rooms` ";
@@ -314,15 +313,15 @@ require_once("../partials/head.php");
 
                                                     <?php } ?>
                                                 </select>
-                                                <input type="hidden" name="room_id" id="RoomID" class="form-control">
+                                                <input type="hdden" name="room_id" id="RID" class="form-control">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputEmail4">Room Cost</label>
-                                                <input type="text" readonly id="roomCost" name="room_cost" class="form-control">
+                                                <input type="text" readonly id="RCost" name="room_cost" class="form-control">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputEmail4">Room Type</label>
-                                                <input type="text" readonly id="roomType" name="room_type" class="form-control">
+                                                <input type="text" readonly id="RType" name="room_type" class="form-control">
                                             </div>
                                         </div>
                                         <hr>
@@ -362,7 +361,7 @@ require_once("../partials/head.php");
                                             </div>
                                         </div>
 
-                                        <button type="submit" name="add" class="btn btn-warning mt-3">Submit</button>
+                                        <button type="submit" name="Add_Reservation" class="btn btn-warning mt-3">Submit</button>
                                     </form>
                                 </div>
                                 <div class="modal-footer justify-content-between">
@@ -550,6 +549,44 @@ require_once("../partials/head.php");
 
     </div>
     <?php require_once("../partials/scripts.php"); ?>
+    <!-- Ajax Scripts -->
+    <script>
+        function getRoomDetails(val) {
+            $.ajax({
+
+                type: "POST",
+                url: "../partials/ajax.php",
+                data: 'RNumber=' + val,
+                success: function(data) {
+                    //alert(data);
+                    $('#RID').val(data);
+                }
+            });
+
+            $.ajax({
+
+                type: "POST",
+                url: "../partials/ajax.php",
+                data: 'RID=' + val,
+                success: function(data) {
+                    //alert(data);
+                    $('#RCost').val(data);
+                }
+            });
+
+            $.ajax({
+
+                type: "POST",
+                url: "../partials/ajax.php",
+                data: 'RCost=' + val,
+                success: function(data) {
+                    //alert(data);
+                    $('#RType').val(data);
+                }
+            });
+
+        }
+    </script>
 </body>
 
 </html>

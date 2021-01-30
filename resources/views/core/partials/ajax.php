@@ -2,9 +2,9 @@
 include('../config/pdoconfig.php');
 
 //Room ID
-if (!empty($_POST["roomNumber"])) {
-    $id = $_POST['roomNumber'];
-    $stmt = $DB_con->prepare("SELECT * FROM rooms WHERE number = :id");
+if (!empty($_POST["RNumber"])) {
+    $id = $_POST['RNumber'];
+    $stmt = $DB_con->prepare("SELECT * FROM rooms WHERE number = :id ");
     $stmt->execute(array(':id' => $id));
 ?>
 <?php
@@ -16,9 +16,9 @@ if (!empty($_POST["roomNumber"])) {
 }
 
 //Room Price
-if (!empty($_POST["RoomID"])) {
-    $id = $_POST['RoomID'];
-    $stmt = $DB_con->prepare("SELECT * FROM  rooms WHERE number = :id");
+if (!empty($_POST["RID"])) {
+    $id = $_POST['RID'];
+    $stmt = $DB_con->prepare("SELECT * FROM  rooms WHERE number = :id ");
     $stmt->execute(array(':id' => $id));
 ?>
 <?php
@@ -30,9 +30,9 @@ if (!empty($_POST["RoomID"])) {
 }
 
 //Room Type
-if (!empty($_POST["roomCost"])) {
-    $id = $_POST['roomCost'];
-    $stmt = $DB_con->prepare("SELECT * FROM  rooms WHERE number = :id");
+if (!empty($_POST["RCost"])) {
+    $id = $_POST['RCost'];
+    $stmt = $DB_con->prepare("SELECT * FROM  rooms WHERE number = :id ");
     $stmt->execute(array(':id' => $id));
 ?>
 <?php
