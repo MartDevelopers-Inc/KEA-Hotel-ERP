@@ -39,12 +39,11 @@ require_once("../partials/head.php");
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Reservations Paymets </h1>
+                            <h1>Reservations Payments </h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="reservations.php">Reservations</a></li>
                                 <li class="breadcrumb-item active">Payments</li>
@@ -59,29 +58,8 @@ require_once("../partials/head.php");
                     <form class="form-inline">
                     </form>
                     <div class="text-right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_payment">Add Reservation Payment</button>
+                        <a href="add_reservation_payment.php" class="btn btn-primary" >Add Reservation Payment</a>
                     </div>
-                    <!-- Add  Modal -->
-                    <div class="modal fade" id="add_payment">
-                        <div class="modal-dialog  modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Fill All Values </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-
-                                </div>
-                                <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End  Modal -->
-
                     <hr>
                     <div class="col-12">
                         <table id="dt-1" class="table table-bordered table-striped">
@@ -136,7 +114,6 @@ require_once("../partials/head.php");
                                     </tr>
                                 <?php
                                 } ?>
-
                             </tbody>
                         </table>
                     </div>
@@ -147,7 +124,6 @@ require_once("../partials/head.php");
 
     </div>
     <?php require_once("../partials/scripts.php"); ?>
-    <!-- Ajax Scripts -->
 
 </body>
 
