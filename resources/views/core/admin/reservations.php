@@ -594,8 +594,7 @@ require_once("../partials/head.php");
 
     </div>
     <?php require_once("../partials/scripts.php"); ?>
-    <!-- Ajax Scripts -->
-   
+
 </body>
 
 </html>
