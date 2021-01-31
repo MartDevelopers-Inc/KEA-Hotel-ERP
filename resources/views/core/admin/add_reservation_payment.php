@@ -5,6 +5,87 @@ require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
 sudo(); /* Invoke Admin Check Login */
 
+if (isset($_POST['add'])) {
+    /* Error Handling And Add Room */
+    $error = 0;
+    if (isset($_POST['id']) && !empty($_POST['id'])) {
+        $id = mysqli_real_escape_string($mysqli, trim($_POST['id']));
+    } else {
+        $error = 1;
+        $err = "Payment ID  Cannot Be Empty";
+    }
+
+    if (isset($_POST['code']) && !empty($_POST['code'])) {
+        $code = mysqli_real_escape_string($mysqli, trim($_POST['number']));
+    } else {
+        $error = 1;
+        $err = "Payment Code  Cannot Be Empty";
+    }
+
+    if (isset($_POST['payment_means']) && !empty($_POST['payment_means'])) {
+        $type = mysqli_real_escape_string($mysqli, trim($_POST['payment_means']));
+    } else {
+        $error = 1;
+        $err = "Payment Means Cannot Be Empty";
+    }
+
+    if (isset($_POST['amt']) && !empty($_POST['amt'])) {
+        $amt = mysqli_real_escape_string($mysqli, trim($_POST['price']));
+    } else {
+        $error = 1;
+        $err = "Amout Paid Cannot Be Empty";
+    }
+
+    if (isset($_POST['cust_name']) && !empty($_POST['cust_name'])) {
+        $cust_name = mysqli_real_escape_string($mysqli, trim($_POST['cust_name']));
+    } else {
+        $error = 1;
+        $err = "Customer Name Cannot Be Empty";
+    }
+
+    if (isset($_POST['service_paid']) && !empty($_POST['service_paid'])) {
+        $service_paid = mysqli_real_escape_string($mysqli, trim($_POST['service_paid']));
+    } else {
+        $error = 1;
+        $err = "Service Paid Cannot Be Empty";
+    }
+
+    /* No Need To Do Error Handling On These */
+    $month = $_POST['month'];
+
+    $status = $_POST['status'];
+    $r_id = $_POST['r_id'];
+
+
+    if (!$error) {
+        //Prevent Double Entries Of Payments
+        $sql = "SELECT * FROM  payments WHERE code = '$code'  ";
+        $res = mysqli_query($mysqli, $sql);
+        if (mysqli_num_rows($res) > 0) {
+            $row = mysqli_fetch_assoc($res);
+            if ($code == $row['code']) {
+                $err =  "A Payment With  That Code  Already Exists";
+            } else {
+                //
+            }
+        } else {
+            $query = "INSERT INTO payments (id, code, payment_means, amt, cust_name, service_paid, month) VALUES (?,?,?,?,?,?,?)";
+            $r_qry = "UPDATE reservations SET status =? WHERE id =?";
+            $stmt = $mysqli->prepare($query);
+            $rstmt = $mysqli->prepare($r_qry);
+            $rc = $rstmt->bind_param('ss', $status, $r_id);
+            $rc = $stmt->bind_param('sssssss', $id, $code, $payment_means, $amt, $cust_name, $service_paid, $month);
+            $stmt->execute();
+            $rstmt->execute();
+            if ($stmt && $rstmt) {
+                $success = "Paid" && header("refresh:1; url=add_reservation_payment.php");
+            } else {
+                $info = "Please Try Again Or Try Later";
+            }
+        }
+    }
+}
+
 require_once("../partials/head.php");
 ?>
 
@@ -102,17 +183,28 @@ require_once("../partials/head.php");
                                                                         <input type="text" name="id" value="<?php echo $ID; ?>" class="form-control">
                                                                         <input type="text" name="month" value="<?php echo date('M'); ?>" class="form-control">
                                                                         <input type="text" name="service_paid" value="Reservations" class="form-control">
+                                                                        <input type="text" name="r_id" value="<?php echo $reservation->id; ?>" class="form-control">
+                                                                        <input type="text" name="status" value="Paid" class="form-control">
 
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-row mb-4">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="inputEmail4">Customer Name</label>
+                                                                        <input required type="text" value="<?php echo $reservation->cust_name; ?>" readonly name="cust_name" class="form-control">
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="inputEmail4">Reservation Amount</label>
+                                                                        <input required type="text" value="<?php echo $amount; ?>" readonly name="amt" class="form-control">
+                                                                    </div>
+
                                                                     <div class="form-group col-md-6">
                                                                         <label for="inputEmail4">Payment Code</label>
                                                                         <input required type="text" value="<?php echo $paycode; ?>" name="code" class="form-control">
                                                                     </div>
                                                                     <div class="form-group col-md-6">
                                                                         <label for="inputEmail4">Payment Means</label>
-                                                                        <select class='form-control basic' name="payment_means" id="">
+                                                                        <select class='form-control' name="payment_means" id="">
                                                                             <option selected>Cash</option>
                                                                             <option>Mpesa</option>
                                                                             <option>Credit Card</option>
@@ -121,8 +213,9 @@ require_once("../partials/head.php");
                                                                     </div>
                                                                 </div>
 
-
-                                                                <button type="submit" name="add" class="btn btn-warning mt-3">Submit</button>
+                                                                <div class="text-right">
+                                                                    <button type="submit" name="Pay_Reservation" class="btn btn-primary mt-3">Submit</button>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
