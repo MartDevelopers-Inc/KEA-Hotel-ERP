@@ -5,8 +5,8 @@ require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
 sudo(); /* Invoke Admin Check Login */
 
-if (isset($_POST['add'])) {
-    /* Error Handling And Add Room */
+if (isset($_POST['Pay_Reservation'])) {
+    /* Error Handling  */
     $error = 0;
     if (isset($_POST['id']) && !empty($_POST['id'])) {
         $id = mysqli_real_escape_string($mysqli, trim($_POST['id']));
@@ -236,7 +236,6 @@ require_once("../partials/head.php");
             </section>
         </div>
         <?php require_once("../partials/footer.php"); ?>
-
     </div>
     <?php require_once("../partials/scripts.php"); ?>
 
