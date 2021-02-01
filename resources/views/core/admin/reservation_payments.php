@@ -58,7 +58,7 @@ require_once("../partials/head.php");
                     <form class="form-inline">
                     </form>
                     <div class="text-right">
-                        <a href="add_reservation_payment.php" class="btn btn-primary" >Add Reservation Payment</a>
+                        <a href="add_reservation_payment.php" class="btn btn-primary">Add Reservation Payment</a>
                     </div>
                     <hr>
                     <div class="col-12">
@@ -89,6 +89,62 @@ require_once("../partials/head.php");
                                         <td><?php echo $payments->payment_means; ?></td>
                                         <td><?php echo date('d M Y', strtotime($payments->created_at)); ?></td>
                                         <td>
+                                            <a class="badge badge-success" data-toggle="modal" href="#receipt-<?php echo $payments->id; ?>">Print Receipt</a>
+                                            <!-- Print Receipt -->
+                                            <div class="modal fade" id="receipt-<?php echo $payments->id; ?>">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <div id="Print_Receipt" class="invoice p-3 mb-3">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <h4 class="text-center">
+                                                                            <img height="100" width="200" src="../public/uploads/sys_logo/logo.png" class="img-thumbnail img-fluid" alt="System Logo">
+                                                                            <br>
+                                                                            <small class="float-right">Date: <?php echo date('d M Y');?></small>
+                                                                        </h4>
+                                                                        <h4>
+                                                                        Kea Hotels Inc
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-12 table-responsive">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Customer Name</th>
+                                                                                    <th>Amount Paid</th>
+                                                                                    <th>Service Paid</th>
+                                                                                    <th>Payment Means</th>
+                                                                                    <th>Payment Code</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td><?php echo $payments->cust_name;?></td>
+                                                                                    <td>Ksh <?php echo $payments->amt;?></td>
+                                                                                    <td><?php echo $payments->service_paid;?></td>
+                                                                                    <td><?php echo $payments->payment_means;?></td>
+                                                                                    <td><?php echo $payments->code;?></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            
+                                                            <button id="print" onclick="printContent('Print_Receipt');"  type="button" class="btn btn-primary" >Print</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Print Receipt -->
                                             <a class="badge badge-danger" data-toggle="modal" href="#delete-<?php echo $payments->id; ?>">Delete</a>
                                             <!-- Delete Confirmation -->
                                             <div class="modal fade" id="delete-<?php echo $payments->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,6 +166,7 @@ require_once("../partials/head.php");
                                                 </div>
                                             </div>
                                             <!-- End Confirmation -->
+
                                         </td>
                                     </tr>
                                 <?php
