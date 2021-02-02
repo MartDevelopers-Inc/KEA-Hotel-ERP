@@ -39,8 +39,8 @@
         tags: true,
     });
 </script>
-<!-- Room Details Async Function -->
 <script>
+/* Room Details Asyc */
     function getRoomDetails(val) {
         $.ajax({
 
@@ -75,6 +75,32 @@
             }
         });
 
+    }
+
+    function getStaffDetails(val) {
+        $.ajax({
+
+            type: "POST",
+            url: "../partials/ajax.php",
+            data: 'StaffNumber=' + val,
+            success: function(data) {
+                //alert(data);
+                $('#StaffID').val(data);
+            }
+        });
+
+        $.ajax({
+
+            type: "POST",
+            url: "../partials/ajax.php",
+            data: 'StaffID=' + val,
+            success: function(data) {
+                //alert(data);
+                $('#StaffName').val(data);
+            }
+        });
+
+        
     }
 </script>
 <!-- Print Contents In A Div  -->
