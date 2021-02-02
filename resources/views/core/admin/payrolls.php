@@ -170,7 +170,7 @@ require_once("../partials/head.php");
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Staffs </h1>
+                            <h1>Payrolls </h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -202,6 +202,70 @@ require_once("../partials/head.php");
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <form method="POST" enctype="multipart/form-data">
+                                        <div class="form-row mb-4">
+                                            <div style="display:none" class="form-group col-md-6">
+                                                <label for="inputEmail4">Payroll Id</label>
+                                                <input type="text" name="id" value="<?php echo $payroll_id; ?>" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Payroll Code</label>
+                                                <input type="text" name="code" value="<?php echo $a; ?>-<?php echo $b; ?>" class="form-control">
+                                            </div>
+                                            <!-- Ajax Staff Number To Give Me Staff ID AND Name -->
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Staff Number</label>
+                                                <select class='form-control' onchange="getStaffDetails(this.value);" id="StaffNumber">
+                                                    <option selected>Select Staff Number</option>
+                                                    <?php
+                                                    $ret = "SELECT * FROM `staffs`  ORDER BY `staffs`.`name` ASC ";
+                                                    $stmt = $mysqli->prepare($ret);
+                                                    $stmt->execute(); //ok
+                                                    $res = $stmt->get_result();
+                                                    while ($staff = $res->fetch_object()) {
+                                                    ?>
+                                                        <option><?php echo $staff->number; ?></option>
+                                                    <?php
+                                                    } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Staff Name</label>
+                                                <input type="text" name="staff_name" id="StaffName"   class="form-control">
+                                                <input type="text" name="staff_id" id="StaffID" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row mb-4">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Month</label>
+                                                <select class='form-control' name="month" id="">
+                                                    <option selected>Select Month</option>
+                                                    <option>January</option>
+                                                    <option>February</option>
+                                                    <option>March</option>
+                                                    <option>April</option>
+                                                    <option>May</option>
+                                                    <option>June</option>
+                                                    <option>July</option>
+                                                    <option>August</option>
+                                                    <option>September</option>
+                                                    <option>Octomber</option>
+                                                    <option>November</option>
+                                                    <option>December</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Salary</label>
+                                                <input required type="text" name="salary" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" name="Add_Payroll" class="btn btn-warning mt-3">Generate Payroll</button>
+                                        </div>
+                                    </form>
 
                                 </div>
                                 <div class="modal-footer justify-content-between">
@@ -214,7 +278,7 @@ require_once("../partials/head.php");
 
                     <hr>
                     <div class="col-12">
-                        <table id="dt-1" class="table table-border table-hover">
+                        <table id="dt-1" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Code</th>
@@ -243,19 +307,19 @@ require_once("../partials/head.php");
                                         <td><?php echo $payrolls->staff_name; ?></td>
                                         <td><?php echo date('d M Y g:i', strtotime($payrolls->created_at)); ?></td>
                                         <td>
-                                            <a class="badge badge-primary" data-toggle="modal" href="#view_<?php echo $payrolls->id; ?>">View</a>
+                                            <a class="badge badge-success" data-toggle="modal" href="#view_<?php echo $payrolls->id; ?>">View</a>
                                             <!-- View Modal -->
-                                            <div class="modal fade" id="receipt-<?php echo $payrolls->id; ?>">
+                                            <div class="modal fade" id="view_<?php echo $payrolls->id; ?>">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
-                                                            <div id="Print_Receipt" class="invoice p-3 mb-3">
+                                                            <div id="Print_Payroll" class="invoice p-3 mb-3">
                                                                 <div class="row">
                                                                     <div class="col-12 ">
                                                                         <h4 class="text-center">
                                                                             <img height="100" width="200" src="../public/uploads/sys_logo/logo.png" class="img-thumbnail img-fluid" alt="System Logo">
                                                                             <br>
-                                                                            <small class="float-right">Date: <?php echo date('d M Y'); ?></small>
+                                                                            <small class="float-right">Generated On: <?php echo date('d M Y', strtotime($payrolls->created_at)); ?></small>
                                                                         </h4>
                                                                         <h4>
                                                                             Kea Hotels Inc Staff Payroll
@@ -268,20 +332,18 @@ require_once("../partials/head.php");
                                                                         <table class="table">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <th>Customer Name</th>
+                                                                                    <th>Payroll Code No.</th>
+                                                                                    <th>Staff Name</th>
                                                                                     <th>Amount Paid</th>
-                                                                                    <th>Service Paid</th>
-                                                                                    <th>Payment Means</th>
-                                                                                    <th>Payment Code</th>
+                                                                                    <th>Month Paid</th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
                                                                                 <tr>
-                                                                                    <td><?php echo $payments->cust_name; ?></td>
-                                                                                    <td>Ksh <?php echo $payments->amt; ?></td>
-                                                                                    <td><?php echo $payments->service_paid; ?></td>
-                                                                                    <td><?php echo $payments->payment_means; ?></td>
-                                                                                    <td><?php echo $payments->code; ?></td>
+                                                                                    <td><?php echo $payrolls->code; ?></td>
+                                                                                    <td><?php echo $payrolls->staff_name; ?></td>
+                                                                                    <td>Ksh <?php echo $payrolls->salary; ?></td>
+                                                                                    <td><?php echo $payrolls->month; ?></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -293,7 +355,7 @@ require_once("../partials/head.php");
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                                                            <button id="print" onclick="printContent('Print_Receipt');" type="button" class="btn btn-primary">Print</button>
+                                                            <button id="print" onclick="printContent('Print_Payroll');" type="button" class="btn btn-primary">Print</button>
                                                         </div>
                                                     </div>
                                                 </div>
