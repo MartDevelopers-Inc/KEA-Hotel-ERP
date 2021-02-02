@@ -23,7 +23,7 @@ if (isset($_POST['Add_Payroll'])) {
     }
 
     if (isset($_POST['month']) && !empty($_POST['month'])) {
-        $month = mysqli_real_escape_string($mysqli, trim($_POST['number']));
+        $month = mysqli_real_escape_string($mysqli, trim($_POST['month']));
     } else {
         $error = 1;
         $err = "Payment Month  Cannot Be Empty";
@@ -48,6 +48,13 @@ if (isset($_POST['Add_Payroll'])) {
     } else {
         $error = 1;
         $err = "Salary Cannot Be Empty";
+    }
+
+    if (isset($_POST['month']) && !empty($_POST['month'])) {
+        $month = mysqli_real_escape_string($mysqli, trim($_POST['month']));
+    } else {
+        $error = 1;
+        $err = "Month Cannot Be Empty";
     }
 
 
@@ -95,24 +102,10 @@ if (isset($_POST['Update_Payroll'])) {
     }
 
     if (isset($_POST['month']) && !empty($_POST['month'])) {
-        $month = mysqli_real_escape_string($mysqli, trim($_POST['number']));
+        $month = mysqli_real_escape_string($mysqli, trim($_POST['month']));
     } else {
         $error = 1;
         $err = "Payment Month  Cannot Be Empty";
-    }
-
-    if (isset($_POST['staff_id']) && !empty($_POST['staff_id'])) {
-        $staff_id = mysqli_real_escape_string($mysqli, trim($_POST['staff_id']));
-    } else {
-        $error = 1;
-        $err = "Staff ID cannot Be Empty";
-    }
-
-    if (isset($_POST['staff_name']) && !empty($_POST['staff_name'])) {
-        $staff_name = mysqli_real_escape_string($mysqli, trim($_POST['staff_name']));
-    } else {
-        $error = 1;
-        $err = "Staff Name Cannot Be Empty";
     }
 
     if (isset($_POST['salary']) && !empty($_POST['salary'])) {
@@ -206,7 +199,7 @@ require_once("../partials/head.php");
                                         <div class="form-row mb-4">
                                             <div style="display:none" class="form-group col-md-6">
                                                 <label for="inputEmail4">Payroll Id</label>
-                                                <input type="text" name="id" value="<?php echo $payroll_id; ?>" class="form-control">
+                                                <input type="text" name="id" value="<?php echo $ID; ?>" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-row mb-4">
@@ -233,8 +226,8 @@ require_once("../partials/head.php");
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputEmail4">Staff Name</label>
-                                                <input type="text" name="staff_name" id="StaffName"   class="form-control">
-                                                <input type="text" name="staff_id" id="StaffID" class="form-control">
+                                                <input type="text" name="staff_name" id="StaffName" class="form-control">
+                                                <input type="hidden" name="staff_id" id="StaffID" class="form-control">
                                             </div>
                                         </div>
 
@@ -367,13 +360,49 @@ require_once("../partials/head.php");
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Update <?php echo $payrolls->code; ?></h4>
+                                                            <h4 class="modal-title">Update <?php echo $payrolls->staff_name; ?> <?php echo $payrolls->month; ?> Payroll.</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
+                                                            <form method="POST" enctype="multipart/form-data">
+                                                                <div class="form-row mb-4">
+                                                                    <div class="form-group col-md-12">
+                                                                        <label for="inputEmail4">Payroll Code</label>
+                                                                        <input type="text" name="code" value="<?php echo $payrolls->code; ?>" class="form-control">
+                                                                        <input type="hidden" name="id" value="<?php echo $payrolls->id; ?>" class="form-control">
 
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-row mb-4">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="inputEmail4">Month</label>
+                                                                        <select class='form-control' name="month" id="">
+                                                                            <option selected><?php echo $payrolls->month; ?></option>
+                                                                            <option>January</option>
+                                                                            <option>February</option>
+                                                                            <option>March</option>
+                                                                            <option>April</option>
+                                                                            <option>May</option>
+                                                                            <option>June</option>
+                                                                            <option>July</option>
+                                                                            <option>August</option>
+                                                                            <option>September</option>
+                                                                            <option>Octomber</option>
+                                                                            <option>November</option>
+                                                                            <option>December</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="inputEmail4">Salary</label>
+                                                                        <input required type="text" value="<?php echo $payrolls->salary; ?>" name="salary" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="text-right">
+                                                                    <button type="submit" name="Update_Payroll" class="btn btn-warning mt-3">Update Payroll</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
