@@ -78,7 +78,7 @@ if (isset($_POST['Add_Payroll'])) {
 }
 
 if (isset($_POST['Update_Payroll'])) {
-    /* Error Handling And Update Room */
+    /* Error Handling */
     $error = 0;
     if (isset($_POST['id']) && !empty($_POST['id'])) {
         $id = mysqli_real_escape_string($mysqli, trim($_POST['id']));
@@ -137,8 +137,8 @@ if (isset($_POST['Update_Payroll'])) {
     }
 }
 
-if (isset($_GET['delete'])) {
-    $delete = $_GET['delete'];
+if (isset($_GET['Delete'])) {
+    $delete = $_GET['Delete'];
     $adn = "DELETE FROM payrolls WHERE id =?";
     $stmt = $mysqli->prepare($adn);
     $stmt->bind_param('s', $delete);
@@ -176,7 +176,8 @@ require_once("../partials/head.php");
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Staffs</li>
+                                <li class="breadcrumb-item"><a href="">HRM</a></li>
+                                <li class="breadcrumb-item active">Payrolls</li>
                             </ol>
                         </div>
                     </div>
@@ -188,8 +189,7 @@ require_once("../partials/head.php");
                     <form class="form-inline">
                     </form>
                     <div class="text-right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import_modal">Import Staff Records</button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Add Staff</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Add Payroll</button>
                     </div>
                     <!-- Add  Modal -->
                     <div class="modal fade" id="add_modal">
@@ -202,44 +202,7 @@ require_once("../partials/head.php");
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" enctype="multipart/form-data">
-                                        <div class="form-row mb-4">
-                                            <div style="display:none" class="form-group col-md-6">
-                                                <label for="inputEmail4">Id</label>
-                                                <input type="text" name="id" value="<?php echo $ID; ?>" class="form-control">
-                                            </div>
-                                        </div>
 
-                                        <div class="form-row mb-4">
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Staff Number</label>
-                                                <input type="text" name="number" value="<?php echo $a; ?>-<?php echo $b; ?>" class="form-control">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Full Name</label>
-                                                <input required type="text" name="name" class="form-control">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Mobile Phone Number</label>
-                                                <input required type="text" name="phone" class="form-control">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Email Address</label>
-                                                <input required type="text" name="email" class="form-control">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Address</label>
-                                                <input required type="text" name="adr" class="form-control">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Password</label>
-                                                <input required type="text" name="password" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="text-right">
-                                            <button type="submit" name="Add_Staff" class="btn btn-warning mt-3">Submit</button>
-                                        </div>
-                                    </form>
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -249,126 +212,106 @@ require_once("../partials/head.php");
                     </div>
                     <!-- End  Modal -->
 
-                    <!-- Import Modal -->
-                    <div class="modal fade" id="import_modal">
-                        <div class="modal-dialog  modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="text-center">
-                                        Allowed file types: XLS, XLSX.
-                                        <a class="text-primary" target="_blank" href="../public/templates/Staff.xlsx">Download</a> A Sample File.
-                                    </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post" enctype="multipart/form-data" role="form">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="form-group col-md-12">
-                                                    <label for="exampleInputFile">Select File</label>
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input required name="file" accept=".xls,.xlsx" type="file" class="custom-file-input" id="exampleInputFile">
-                                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="text-right">
-                                            <button type="submit" name="upload" class="btn btn-primary">Upload File</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Import -->
                     <hr>
                     <div class="col-12">
-                        <table id="dt-1" class="table table-bordered table-hover">
+                        <table id="dt-1" class="table table-border table-hover">
                             <thead>
                                 <tr>
-                                    <th>Staff Number</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone No</th>
-                                    <th>Address</th>
+                                    <th>Code</th>
+                                    <th>Month</th>
+                                    <th>Amount</th>
+                                    <th>Staff Name</th>
+                                    <th>Generated At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <?php
-                                $ret = "SELECT * FROM `staffs`  ORDER BY `staffs`.`name` ASC ";
+                                $ret = "SELECT * FROM `payrolls` ";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
-                                while ($staff = $res->fetch_object()) {
+                                while ($payrolls = $res->fetch_object()) {
                                 ?>
                                     <tr>
-                                        <td><?php echo $staff->number; ?></td>
-                                        <td><?php echo $staff->name; ?></td>
-                                        <td><?php echo $staff->email; ?></td>
-                                        <td><?php echo $staff->phone; ?></td>
-                                        <td><?php echo $staff->adr; ?></td>
                                         <td>
+                                            <?php echo $payrolls->code; ?>
+                                        </td>
+                                        <td><?php echo $payrolls->month; ?></td>
+                                        <td>Ksh <?php echo $payrolls->salary; ?></td>
+                                        <td><?php echo $payrolls->staff_name; ?></td>
+                                        <td><?php echo date('d M Y g:i', strtotime($payrolls->created_at)); ?></td>
+                                        <td>
+                                            <a class="badge badge-primary" data-toggle="modal" href="#view_<?php echo $payrolls->id; ?>">View</a>
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="receipt-<?php echo $payrolls->id; ?>">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <div id="Print_Receipt" class="invoice p-3 mb-3">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <h4 class="text-center">
+                                                                            <img height="100" width="200" src="../public/uploads/sys_logo/logo.png" class="img-thumbnail img-fluid" alt="System Logo">
+                                                                            <br>
+                                                                            <small class="float-right">Date: <?php echo date('d M Y'); ?></small>
+                                                                        </h4>
+                                                                        <h4>
+                                                                            Kea Hotels Inc Staff Payroll
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
 
-                                            <a class="badge badge-primary" data-toggle="modal" href="#update_<?php echo $staff->id; ?>">Update</a>
+                                                                <div class="row">
+                                                                    <div class="col-12 table-responsive">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Customer Name</th>
+                                                                                    <th>Amount Paid</th>
+                                                                                    <th>Service Paid</th>
+                                                                                    <th>Payment Means</th>
+                                                                                    <th>Payment Code</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td><?php echo $payments->cust_name; ?></td>
+                                                                                    <td>Ksh <?php echo $payments->amt; ?></td>
+                                                                                    <td><?php echo $payments->service_paid; ?></td>
+                                                                                    <td><?php echo $payments->payment_means; ?></td>
+                                                                                    <td><?php echo $payments->code; ?></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                                            <button id="print" onclick="printContent('Print_Receipt');" type="button" class="btn btn-primary">Print</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <a class="badge badge-primary" data-toggle="modal" href="#update_<?php echo $payrolls->id; ?>">Update</a>
                                             <!-- Update Modal -->
-                                            <div class="modal fade" id="update_<?php echo $staff->id; ?>">
+                                            <div class="modal fade" id="update_<?php echo $payrolls->id; ?>">
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Update <?php echo $staff->name; ?> Details</h4>
+                                                            <h4 class="modal-title">Update <?php echo $payrolls->code; ?></h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form method="POST" enctype="multipart/form-data">
-                                                                <div class="form-row mb-4">
-                                                                    <div style="display:none" class="form-group col-md-6">
-                                                                        <label for="inputEmail4">Id</label>
-                                                                        <input type="text" name="id" value="<?php echo $staff->id; ?>" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-row mb-4">
-                                                                    <div class="form-group col-md-6">
-                                                                        <label for="inputEmail4">Staff Number</label>
-                                                                        <input type="text" name="number" value="<?php echo $staff->number; ?>" class="form-control">
-                                                                    </div>
-                                                                    <div class="form-group col-md-6">
-                                                                        <label for="inputEmail4">Full Name</label>
-                                                                        <input required type="text" value="<?php echo $staff->name; ?>" name="name" class="form-control">
-                                                                    </div>
-                                                                    <div class="form-group col-md-6">
-                                                                        <label for="inputEmail4">Mobile Phone Number</label>
-                                                                        <input required type="text" value="<?php echo $staff->phone; ?>" name="phone" class="form-control">
-                                                                    </div>
-                                                                    <div class="form-group col-md-6">
-                                                                        <label for="inputEmail4">Email Address</label>
-                                                                        <input required type="text" value="<?php echo $staff->email; ?>" name="email" class="form-control">
-                                                                    </div>
 
-                                                                    <div class="form-group col-md-6">
-                                                                        <label for="inputEmail4">Address</label>
-                                                                        <input required type="text" value="<?php echo $staff->adr; ?>"" name=" adr" class="form-control">
-                                                                    </div>
-                                                                    <div class="form-group col-md-6">
-                                                                        <label for="inputEmail4">Password</label>
-                                                                        <input required type="text" name="password" class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="text-right">
-                                                                    <button type="submit" name="Update_Staff" class="btn btn-warning mt-3">Submit</button>
-                                                                </div>
-                                                            </form>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -377,9 +320,9 @@ require_once("../partials/head.php");
                                                 </div>
                                             </div>
 
-                                            <a class="badge badge-danger" data-toggle="modal" href="#delete_<?php echo $staff->id; ?>">Delete</a>
+                                            <a class="badge badge-danger" data-toggle="modal" href="#delete_<?php echo $payrolls->id; ?>">Delete</a>
                                             <!-- Delete Modal -->
-                                            <div class="modal fade" id="delete_<?php echo $staff->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="delete_<?php echo $payrolls->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -389,20 +332,18 @@ require_once("../partials/head.php");
                                                             </button>
                                                         </div>
                                                         <div class="modal-body text-center text-danger">
-                                                            <h4>Delete <?php echo $staff->name; ?> - <?php echo $staff->number; ?> ?</h4>
+                                                            <h4>Delete <?php echo $payrolls->staff_name; ?> Payroll ?</h4>
                                                             <br>
                                                             <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                            <a href="staffs.php?Delete_Staff=<?php echo $staff->id; ?>" class="text-center btn btn-danger"> Delete </a>
+                                                            <a href="payrolls.php?Delete=<?php echo $payrolls->id; ?>" class="text-center btn btn-danger"> Delete </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </td>
                                     </tr>
                                 <?php
                                 } ?>
-
                             </tbody>
                         </table>
                     </div>
