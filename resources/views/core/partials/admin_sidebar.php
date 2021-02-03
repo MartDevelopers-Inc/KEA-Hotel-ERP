@@ -1,9 +1,25 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="dashboard.php" class="brand-link">
-        <img src="../public/uploads/sys_logo/logo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">KEA Hotel ERP</span>
-    </a>
+    <?php
+    /* Persisit System Settings On Brand */
+    $ret = "SELECT * FROM `system_settings` ";
+    $stmt = $mysqli->prepare($ret);
+    $stmt->execute(); //ok
+    $res = $stmt->get_result();
+    while ($sys = $res->fetch_object()) {
+        /* Check For Missing Logo And Load Default */
+        if ($sys_logo = '') {
+            $logo_dir = '../public/uploads/sys_logo/logo.png';
+        } else {
+            $logo_dir = "../public/uploads/sys_logo/$sys->sys_logo";
+        }
+    ?>
+        <a href="dashboard.php" class="brand-link">
+            <img src="<?php echo $logo_dir; ?>" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light"><?php echo $sys->sys_name; ?></span>
+        </a>
+    <?php
+    } ?>
 
     <!-- Sidebar -->
     <div class="sidebar">

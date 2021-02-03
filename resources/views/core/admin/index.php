@@ -25,9 +25,26 @@ require_once('../partials/head.php');
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
-            <img class="img-fluid" src="../public/uploads/sys_logo/logo.png" alt="">
-        </div>
+        <?php
+        /* Persist System Settings */
+        $ret = "SELECT * FROM `system_settings` ";
+        $stmt = $mysqli->prepare($ret);
+        $stmt->execute(); //ok
+        $res = $stmt->get_result();
+        while ($sys = $res->fetch_object()) {
+            /* Check For Missing Logo And Load Default */
+            if ($sys_logo = '') {
+                $logo_dir = '../public/uploads/sys_logo/logo.png';
+            } else {
+                $logo_dir = "../public/uploads/sys_logo/$sys->sys_logo";
+            }
+        ?>
+            <div class="login-logo">
+                <!-- Adjust This Dimensions To Fit Your Logo -->
+                <img class="img-fluid" height="100" width="150" src="<?php echo $logo_dir; ?>" alt="">
+            </div>
+        <?php
+        } ?>
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign In</p>
