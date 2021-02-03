@@ -299,7 +299,7 @@ require_once("../partials/head.php");
                                                                             </thead>
                                                                             <tbody>
                                                                                 <tr>
-                                                                                    <td><?php echo $asset->details; ?></td>
+                                                                                    <td class="text-center"><?php echo $asset->details; ?></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -331,7 +331,7 @@ require_once("../partials/head.php");
                                                                 <div class="form-row mb-4">
                                                                     <div style="display:none" class="form-group col-md-6">
                                                                         <label for="inputEmail4">Id</label>
-                                                                        <input type="text" name="id" value="<?php echo $asset; ?>" class="form-control">
+                                                                        <input type="text" name="id" value="<?php echo $asset->id; ?>" class="form-control">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-row mb-4">
