@@ -271,7 +271,7 @@ require_once("../partials/head.php");
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Top Reserved Rooms</h3>
+                                    <h3 class="card-title">Recent Payments</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
@@ -291,45 +291,36 @@ require_once("../partials/head.php");
                                                             Code
                                                         </th>
                                                         <th>
-                                                            Type
+                                                            Amount
                                                         </th>
                                                         <th>
-                                                            Price
+                                                            Service Paid
                                                         </th>
                                                         <th>
-                                                            Times Reserved
+                                                            Paid On
                                                         </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $ret = "SELECT  * FROM `rooms` ORDER BY RAND() LIMIT 5 ";
+                                                    $ret = "SELECT  * FROM `payments`  ORDER BY `payments`.`created_at` DESC  LIMIT 5 ";
                                                     $stmt = $mysqli->prepare($ret);
                                                     $stmt->execute(); //ok
                                                     $res = $stmt->get_result();
-                                                    while ($row = $res->fetch_object()) {
+                                                    while ($payments = $res->fetch_object()) {
                                                     ?>
                                                         <tr>
                                                             <td>
-                                                                <div class="td-content"><span class="badge badge-success"><?php echo $row->number; ?></span></div>
+                                                                <div class="td-content"><span class="badge badge-success"><?php echo $payments->code; ?></span></div>
                                                             </td>
                                                             <td>
-                                                                <?php echo $row->type; ?>
+                                                            Ksh <?php echo $payments->amt; ?>
                                                             </td>
                                                             <td>
-                                                                Ksh <?php echo $row->price; ?>
+                                                                 <?php echo $payments->service_paid; ?>
                                                             </td>
                                                             <td>
-                                                                <?php
-                                                                $room = $row->id;
-                                                                $query = "SELECT COUNT(*) FROM `reservations` WHERE room_id = '$room' ";
-                                                                $stmt = $mysqli->prepare($query);
-                                                                $stmt->execute();
-                                                                $stmt->bind_result($rooms_count);
-                                                                $stmt->fetch();
-                                                                $stmt->close();
-                                                                ?>
-                                                                <span class="text-center badge bg-primary"><?php echo $rooms_count; ?> </span>
+                                                                <span class="text-center badge bg-primary"><?php echo date('d M Y g:ia', strtotime($payments->created_at)); ?> </span>
                                                             </td>
                                                         </tr>
                                                     <?php } ?>
