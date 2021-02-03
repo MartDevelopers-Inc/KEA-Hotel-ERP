@@ -110,7 +110,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="inventory_rooms.php" class="nav-link">
+                            <a href="rooms.php" class="nav-link">
                                 <i class="fas fa-angle-right nav-icon"></i>
                                 <p>Rooms</p>
                             </a>
