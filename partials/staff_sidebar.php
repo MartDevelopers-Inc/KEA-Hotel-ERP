@@ -77,6 +77,25 @@
                     </a>
                 </li>
 
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            HRM
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="payrolls.php" class="nav-link">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>Payrolls</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
                 <li class="nav-item">
                     <a href="room_service.php" class="nav-link">
                         <i class="nav-icon fas fa-person-booth"></i>

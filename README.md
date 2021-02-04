@@ -35,7 +35,7 @@ Password : demo
 
 Staff Login Credentials
 Email    : janedoe@kerp.org
-Password : demo
+Password : 123
 ```
 
 
