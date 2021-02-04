@@ -16,21 +16,21 @@ if (isset($_POST['Pay_Reservation'])) {
     }
 
     if (isset($_POST['code']) && !empty($_POST['code'])) {
-        $code = mysqli_real_escape_string($mysqli, trim($_POST['number']));
+        $code = mysqli_real_escape_string($mysqli, trim($_POST['code']));
     } else {
         $error = 1;
         $err = "Payment Code  Cannot Be Empty";
     }
 
     if (isset($_POST['payment_means']) && !empty($_POST['payment_means'])) {
-        $type = mysqli_real_escape_string($mysqli, trim($_POST['payment_means']));
+        $payment_means = mysqli_real_escape_string($mysqli, trim($_POST['payment_means']));
     } else {
         $error = 1;
         $err = "Payment Means Cannot Be Empty";
     }
 
     if (isset($_POST['amt']) && !empty($_POST['amt'])) {
-        $amt = mysqli_real_escape_string($mysqli, trim($_POST['price']));
+        $amt = mysqli_real_escape_string($mysqli, trim($_POST['amt']));
     } else {
         $error = 1;
         $err = "Amout Paid Cannot Be Empty";

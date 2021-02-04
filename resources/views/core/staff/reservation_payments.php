@@ -3,23 +3,9 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
-sudo(); /* Invoke Admin Check Login */
+staff(); /* Invoke  Check Login */
 
-if (isset($_GET['delete'])) {
-    /* Delete Reservation Payment */
-    $id = $_GET['delete'];
-    $adn = "DELETE FROM payments WHERE id =?";
-    $stmt = $mysqli->prepare($adn);
-    $stmt->bind_param('s', $id);
-    $stmt->execute();
-    $stmt->close();
-    if ($stmt) {
-        $success = "Deleted" && header("refresh:1; url=reservation_payments.php");
-    } else {
-        //inject alert that task failed
-        $info = "Please Try Again Or Try Later";
-    }
-}
+
 require_once("../partials/head.php");
 ?>
 
@@ -30,7 +16,7 @@ require_once("../partials/head.php");
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <?php require_once("../partials/admin_sidebar.php"); ?>
+        <?php require_once("../partials/staff_sidebar.php"); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -145,28 +131,6 @@ require_once("../partials/head.php");
                                                 </div>
                                             </div>
                                             <!-- Print Receipt -->
-                                            <a class="badge badge-danger" data-toggle="modal" href="#delete-<?php echo $payments->id; ?>">Delete</a>
-                                            <!-- Delete Confirmation -->
-                                            <div class="modal fade" id="delete-<?php echo $payments->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">CONFIRM</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body text-center text-danger">
-                                                            <h4>Delete <?php echo $payments->cust_name; ?> Room Reservation Payment Record ?</h4>
-                                                            <br>
-                                                            <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                            <a href="reservation_payments.php?delete=<?php echo $payments->id; ?>" class="text-center btn btn-danger"> Delete </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Confirmation -->
-
                                         </td>
                                     </tr>
                                 <?php

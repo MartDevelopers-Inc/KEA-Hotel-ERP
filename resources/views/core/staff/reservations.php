@@ -3,7 +3,7 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
-sudo(); /* Invoke Admin Check Login */
+staff(); /* Invoke  Check Login */
 
 if (isset($_POST['Add_Reservation'])) {
     /* Error Handling And Add Room */
