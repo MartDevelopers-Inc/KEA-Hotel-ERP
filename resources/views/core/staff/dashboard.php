@@ -14,7 +14,7 @@ require_once("../partials/head.php");
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <?php require_once('../partials/admin_sidebar.php'); ?>
+        <?php require_once('../partials/staff_sidebar.php'); ?>
 
         <div class="content-wrapper">
             <div class="content-header">
