@@ -3,7 +3,7 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
-sudo(); /* Invoke Admin Check Login */
+staff(); /* Invoke  Check Login */
 
 if (isset($_POST['add_asset'])) {
     /* Error Handling  */
@@ -124,20 +124,6 @@ if (isset($_POST['Update_Asset'])) {
 }
 
 
-if (isset($_GET['Delete'])) {
-    $id = $_GET['Delete'];
-    $adn = "DELETE FROM assets WHERE id =?";
-    $stmt = $mysqli->prepare($adn);
-    $stmt->bind_param('s', $id);
-    $stmt->execute();
-    $stmt->close();
-    if ($stmt) {
-        $success = "Deleted" && header("refresh:1; url=inventory_assets.php");
-    } else {
-        $info = "Please Try Again Or Try Later";
-    }
-}
-
 require_once("../partials/head.php");
 ?>
 
@@ -148,7 +134,7 @@ require_once("../partials/head.php");
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <?php require_once("../partials/admin_sidebar.php"); ?>
+        <?php require_once("../partials/staff_sidebar.php"); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -363,26 +349,6 @@ require_once("../partials/head.php");
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a class="badge badge-danger" data-toggle="modal" href="#delete_<?php echo $asset->id; ?>">Delete</a>
-                                            <!-- Delete Asset -->
-                                            <div class="modal fade" id="delete_<?php echo $asset->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">CONFIRM</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body text-center text-danger">
-                                                            <h4>Delete <?php echo $asset->name; ?> Record ?</h4>
-                                                            <br>
-                                                            <button type="button" class="text-center btn btn-success" data-dismiss="modal">No</button>
-                                                            <a href="inventory_assets.php?Delete=<?php echo $asset->id; ?>" class="text-center btn btn-danger"> Delete </a>
                                                         </div>
                                                     </div>
                                                 </div>

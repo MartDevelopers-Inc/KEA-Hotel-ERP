@@ -3,7 +3,7 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
-sudo(); /* Invoke Admin Check Login */
+sudo(); /* Invoke  Check Login */
 require_once("../partials/head.php");
 ?>
 
@@ -14,7 +14,7 @@ require_once("../partials/head.php");
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <?php require_once("../partials/admin_sidebar.php"); ?>
+        <?php require_once("../partials/staff_sidebar.php"); ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
