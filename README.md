@@ -5,6 +5,9 @@
 KEA -Hotel-ERP is a software solution tool developed for  Hotel management and designed for hoteliers to manage their operations in an effective way. It helps hotelier to manage hotel billing system, reservation system, online hotel booking system,
 room status and much more in a single software. KEA-Hotel-ERP is accessible, powerful, and provides tools required for large, robust hotel management.
 
+<p align="center"><img src="https://raw.githubusercontent.com/MartDevelopers-Inc/KEA-Hotel-ERP/master/1.png" width="400"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/MartDevelopers-Inc/KEA-Hotel-ERP/master/2.png" width="400"></p>
+
 ###  Modules 
 ```
 1. Reservation Center
