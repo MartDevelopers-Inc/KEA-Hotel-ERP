@@ -156,6 +156,36 @@ if (isset($_POST['ContactsCustomizations'])) {
     }
 }
 
+/* About Settings */
+if (isset($_POST['AboutCustomization'])) {
+    //Error Handling and prevention of posting double entries
+    if (isset($_POST['sys_id']) && !empty($_POST['sys_id'])) {
+        $sys_id = mysqli_real_escape_string($mysqli, trim($_POST['sys_id']));
+    } else {
+        $error = 1;
+        $err = "System ID Cannot Be Empty";
+    }
+
+    if (isset($_POST['contact_about']) && !empty($_POST['contact_about'])) {
+        $contact_about  = mysqli_real_escape_string($mysqli, trim($_POST['contact_about']));
+    } else {
+        $error = 1;
+        $err = "About Content Cannot Be Empty";
+    }
+
+   
+    if (!$error) {
+        $query = "UPDATE system_settings SET  contact_about = ? WHERE sys_id = ?";
+        $stmt = $mysqli->prepare($query);
+        $rc = $stmt->bind_param('ss',  $contact_about, $sys_id);
+        $stmt->execute();
+        if ($stmt) {
+            $success = "Settings" && header("refresh:1; url=settings.php");
+        } else {
+            $info = "Please Try Again Or Try Later";
+        }
+    }
+}
 
 require_once('../partials/head.php');
 ?>
@@ -205,6 +235,10 @@ require_once('../partials/head.php');
 
                                             <li class="nav-item">
                                                 <a class="nav-link " id="custom-content-below-home-tab" data-toggle="pill" href="#contact_details" role="tab" aria-controls="custom-content-below-home-page" aria-selected="true">Contact</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link " id="custom-content-below-home-tab" data-toggle="pill" href="#about" role="tab" aria-controls="custom-content-below-home-page" aria-selected="true">About</a>
                                             </li>
                                         </ul>
 
@@ -342,8 +376,39 @@ require_once('../partials/head.php');
                                                 <?php
                                                 } ?>
                                             </div>
-                                        </div>
 
+                                            <div class="tab-pane fade show " id="about" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+                                                <br>
+                                                <?php
+                                                /* Persisit System Settings On Brand */
+                                                $ret = "SELECT * FROM `system_settings` ";
+                                                $stmt = $mysqli->prepare($ret);
+                                                $stmt->execute(); //ok
+                                                $res = $stmt->get_result();
+                                                while ($sys = $res->fetch_object()) {
+                                                ?>
+                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-12">
+                                                                    <!-- Sys Id -->
+                                                                    <input type="hidden" required name="sys_id" value="<?php echo $sys->sys_id; ?>" class="form-control">
+                                                                </div>
+
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="">About</label>
+                                                                    <textarea type="text" rows="10" required name="contact_about" class="form-control"><?php echo $sys->contacts_about;?></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-right">
+                                                            <button type="submit" name="AboutCustomization" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                <?php
+                                                } ?>
+                                            </div>
+                                        </div>
                                        
                                     </div>
                                 </div>

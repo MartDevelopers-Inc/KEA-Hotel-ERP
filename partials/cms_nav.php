@@ -5,10 +5,9 @@
 
         <nav class="main_nav">
             <ul class="d-flex flex-row align-items-center justify-content-start">
-                <li class="active"><a href="index.php">Home</a></li>
+                <li class=""><a href="index.php">Home</a></li>
                 <li><a href="about.php">About us</a></li>
                 <li><a href="rooms.php">Rooms</a></li>
-                <li><a href="contact.php">Contact</a></li>
                 <li><a href="staff/">Staff Portal</a></li>
 
             </ul>
@@ -61,7 +60,6 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About us</a></li>
                 <li><a href="rooms.php">Rooms</a></li>
-                <li><a href="contact.php">Contact</a></li>
                 <li><a href="staff/">Staff Portal</a></li>
             </ul>
         </nav>

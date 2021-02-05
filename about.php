@@ -11,82 +11,45 @@ while ($sys = $res->fetch_object()) {
     } else {
         $logo_dir = "public/uploads/sys_logo/$sys->sys_logo";
     }
-    require_once('partials/cms_head.php');
-?>
+    require_once('partials/cms_head.php'); ?>
 
     <body>
         <div class="super_container">
+
             <?php require_once("partials/cms_nav.php"); ?>
+
+
             <div class="home">
                 <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="public/cms_assets/images/home.jpg" data-speed="0.8"></div>
                 <div class="home_container d-flex flex-column align-items-center justify-content-center">
                     <div class="home_title">
-                        <h1><?php echo $sys->sys_name; ?></h1>
+                        <h1>About Us</h1>
                     </div>
-                    <div class="home_text text-center">
-                        <?php echo $sys->sys_tagline; ?>
-                    </div>
-                    <div class="button home_button"><a href="#">View Our Rooms</a></div>
                 </div>
             </div>
 
             <div class="intro">
                 <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="section_title text-center">
-                                <div>Welcome</div>
-                                <h1><?php echo $sys->welcome_heading; ?></h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row intro_row">
-                        <div class="col-xl-8 col-lg-10 offset-xl-2 offset-lg-1">
-                            <div class="intro_text text-center">
-                                <p>
-                                    <?php echo $sys->welcome_content; ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row gallery_row">
-                        <div class="col">
+                    <div class="row row-eq-height">
 
-                            <div class="gallery_slider_container">
-                                <div class="owl-carousel owl-theme gallery_slider">
-
-                                    <div class="gallery_slide">
-                                        <img src="public/cms_assets/images/gallery_1.jpg" alt="">
-                                        <div class="gallery_overlay">
-                                            <div class="text-center d-flex flex-column align-items-center justify-content-center">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="gallery_slide">
-                                        <img src="public/cms_assets/images/gallery_2.jpg" alt="">
-                                        <div class="public/cms_assets/gallery_overlay">
-                                            <div class="text-center d-flex flex-column align-items-center justify-content-center">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="gallery_slide">
-                                        <img src="public/cms_assets/images/gallery_3.jpg" alt="">
-                                        <div class="gallery_overlay">
-                                            <div class="text-center d-flex flex-column align-items-center justify-content-center">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="gallery_slide">
-                                        <img src="public/cms_assets/images/gallery_4.jpg" alt="">
-                                        <div class="gallery_overlay">
-                                            <div class="text-center d-flex flex-column align-items-center justify-content-center">
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="col-lg-6">
+                            <div class="intro_content">
+                                <div class="section_title">
+                                    <div><?php echo $sys->sys_name; ?></div>
+                                    <h1><?php echo $sys->sys_tagline; ?></h1>
                                 </div>
+                                <div class="intro_text">
+                                    <p>
+                                        <?php echo $sys->contact_about; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="intro_image">
+                                <div class="background_image" style="background-image:url(public/cms_assets/images/intro.jpg)"></div>
+                                <img src="public/cms_assets/images/intro.jpg" alt="">
                             </div>
                         </div>
                     </div>
@@ -135,9 +98,8 @@ while ($sys = $res->fetch_object()) {
                 </div>
             </footer>
         </div>
-        <?php require_once("partials/cms_scripts.php"); ?>
+    <?php require_once('partials/cms_scripts.php');
+} ?>
     </body>
 
     </html>
-<?php
-} ?>
