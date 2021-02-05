@@ -69,12 +69,7 @@ require_once('../partials/head.php');
                     </div>
                     <div class="row">
                         <div class="col-8">
-                            <!-- <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div> -->
+                            <a href="../admin/" class="btn btn-primary btn-block">Sign In As Admin</a>
                         </div>
                         <div class="col-4">
                             <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
@@ -82,6 +77,9 @@ require_once('../partials/head.php');
                     </div>
                 </form>
 
+                <p class="mb-1">
+                    <a href="../">Home</a>
+                </p>
                 <p class="mb-1">
                     <a href="reset_password.php">I forgot my password</a>
                 </p>

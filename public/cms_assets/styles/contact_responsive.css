@@ -1,0 +1,362 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******************************
+
+[Table of Contents]
+
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px
+11. 539px
+12. 479px
+13. 400px
+
+******************************/
+
+/************
+1. 1600px
+************/
+
+@media only screen and (max-width: 1600px)
+{
+	
+}
+
+/************
+2. 1440px
+************/
+
+@media only screen and (max-width: 1440px)
+{
+	
+}
+
+/************
+3. 1380px
+************/
+
+@media only screen and (max-width: 1380px)
+{
+	
+}
+
+/************
+3. 1280px
+************/
+
+@media only screen and (max-width: 1280px)
+{
+	
+}
+
+/************
+4. 1199px
+************/
+
+@media only screen and (max-width: 1199px)
+{
+	.header_social
+	{
+		padding-left: 30px;
+	}
+	.main_nav ul li:not(:last-of-type)
+	{
+		margin-right: 43px;
+	}
+	.header_link a
+	{
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+}
+
+/************
+4. 1100px
+************/
+
+@media only screen and (max-width: 1100px)
+{
+	
+}
+
+/************
+5. 1024px
+************/
+
+@media only screen and (max-width: 1024px)
+{
+	
+}
+
+/************
+6. 991px
+************/
+
+@media only screen and (max-width: 991px)
+{
+	.booking_container
+	{
+		height: auto;
+		padding-bottom: 30px;
+	}
+	.booking_form_inputs
+	{
+		width: 100%;
+		height: auto;
+		padding-top: 30px;
+	}
+	.booking_form_inputs > div
+	{
+		width: calc((100% - 9px) / 2);
+		margin-bottom: 9px;
+	}
+	.booking_form_button
+	{
+		width: 100%;
+		margin-left: 0;
+	}
+	.header_link
+	{
+		display: none;
+	}
+	.main_nav
+	{
+		display: none;
+	}
+	.search_panel
+	{
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.header_content 
+	{
+		height: 118px;
+	}
+	.header_social
+	{
+		display: none;
+	}
+	.home_title h1
+	{
+		font-size: 56px;
+	}
+	.home_text
+	{
+		font-size: 16px;
+	}
+	.header_right
+	{
+		height: 100%;
+		padding-right: 25px;
+		padding-top: 4px;
+	}
+	.hamburger
+	{
+		display: block;
+	}
+	.logo
+	{
+		margin-bottom: 0;
+	}
+	.logo_1
+	{
+		display: none;
+	}
+	.logo_2
+	{
+		display: inline-block;
+	}
+	.footer_col:first-child .footer_info > div
+	{
+		padding-right: 0px;
+	}
+	.footer_col:nth-child(3) .footer_info > div
+	{
+		padding-left: 0px;
+	}
+	.footer_col:not(:last-child)
+	{
+		margin-bottom: 40px;
+	}
+}
+
+/************
+7. 959px
+************/
+
+@media only screen and (max-width: 959px)
+{
+	
+}
+
+/************
+8. 880px
+************/
+
+@media only screen and (max-width: 880px)
+{
+	
+}
+
+/************
+9. 768px
+************/
+
+@media only screen and (max-width: 768px)
+{
+	
+}
+
+/************
+10. 767px
+************/
+
+@media only screen and (max-width: 767px)
+{
+	.contact_text
+	{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+/************
+11. 575px
+************/
+
+@media only screen and (max-width: 575px)
+{
+	.home
+	{
+		height: 380px;
+	}
+	.home_container
+	{
+		padding-top: 38px;
+	}
+	.booking_container
+	{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.home_title h1
+	{
+		font-size: 48px;
+	}
+	.header_content
+	{
+		height: 85px;
+	}
+	.menu_nav ul li a
+	{
+		font-size: 24px;
+	}
+	.button
+	{
+		width: 152px;
+		height: 56px;
+	}
+	.button a
+	{
+		font-size: 12px;
+		line-height: 52px;
+	}
+	.header .logo .logo_2
+	{
+		display: none;
+	}
+	.header .logo .logo_3
+	{
+		display: inline-block;
+	}
+	.logo_overlay_content,
+	.menu_overlay_content
+	{
+		width: 90px;
+		height: 90px;
+	}
+	.menu_overlay .hamburger i
+	{
+		font-size: 20px;
+	}
+	.logo_overlay_content .logo a img
+	{
+		height: 60px;
+	}
+	.section_title h1
+	{
+		margin-top: -14px;
+		font-size: 24px;
+	}
+	.section_title div
+	{
+		font-size: 92px;
+	}
+	.contact_input 
+	{
+		height: 52px;
+		margin-bottom: 18px;
+	}
+	.contact_map_content
+	{
+		width: 376px;
+		height: 341px;
+	}
+	.contact_info_logo_1
+	{
+		display: none;
+	}
+	.contact_info_logo_2
+	{
+		display: inline-block;
+	}
+	.contact_info_list
+	{
+		margin-top: 39px;
+	}
+
+}
+
+/************
+11. 539px
+************/
+
+@media only screen and (max-width: 539px)
+{
+	
+}
+
+/************
+12. 480px
+************/
+
+@media only screen and (max-width: 480px)
+{
+	
+}
+
+/************
+13. 479px
+************/
+
+@media only screen and (max-width: 479px)
+{
+	
+}
+
+/************
+14. 400px
+************/
+
+@media only screen and (max-width: 400px)
+{
+	
+}

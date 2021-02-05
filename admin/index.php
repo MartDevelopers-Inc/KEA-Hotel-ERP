@@ -82,8 +82,13 @@ require_once('../partials/head.php');
                 </form>
 
                 <p class="mb-1">
+                    <a href="../">Home</a>
+                </p>
+                
+                <p class="mb-1">
                     <a href="reset_password.php">I forgot my password</a>
                 </p>
+
             </div>
         </div>
     </div>
