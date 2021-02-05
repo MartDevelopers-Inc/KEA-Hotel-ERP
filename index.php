@@ -1,12 +1,17 @@
 <?php
 require_once('config/config.php');
-require_once('partials/cms_head.php');
 /* Persiste System Settigs On Landing Pages */
 $ret = "SELECT * FROM `system_settings` ";
 $stmt = $mysqli->prepare($ret);
 $stmt->execute(); //ok
 $res = $stmt->get_result();
 while ($sys = $res->fetch_object()) {
+    if ($sys_logo = '') {
+        $logo_dir = 'public/uploads/sys_logo/logo.png';
+    } else {
+        $logo_dir = "public/uploads/sys_logo/$sys->sys_logo";
+    }
+    require_once('partials/cms_head.php');
 ?>
 
     <body>
@@ -16,10 +21,10 @@ while ($sys = $res->fetch_object()) {
                 <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="public/cms_assets/images/home.jpg" data-speed="0.8"></div>
                 <div class="home_container d-flex flex-column align-items-center justify-content-center">
                     <div class="home_title">
-                        <h1>Kea Hotels Inc</h1>
+                        <h1><?php echo $sys->sys_name; ?></h1>
                     </div>
                     <div class="home_text text-center">
-                        Experience Life, Live The Moment
+                        <?php echo $sys->sys_tagline; ?>
                     </div>
                     <div class="button home_button"><a href="#">View Our Rooms</a></div>
                 </div>
@@ -134,6 +139,7 @@ while ($sys = $res->fetch_object()) {
         </div>
         <?php require_once("partials/cms_scripts.php"); ?>
     </body>
+
     </html>
 <?php
 } ?>
