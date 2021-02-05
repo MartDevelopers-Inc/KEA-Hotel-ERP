@@ -1,4 +1,9 @@
 <p align="center"><img src="https://github.com/MartMbithi/KEA-Hotel-ERP/blob/master/Kea-ERP-Logo.png" width="400"></p>
+<p align="center">
+    <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/MartDevelopers-Inc/KEA-Hotel-ERP?style=social">
+    <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/MartDevelopers-Inc/KEA-Hotel-ERP?style=social">
+    <img alt="GitHub" src="https://img.shields.io/github/license/MartDevelopers-Inc/KEA-Hotel-ERP?style=social">
+</p>
 
 ## About KEA-Hotel-ERP 
 
