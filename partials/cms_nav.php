@@ -16,11 +16,9 @@
 
         <div class="social header_social">
             <ul class="d-flex flex-row align-items-center justify-content-start">
-                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                <li><a target="_blank" href="https://facebook.com/<?php echo $sys->social_fb; ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a target="_blank" href="https://twitter.com/<?php echo $sys->social_twitter; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a target="_blank" href="https://instagram.com/<?php echo $sys->social_ig ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
             </ul>
         </div>
 
@@ -71,11 +69,9 @@
 
         <div class="social menu_social">
             <ul class="d-flex flex-row align-items-center justify-content-start">
-                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                <li><a target="_blank" href="https://facebook.com/<?php echo $sys->social_fb; ?>"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a target="_blank" href="https://twitter.com/<?php echo $sys->social_twitter; ?>"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a target="_blank" href="https://instagram.com/<?php echo $sys->social_ig; ?>"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
             </ul>
         </div>
     </div>

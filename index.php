@@ -36,7 +36,7 @@ while ($sys = $res->fetch_object()) {
                         <div class="col">
                             <div class="section_title text-center">
                                 <div>Welcome</div>
-                                <h1>Amazing Hotel in front of the Sea</h1>
+                                <h1><?php echo $sys->welcome_heading; ?></h1>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@ while ($sys = $res->fetch_object()) {
                         <div class="col-xl-8 col-lg-10 offset-xl-2 offset-lg-1">
                             <div class="intro_text text-center">
                                 <p>
-                                    Maecenas sollicitudin tincidunt maximus. Morbi tempus malesuada erat sed pellentesque. Donec pharetra mattis nulla, id laoreet neque scelerisque at. Quisque eget sem non ligula consectetur ultrices in quis augue. Donec imperd iet leo eget tortor dictum, eget varius eros sagittis. Curabitur tempor dignissim massa ut faucibus sollicitudin tinci dunt maximus. Morbi tempus malesuada erat sed pellentesque. Donec pharetra mattis nulla, id laoreet neque scele risque at. Quisque eget sem non ligula consectetur ultrices in quis augue. Donec imperdiet leo eget tortor dictum, eget varius eros sagittis. Curabitur tempor dignissim massa ut faucibus.
+                                    <?php echo $sys->welcome_content; ?>
                                 </p>
                             </div>
                         </div>
@@ -59,7 +59,6 @@ while ($sys = $res->fetch_object()) {
                                         <img src="public/cms_assets/images/gallery_1.jpg" alt="">
                                         <div class="gallery_overlay">
                                             <div class="text-center d-flex flex-column align-items-center justify-content-center">
-
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +67,6 @@ while ($sys = $res->fetch_object()) {
                                         <img src="public/cms_assets/images/gallery_2.jpg" alt="">
                                         <div class="public/cms_assets/gallery_overlay">
                                             <div class="text-center d-flex flex-column align-items-center justify-content-center">
-
                                             </div>
                                         </div>
                                     </div>
@@ -109,7 +107,7 @@ while ($sys = $res->fetch_object()) {
                                         <div class="footer_info d-flex flex-column align-items-lg-end align-items-center justify-content-start">
                                             <div class="text-center">
                                                 <div>Phone:</div>
-                                                <div>+546 990221 123</div>
+                                                <div><?php echo $sys->contacts_phone; ?></div>
                                             </div>
                                         </div>
                                     </div>
@@ -117,7 +115,7 @@ while ($sys = $res->fetch_object()) {
                                         <div class="footer_info d-flex flex-column align-items-center justify-content-start">
                                             <div class="text-center">
                                                 <div>Address:</div>
-                                                <div>Main Str, no 23, New York</div>
+                                                <div><?php echo $sys->contacts_addres; ?></div>
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +123,7 @@ while ($sys = $res->fetch_object()) {
                                         <div class="footer_info d-flex flex-column align-items-lg-start align-items-center justify-content-start">
                                             <div class="text-center">
                                                 <div>Mail:</div>
-                                                <div></div>
+                                                <div><?php echo $sys->contacts_email; ?></div>
                                             </div>
                                         </div>
                                     </div>
