@@ -15,4 +15,39 @@
     <link href="public/cms_assets/plugins/jquery-datepicker/jquery-ui.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="public/cms_assets/styles/main_styles.css">
     <link rel="stylesheet" type="text/css" href="public/cms_assets/styles/responsive.css">
+    <!-- Sweet Alerts -->
+    <script src="public/plugins/sweetalerts/sweetalert2.min.js"></script>
+    <link href="public/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <!-- Init Swal -->
+    <?php if (isset($success)) { ?>
+        <script>
+            setTimeout(function() {
+                    swal(
+                        "Success", "<?php echo $success; ?>", "success",
+                    );
+                },
+                100);
+        </script>
+
+    <?php } ?>
+
+    <?php if (isset($err)) { ?>
+        <script>
+            setTimeout(function() {
+                    swal("Failed", "<?php echo $err; ?>", "error", );
+                },
+                100);
+        </script>
+
+    <?php } ?>
+    <?php if (isset($info)) { ?>
+        <script>
+            setTimeout(function() {
+                    swal("Success", "<?php echo $info; ?>", "warning");
+                },
+                100);
+        </script>
+
+    <?php }
+    ?>
 </head>
